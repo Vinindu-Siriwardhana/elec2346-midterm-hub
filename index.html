@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ELEC2346 Midterm Hub</title>
+<link rel="stylesheet" href="katex/katex.min.css">
+<script defer src="katex/katex.min.js"></script>
+<script defer src="katex/auto-render.min.js"></script>
+<style>
+:root{
+  --bg:#f4f5fb;--card:#fff;--text:#1a1d2e;--muted:#6b7280;--line:#e5e7f0;
+  --a1:#5b5bf0;--a2:#06b6d4;--exam:#f97316;--ok:#16a34a;--shadow:0 1px 2px rgba(20,20,60,.05),0 8px 24px -12px rgba(20,20,60,.15);
+  --hero:linear-gradient(135deg,#4f46e5 0%,#7c3aed 55%,#06b6d4 120%);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+  --bg:#0e1020;--card:#171a2e;--text:#e9ebf7;--muted:#9aa1b9;--line:#262a45;--a1:#8b8bff;--a2:#38d3ee;--exam:#fb923c;--ok:#4ade80;--shadow:0 8px 24px -12px #000;
+  --hero:linear-gradient(135deg,#312e81 0%,#5b21b6 55%,#0e7490 120%);}}
+:root[data-theme=dark]{
+  --bg:#0e1020;--card:#171a2e;--text:#e9ebf7;--muted:#9aa1b9;--line:#262a45;--a1:#8b8bff;--a2:#38d3ee;--exam:#fb923c;--ok:#4ade80;--shadow:0 8px 24px -12px #000;
+  --hero:linear-gradient(135deg,#312e81 0%,#5b21b6 55%,#0e7490 120%);}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:128px}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1020px;margin:0 auto;padding:0 16px}
+
+/* hero */
+.hero{background:var(--hero);color:#fff;padding:34px 0 64px;position:relative;overflow:hidden}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.08)}
+.hero::before{width:320px;height:320px;right:-80px;top:-120px}
+.hero::after{width:180px;height:180px;left:-50px;bottom:-90px}
+.hero h1{margin:0;font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:-.02em;line-height:1.15}
+.hero p{margin:8px 0 18px;opacity:.9;max-width:640px}
+.hero .eq{font-family:Georgia,serif;font-style:italic;opacity:.75;font-size:1.05rem;margin-top:14px}
+.stats{display:flex;gap:10px;flex-wrap:wrap}
+.stat{background:rgba(255,255,255,.16);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.22);border-radius:12px;padding:8px 14px}
+.stat b{display:block;font-size:1.3rem;line-height:1.1}
+.stat span{font-size:12px;opacity:.85}
+.prog{height:6px;border-radius:99px;background:rgba(255,255,255,.25);margin-top:14px;max-width:420px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:#fff;border-radius:99px;transition:width .4s}
+
+/* toolbar */
+.toolbar{position:sticky;top:0;z-index:20;margin-top:-30px}
+.toolbar .box{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:10px 12px}
+.tabs{display:flex;gap:4px;background:var(--bg);border-radius:10px;padding:3px;width:max-content;max-width:100%;overflow-x:auto}
+.tab{border:0;background:none;color:var(--muted);font:600 14px inherit;padding:7px 14px;border-radius:8px;cursor:pointer;white-space:nowrap}
+.tab.on{background:var(--card);color:var(--a1);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
+input[type=search]{flex:1 1 220px;padding:9px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font:15px inherit;outline:none}
+input[type=search]:focus{border-color:var(--a1);box-shadow:0 0 0 3px color-mix(in srgb,var(--a1) 22%,transparent)}
+.chip,.ibtn{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;padding:6px 13px;font:13px inherit;cursor:pointer;transition:.15s}
+.chip:hover,.ibtn:hover{border-color:var(--a1)}
+.chip.on{background:var(--a1);border-color:var(--a1);color:#fff}
+nav.jump{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+nav.jump a{font-size:12px;font-weight:600;color:var(--a1);text-decoration:none;background:color-mix(in srgb,var(--a1) 10%,transparent);border-radius:6px;padding:3px 9px}
+nav.jump a:hover{background:color-mix(in srgb,var(--a1) 22%,transparent)}
+
+main{padding:20px 0 60px}
+.view{display:none}.view.on{display:block}
+h2.sec{display:flex;gap:12px;align-items:center;font-size:1.3rem;margin:34px 0 4px;letter-spacing:-.01em}
+.num{flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:11px;color:#fff;font-weight:800;font-size:.95rem;background:linear-gradient(135deg,var(--c1),var(--c2))}
+.blurb{color:var(--muted);margin:0 0 12px 50px}
+.grid{display:grid;gap:12px}
+.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px 14px 20px;box-shadow:var(--shadow);overflow:hidden;transition:transform .15s,opacity .2s}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(var(--c1),var(--c2))}
+.card:hover{transform:translateY(-1px)}
+.card.done{opacity:.5}
+.top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.name{font-weight:700;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.badge{font-size:10.5px;font-weight:800;letter-spacing:.04em;color:#fff;background:var(--exam);border-radius:999px;padding:1px 8px}
+.badge.late{background:#8b5cf6}.badge.mid{background:var(--a1)}
+label.chk{font-size:13px;color:var(--muted);display:flex;gap:6px;align-items:center;cursor:pointer;user-select:none}
+label.chk input{accent-color:var(--ok);width:16px;height:16px}
+.tex{overflow-x:auto;overflow-y:hidden;padding:6px 0;margin:4px 0;min-width:0}
+.eqrow{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:16px;align-items:center}
+.eqrow.nofig{grid-template-columns:1fr}
+@media(max-width:700px){.eqrow{grid-template-columns:1fr}.fig{max-width:300px;margin:0 auto 6px}}
+.fig{margin:0;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:6px 6px 4px}
+.fig figcaption{font-size:11.5px;line-height:1.35;color:var(--muted);padding:2px 4px 2px}
+.dg{display:block;width:100%;height:auto}
+.dg line,.dg path,.dg ellipse,.dg rect,.dg polyline,.dg circle{fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.dg polygon{stroke:none;fill:var(--muted)}
+.dg .ax{stroke:var(--muted)} .dg polygon.ax{fill:var(--muted)}
+.dg .c1{stroke:var(--c1)} .dg polygon.c1,.dg circle.dot.c1{fill:var(--c1)}
+.dg .c2{stroke:var(--exam)} .dg polygon.c2,.dg circle.dot.c2{fill:var(--exam)}
+.dg .c3{stroke:#10b981} .dg polygon.c3,.dg circle.dot.c3{fill:#10b981}
+.dg .c4{stroke:#a855f7} .dg polygon.c4{fill:#a855f7}
+.dg circle.dot.ax{fill:var(--muted)}
+.dg .thin{stroke-width:1.1} .dg .w2{stroke-width:2} .dg .w3{stroke-width:2.6} .dg .w4{stroke-width:4}
+.dg .dash{stroke-dasharray:4 3} .dg .faint{opacity:.45}
+.dg .f1{fill:color-mix(in srgb,var(--c1) 16%,transparent);stroke:none} .dg .f1.c1{stroke:var(--c1)}
+.dg .f2{fill:color-mix(in srgb,var(--exam) 16%,transparent);stroke:none}
+.dg .f3{fill:color-mix(in srgb,#10b981 16%,transparent);stroke:none}
+.dg .f4{fill:color-mix(in srgb,#a855f7 16%,transparent);stroke:none}
+.dg .metal{fill:color-mix(in srgb,var(--muted) 30%,transparent);stroke:var(--muted)}
+.dg .pl{fill:var(--muted);stroke:none}
+.dg .hole{fill:var(--bg)}
+.dg .ghost{fill:color-mix(in srgb,var(--muted) 14%,transparent);stroke:none}
+.dg circle.qp{fill:#ef4444;stroke:none} .dg circle.qn{fill:#3b82f6;stroke:none}
+.dg text{font:600 10.5px system-ui,-apple-system,"Segoe UI",sans-serif;fill:var(--muted)}
+.dg text.qs{fill:#fff;font-size:12px;font-weight:800}
+.dg text.t1{fill:var(--c1)} .dg text.t2{fill:var(--exam)} .dg text.t3{fill:#10b981} .dg text.t4{fill:#a855f7}
+.dg text.faint{opacity:.5}
+.vars{color:var(--muted);font-size:14px}
+.syms{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:4px 16px;margin:6px 0 8px;padding:10px 12px;border-radius:10px;background:var(--bg);border:1px dashed var(--line)}
+.syms .sh{grid-column:1/-1;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--c1)}
+.sym{display:flex;gap:8px;align-items:baseline;font-size:13.5px;line-height:1.35}
+.sym .st{flex:none;min-width:34px;text-align:right;color:var(--c1)}
+.sym .sm{color:var(--text);opacity:.85}
+.where{font-size:14px;margin-top:8px;padding:8px 12px;border-radius:10px;background:color-mix(in srgb,var(--c1) 8%,transparent)}
+.where b.lbl{color:var(--c1)}
+.hidden{display:none!important}
+.empty{text-align:center;color:var(--muted);padding:40px 0}
+
+/* tips */
+.tips{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.tip{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow)}
+.tip .name::before{content:"💡"}
+
+/* question types */
+.qt{--c1:var(--a1);--c2:var(--a2)}
+.qt.late{--c1:#8b5cf6;--c2:#ec4899}
+.qt h3{margin:0;font-size:1.05rem}
+.qt .ic{font-size:1.5rem;line-height:1}
+.freq{display:inline-flex;gap:2px;margin-left:auto}
+.freq i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.freq i.f{background:var(--exam)}
+.cols{display:grid;gap:14px;grid-template-columns:1fr 1fr;margin-top:10px}
+@media(max-width:760px){.cols{grid-template-columns:1fr}.blurb{margin-left:0}}
+.qt h4{margin:0 0 4px;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.qt ul,.qt ol{margin:0;padding-left:20px;font-size:14px}
+.qt li{margin:3px 0}
+.go{margin-top:10px}
+.pap{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;box-shadow:var(--shadow)}
+.pap h3{margin:0 0 2px;font-size:1.05rem}
+.pap small{color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin-top:8px;font-size:14px}
+td{padding:5px 8px;border-top:1px solid var(--line);vertical-align:top}
+td:first-child{white-space:nowrap;font-weight:700;color:var(--a1);width:1%}
+.pg{--c1:var(--a1);--c2:var(--a2);position:relative;overflow:hidden}
+.pg::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(var(--c1),var(--c2))}
+.pg .cnt{margin-left:auto;font-size:13px;font-weight:700;color:var(--muted)}
+.pg .mini{height:4px;border-radius:99px;background:var(--line);margin:8px 0 4px;overflow:hidden}
+.pg .mini i{display:block;height:100%;background:var(--ok);border-radius:99px;transition:width .3s}
+.pg .items{display:grid;gap:2px;margin-top:6px}
+.pg.chips .items{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}
+.pi{display:flex;gap:10px;align-items:flex-start;padding:6px 8px;border-radius:8px;cursor:pointer;font-size:14px}
+.pi:hover{background:var(--bg)}
+.pi input{accent-color:var(--ok);width:16px;height:16px;flex:none;margin-top:3px}
+.pi b{color:var(--c1);white-space:nowrap}
+.pi.ok{opacity:.5}.pi.ok span,.pi.ok b{text-decoration:line-through}
+.pq{--c1:var(--a1);--c2:var(--a2)}
+.pq .src{font-size:12px;font-weight:700;color:var(--muted)}
+.pq .qbody{font-size:14.5px;margin:6px 0 4px;padding:3px 0;overflow-x:auto;overflow-y:hidden}
+.pq .ans{display:none;font-size:14px;margin-top:10px;padding:10px 14px;border-radius:10px;background:color-mix(in srgb,var(--ok) 9%,transparent);border-left:3px solid var(--ok);overflow-x:auto;overflow-y:hidden}
+.pq.open .ans{display:block}
+.pq .rev{margin-top:8px}
+.pq.open .rev{background:var(--ok);border-color:var(--ok);color:#fff}
+.pq .katex-display{margin:.4em 0}
+.figs{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 4px}
+.figs img{max-height:210px;max-width:100%;background:#fff;border:1px solid var(--line);border-radius:10px;padding:6px}
+.skip{font-size:14px;color:var(--muted);padding:10px 14px;border:1px dashed var(--line);border-radius:12px}
+
+/* quiz mode */
+.hide-tex .tex{visibility:hidden;cursor:pointer;position:relative;min-height:46px;background:repeating-linear-gradient(45deg,var(--line),var(--line) 8px,transparent 8px,transparent 16px);border-radius:8px}
+.hide-tex .tex.shown{visibility:visible;background:none}
+@media print{.hero,.toolbar{display:none}.card{break-inside:avoid;box-shadow:none}.view{display:block!important}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap">
+  <h1>ELEC2346 Midterm Hub</h1>
+  <p>Every equation, where it shows up, and the question types from the tutorials and five past papers, with worked solutions, in one place.</p>
+  <div class="stats">
+    <div class="stat"><b id="s-eq">0</b><span>equations</span></div>
+    <div class="stat"><b id="s-q">0</b><span>question types</span></div>
+    <div class="stat"><b id="s-done">0</b><span>mastered</span></div>
+  </div>
+  <div class="prog"><i id="bar"></i></div>
+  <div class="eq">Σ i = 0 &nbsp;&nbsp; Σ v = 0 &nbsp;&nbsp; v = iR &nbsp;&nbsp; P<sub>max</sub> = V<sub>Th</sub>²/4R<sub>Th</sub></div>
+  <p style="margin:10px 0 0;font-size:14px">📅 <b>Midterm: Mon 26 Oct 2026 (20%).</b> Range: Lectures 1–4 and Operational Amplifiers slides 1–9. In Question types, use “Midterm scope only” to focus.</p>
+</div></div>
+
+<div class="toolbar"><div class="wrap"><div class="box">
+  <div class="tabs" id="tabs">
+    <button class="tab on" data-v="eqs">📐 Equations</button>
+    <button class="tab" data-v="qt">🎯 Question types</button>
+    <button class="tab" data-v="papers">📄 Paper map</button>
+    <button class="tab" data-v="plan">✅ Study plan</button>
+    <button class="tab" data-v="practice">🧠 Practice</button>
+  </div>
+  <div class="row">
+    <input id="q" type="search" placeholder="Search equations, topics, years (e.g. thevenin, 2019, supernode)…">
+    <button class="chip" id="f-exam" data-eqonly>Past-paper hits</button>
+    <button class="chip" id="f-todo" data-eqonly>Not mastered</button>
+    <button class="chip" id="f-mid" data-qtonly>Midterm scope only</button>
+    <button class="chip" id="quiz" data-eqonly>Quiz mode</button>
+    <button class="chip" id="f-undone" data-pronly>Not done yet</button>
+    <button class="chip" id="revall" data-pronly>Show all answers</button>
+    <button class="ibtn" id="theme" title="Toggle dark mode">🌓</button>
+    <button class="ibtn" id="print">🖨</button>
+  </div>
+  <nav class="jump" id="nav"></nav>
+</div></div></div>
+
+<main class="wrap">
+  <div class="view on" id="v-eqs">
+    <h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#f59e0b;--c2:#f97316">★</span>How to attack most problems</h2>
+    <div class="tips" id="tips" style="margin-top:12px"></div>
+    <div id="eqs"></div>
+  </div>
+  <div class="view" id="v-qt"><div id="qts"></div></div>
+  <div class="view" id="v-papers"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#06b6d4;--c2:#3b82f6">📄</span>What each paper asked</h2><p class="blurb">Click a row's topic words in the search bar of the other tabs to find the matching equations.</p><div class="grid" id="papers"></div></div>
+  <div class="view" id="v-plan"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#16a34a;--c2:#10b981">✅</span>Midterm study plan <span class="cnt" id="plan-cnt" style="margin-left:auto;font-size:14px;color:var(--muted)"></span></h2><p class="blurb">Tier 1 first, then Tier 2 textbook problems. Tick each one off as you finish it.</p><div class="grid" id="plan"></div></div>
+  <div class="view" id="v-practice"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#ec4899;--c2:#8b5cf6">🧠</span>Practice questions</h2><p class="blurb">Every Tier 1 and Tier 2 question from the study plan, with a worked solution. Try it on paper first, then press “Reveal answer”. Ticking “done” here also ticks it in the Study plan. Sadiku numbers match your supplementary-exercise PDF.</p><div id="practice"></div></div>
+  <div class="empty hidden" id="empty">No matches — try a different search.</div>
+  <p class="blurb" style="margin-left:0;margin-top:30px">Compiled from Lectures 1–4, Op Amps slides 1–9, Tutorials 1–2, the supplementary exercises and the 2016–2021 past papers. Every numerical answer was checked by solving the circuit equations; odd Sadiku answers also match the answer key. Ticks are saved in this browser.</p>
+</main>
+
+<script src="data.js"></script>
+<script src="qtypes.js"></script>
+<script src="plan.js"></script>
+<script src="practice.js"></script>
+<script>function safeSvg(id){try{return DIAG[id].svg()}catch(e){console.warn('diagram',id,e);return ''}}</script>
+<script>
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const store = {get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const PALETTE = [["#6366f1","#8b5cf6"],["#0ea5e9","#06b6d4"],["#10b981","#34d399"],["#f59e0b","#f97316"],["#ec4899","#f43f5e"],["#8b5cf6","#d946ef"],["#64748b","#334155"]];
+let done = store.get('done',{}), planDone = store.get('plan',{}), view = 'eqs', query = "", fExam=false, fTodo=false, fMid=false, fUndone=false;
+
+// Inside $…$ a bare < or > would be parsed as an HTML tag by innerHTML and break the maths; swap in TeX's \lt / \gt.
+const M = s => String(s).replace(/\$\$[\s\S]*?\$\$|\$[^$]*\$/g, m => m.replace(/</g,'\\lt ').replace(/>/g,'\\gt '));
+function build(){
+  $('#tips').innerHTML = SOLVING_TIPS.map(t=>`<div class="tip"><div class="name">${M(t.t)}</div><div class="vars">${M(t.b)}</div></div>`).join('');
+  $('#eqs').innerHTML = SECTIONS.map((s,si)=>{
+    const [c1,c2]=PALETTE[si%PALETTE.length], label=s.id==="OA"?"▷":s.id.slice(1);
+    return `<section id="${s.id}" style="--c1:${c1};--c2:${c2}">
+    <h2 class="sec"><span class="num">${label}</span>${s.title.replace(/^[^·]*·\s*/,'').replace(/^Bonus · /,'')}</h2>
+    <p class="blurb">${M(s.blurb)}</p><div class="grid">
+    ${s.eqs.map((e,i)=>{const id=s.id+i;return `<div class="card eq" data-id="${id}" data-exam="${e.tags.includes('exam')}" data-search="${(s.title+' '+e.name+' '+e.where+' '+e.vars+' '+e.tags.join(' ')).toLowerCase().replace(/"/g,'')}">
+      <div class="top"><div class="name">${e.name}${e.tags.includes('exam')?'<span class="badge">PAST PAPER</span>':''}</div>
+      <label class="chk"><input type="checkbox" ${done[id]?'checked':''}> mastered</label></div>
+      <div class="eqrow ${DIAG[id]?'':'nofig'}"><div class="tex" data-tex="${encodeURIComponent(e.tex)}"></div>${DIAG[id]?`<figure class="fig">${safeSvg(id)}<figcaption>${DIAG[id].cap}</figcaption></figure>`:''}</div>
+      ${(SYMBOLS[id]||[]).length?`<div class="syms"><div class="sh">Symbols</div>${SYMBOLS[id].map(([t,m])=>`<div class="sym"><span class="st" data-stex="${t?encodeURIComponent(t):''}"></span><span class="sm">${m}</span></div>`).join('')}</div>`:''}
+      ${e.vars?`<div class="vars">${M(e.vars)}</div>`:''}
+      <div class="where"><b class="lbl">Where it comes up:</b> ${M(e.where)}</div></div>`}).join('')}
+    </div></section>`}).join('');
+  $('#qts').innerHTML = ['mid','late'].map(sc=>{
+    const list=QTYPES.filter(q=>q.scope===sc);
+    return `<div class="qgroup" data-scope="${sc}"><h2 class="sec"><span class="num" style="--c1:${sc==='mid'?'#6366f1':'#8b5cf6'};--c2:${sc==='mid'?'#06b6d4':'#ec4899'}">${sc==='mid'?'🎯':'📚'}</span>${sc==='mid'?'Lectures 1–4 + op amp slides 1–9 (midterm range)':'Later topics (show up on finals)'}</h2>
+    <p class="blurb">${sc==='mid'?'Question patterns from the tutorials and the in-range parts of every past paper. Dots = how often it appears.':'Not on your midterm, but these fill the rest of every final paper.'}</p><div class="grid">
+    ${list.map(q=>`<div class="card qt ${q.scope}" data-search="${(q.title+' '+q.sources.join(' ')+' '+q.steps.join(' ')+' '+q.find).toLowerCase().replace(/"/g,'')}">
+      <div class="top"><div class="name"><span class="ic">${q.icon}</span><h3>${q.title}</h3></div>
+      <span class="freq" title="Frequency across papers">${[1,2,3,4,5].map(n=>`<i class="${n<=q.freq?'f':''}"></i>`).join('')}</span></div>
+      <div class="cols"><div><h4>Seen in</h4><ul>${q.sources.map(x=>`<li>${M(x)}</li>`).join('')}</ul></div>
+      <div><h4>How to attack</h4><ol>${q.steps.map(x=>`<li>${M(x)}</li>`).join('')}</ol></div></div>
+      <button class="chip go" data-find="${q.find}">Show related equations →</button></div>`).join('')}
+    </div></div>`}).join('');
+  $('#papers').innerHTML = PAPERS.map(p=>`<div class="pap" data-search="${(p.name+' '+p.items.map(i=>i.join(' ')).join(' ')).toLowerCase().replace(/"/g,'')}"><h3>${p.name}</h3><small>${p.note}</small>
+    <table>${p.items.map(i=>`<tr><td>${M(i[0])}</td><td>${M(i[1])}</td></tr>`).join('')}</table></div>`).join('');
+  $('#plan').innerHTML = PLAN.map(g=>`<div class="pap pg ${g.items.every(i=>!i[1])?'chips':''}" style="--c1:${g.c[0]};--c2:${g.c[1]}" data-search="${(g.title+' '+g.note+' '+g.items.map(i=>i.join(' ')).join(' ')).toLowerCase().replace(/"/g,'')}">
+    <div class="top"><h3>${g.icon} ${g.title}</h3><span class="cnt"></span></div>${g.note?`<small>${g.note}</small>`:''}<div class="mini"><i></i></div>
+    <div class="items">${g.items.map((it,k)=>{const pid=g.id+':'+k;return `<label class="pi"><input type="checkbox" data-pid="${pid}" ${planDone[pid]?'checked':''}><b>${it[0]}</b>${it[1]?`<span>${it[1]}</span>`:''}</label>`}).join('')}</div></div>`).join('')
+    + `<div class="skip">🚫 ${PLAN_SKIP}</div>`;
+  $('#practice').innerHTML = PLAN.filter(g=>g.id!=='days'&&PRACTICE.some(p=>p.pid.startsWith(g.id+':'))).map(g=>{
+    const list=PRACTICE.filter(p=>p.pid.startsWith(g.id+':'));
+    return `<div class="pgroup"><h2 class="sec"><span class="num" style="--c1:${g.c[0]};--c2:${g.c[1]}">${g.icon}</span>${g.title}</h2><div class="grid">
+    ${list.map(p=>`<div class="card pq" style="--c1:${g.c[0]};--c2:${g.c[1]}" data-pid="${p.pid}" data-search="${(g.title+' '+p.src+' '+p.q).toLowerCase().replace(/<[^>]+>/g,' ').replace(/"/g,'')}">
+      <div class="top"><div class="name">${p.src}</div><label class="chk"><input type="checkbox" data-pid="${p.pid}" ${planDone[p.pid]?'checked':''}> done</label></div>
+      <div class="qbody">${M(p.q)}</div>
+      ${FIGS[p.pid]?`<div class="figs">${FIGS[p.pid].map(f=>`<img src="img/${f}.png" alt="Figure for ${p.src}" loading="lazy">`).join('')}</div>`:''}
+      <button class="chip rev">Reveal answer</button>
+      <div class="ans">${M(p.a)}</div></div>`).join('')}</div></div>`}).join('');
+  $('#nav').innerHTML = SECTIONS.map(s=>`<a href="#${s.id}">${s.id==='OA'?'Op amp':'Lec '+s.id.slice(1)}</a>`).join('');
+  $('#s-eq').textContent = SECTIONS.reduce((a,s)=>a+s.eqs.length,0);
+  $('#s-q').textContent = QTYPES.length;
+}
+function render(){
+  $$('.tex').forEach(el=>katex.render(decodeURIComponent(el.dataset.tex),el,{displayMode:true,throwOnError:false}));
+  $$('.st[data-stex]').forEach(el=>{if(el.dataset.stex)katex.render(decodeURIComponent(el.dataset.stex),el,{throwOnError:false})});
+  renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false,ignoredClasses:['tex']});
+}
+function apply(){
+  let n=0;
+  $$('.card.eq').forEach(c=>{
+    let ok=!query||c.dataset.search.includes(query);
+    if(fExam&&c.dataset.exam!=='true')ok=false;
+    if(fTodo&&done[c.dataset.id])ok=false;
+    c.classList.toggle('hidden',!ok); c.classList.toggle('done',!!done[c.dataset.id]);
+    if(ok&&view==='eqs')n++;
+  });
+  $$('#eqs section').forEach(s=>s.classList.toggle('hidden',!s.querySelector('.card:not(.hidden)')));
+  $$('.card.qt').forEach(c=>{
+    const ok=(!query||c.dataset.search.includes(query))&&!(fMid&&c.classList.contains('late'));
+    c.classList.toggle('hidden',!ok); if(ok&&view==='qt')n++;});
+  $$('.qgroup').forEach(g=>g.classList.toggle('hidden',!g.querySelector('.card:not(.hidden)')));
+  $$('#papers .pap').forEach(p=>{const ok=!query||p.dataset.search.includes(query);p.classList.toggle('hidden',!ok);if(ok&&view==='papers')n++;});
+  $$('.pg').forEach(p=>{const ok=!query||p.dataset.search.includes(query);p.classList.toggle('hidden',!ok);if(ok&&view==='plan')n++;
+    const bs=p.querySelectorAll('input'),d=[...bs].filter(b=>b.checked).length;
+    bs.forEach(b=>b.closest('.pi').classList.toggle('ok',b.checked));
+    p.querySelector('.cnt').textContent=d+'/'+bs.length; p.querySelector('.mini i').style.width=(100*d/bs.length)+'%';});
+  $$('.card.pq').forEach(c=>{const d=!!planDone[c.dataset.pid];const ok=(!query||c.dataset.search.includes(query))&&!(fUndone&&d);
+    c.classList.toggle('hidden',!ok);c.classList.toggle('done',d);if(ok&&view==='practice')n++;});
+  $$('.pgroup').forEach(g=>g.classList.toggle('hidden',!g.querySelector('.card:not(.hidden)')));
+  {const all=$$('#plan input'),d=all.filter(b=>b.checked).length;$('#plan-cnt').textContent=d+' / '+all.length+' done';}
+  $('#empty').classList.toggle('hidden',n>0);
+  const total=SECTIONS.reduce((a,s)=>a+s.eqs.length,0), d=Object.values(done).filter(Boolean).length;
+  $('#s-done').textContent=d; $('#bar').style.width=(100*d/total)+'%';
+  $('#nav').classList.toggle('hidden',view!=='eqs');
+  $$('[data-eqonly]').forEach(b=>b.classList.toggle('hidden',view!=='eqs'));
+  $$('[data-qtonly]').forEach(b=>b.classList.toggle('hidden',view!=='qt'));
+  $$('[data-pronly]').forEach(b=>b.classList.toggle('hidden',view!=='practice'));
+}
+function setView(v){
+  view=v; $$('.tab').forEach(t=>t.classList.toggle('on',t.dataset.v===v));
+  $$('.view').forEach(x=>x.classList.toggle('on',x.id==='v-'+v)); apply(); scrollTo({top:0});
+}
+function init(){
+  build(); render(); apply();
+  $('#q').addEventListener('input',e=>{query=e.target.value.trim().toLowerCase();apply()});
+  $('#tabs').addEventListener('click',e=>{const t=e.target.closest('.tab');if(t)setView(t.dataset.v)});
+  [['f-exam',v=>fExam=v],['f-todo',v=>fTodo=v],['f-mid',v=>fMid=v]].forEach(([id,fn])=>$('#'+id).addEventListener('click',e=>{e.target.classList.toggle('on');fn(e.target.classList.contains('on'));apply()}));
+  $('#eqs').addEventListener('change',e=>{if(e.target.type==='checkbox'){const id=e.target.closest('.card').dataset.id;done[id]=e.target.checked;store.set('done',done);apply();}});
+  const onPlanTick=e=>{const id=e.target.dataset.pid;if(!id)return;planDone[id]=e.target.checked;store.set('plan',planDone);
+    $$(`input[data-pid="${id}"]`).forEach(b=>b.checked=e.target.checked);apply();};
+  $('#plan').addEventListener('change',onPlanTick); $('#practice').addEventListener('change',onPlanTick);
+  $('#practice').addEventListener('click',e=>{const b=e.target.closest('.rev');if(!b)return;const open=b.closest('.pq').classList.toggle('open');b.textContent=open?'Hide answer':'Reveal answer';});
+  $('#revall').addEventListener('click',e=>{const on=e.target.classList.toggle('on');e.target.textContent=on?'Hide all answers':'Show all answers';
+    $$('.pq').forEach(c=>{c.classList.toggle('open',on);c.querySelector('.rev').textContent=on?'Hide answer':'Reveal answer';});});
+  $('#f-undone').addEventListener('click',e=>{fUndone=e.target.classList.toggle('on');apply();});
+  $('#quiz').addEventListener('click',e=>{const on=document.body.classList.toggle('hide-tex');e.target.classList.toggle('on',on);$$('.tex').forEach(t=>t.classList.remove('shown'));});
+  $('#eqs').addEventListener('click',e=>{const t=e.target.closest('.tex');if(t&&document.body.classList.contains('hide-tex'))t.classList.toggle('shown');});
+  $('#qts').addEventListener('click',e=>{const b=e.target.closest('[data-find]');if(!b)return;$('#q').value=b.dataset.find;query=b.dataset.find.toLowerCase();setView('eqs');});
+  $('#theme').addEventListener('click',()=>{const r=document.documentElement;const dark=(r.dataset.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'))==='dark';r.dataset.theme=dark?'light':'dark';store.set('theme',r.dataset.theme);});
+  $('#print').addEventListener('click',()=>print());
+  const th=store.get('theme',null); if(th)document.documentElement.dataset.theme=th;
+}
+window.addEventListener('load',init);
+</script>
+</body>
+</html>
