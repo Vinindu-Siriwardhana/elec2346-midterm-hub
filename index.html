@@ -9,16 +9,16 @@
 <script defer src="katex/auto-render.min.js"></script>
 <style>
 :root{
-  --bg:#f4f5fb;--card:#fff;--text:#1a1d2e;--muted:#6b7280;--line:#e5e7f0;
-  --a1:#5b5bf0;--a2:#06b6d4;--exam:#f97316;--ok:#16a34a;--shadow:0 1px 2px rgba(20,20,60,.05),0 8px 24px -12px rgba(20,20,60,.15);
-  --hero:linear-gradient(135deg,#4f46e5 0%,#7c3aed 55%,#06b6d4 120%);
+  --bg:#f2f7f5;--card:#fff;--text:#13201d;--muted:#5f6f6b;--line:#dfe9e6;
+  --a1:#0f766e;--a2:#0891b2;--exam:#f97316;--ok:#16a34a;--shadow:0 1px 2px rgba(10,40,35,.05),0 8px 24px -12px rgba(10,40,35,.15);
+  --hero:linear-gradient(135deg,#065f46 0%,#0f766e 55%,#0891b2 120%);
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){
-  --bg:#0e1020;--card:#171a2e;--text:#e9ebf7;--muted:#9aa1b9;--line:#262a45;--a1:#8b8bff;--a2:#38d3ee;--exam:#fb923c;--ok:#4ade80;--shadow:0 8px 24px -12px #000;
-  --hero:linear-gradient(135deg,#312e81 0%,#5b21b6 55%,#0e7490 120%);}}
+  --bg:#0a1513;--card:#12211e;--text:#e6f2ef;--muted:#97aea8;--line:#21342f;--a1:#2dd4bf;--a2:#38bdf8;--exam:#fb923c;--ok:#4ade80;--shadow:0 8px 24px -12px #000;
+  --hero:linear-gradient(135deg,#064e3b 0%,#115e59 55%,#155e75 120%);}}
 :root[data-theme=dark]{
-  --bg:#0e1020;--card:#171a2e;--text:#e9ebf7;--muted:#9aa1b9;--line:#262a45;--a1:#8b8bff;--a2:#38d3ee;--exam:#fb923c;--ok:#4ade80;--shadow:0 8px 24px -12px #000;
-  --hero:linear-gradient(135deg,#312e81 0%,#5b21b6 55%,#0e7490 120%);}
+  --bg:#0a1513;--card:#12211e;--text:#e6f2ef;--muted:#97aea8;--line:#21342f;--a1:#2dd4bf;--a2:#38bdf8;--exam:#fb923c;--ok:#4ade80;--shadow:0 8px 24px -12px #000;
+  --hero:linear-gradient(135deg,#064e3b 0%,#115e59 55%,#155e75 120%);}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:128px}
 body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
@@ -68,7 +68,7 @@ h2.sec{display:flex;gap:12px;align-items:center;font-size:1.3rem;margin:34px 0 4
 .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}
 .name{font-weight:700;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .badge{font-size:10.5px;font-weight:800;letter-spacing:.04em;color:#fff;background:var(--exam);border-radius:999px;padding:1px 8px}
-.badge.late{background:#8b5cf6}.badge.mid{background:var(--a1)}
+.badge.late{background:#64748b}.badge.mid{background:var(--a1)}
 label.chk{font-size:13px;color:var(--muted);display:flex;gap:6px;align-items:center;cursor:pointer;user-select:none}
 label.chk input{accent-color:var(--ok);width:16px;height:16px}
 .tex{overflow-x:auto;overflow-y:hidden;padding:6px 0;margin:4px 0;min-width:0}
@@ -119,7 +119,7 @@ label.chk input{accent-color:var(--ok);width:16px;height:16px}
 
 /* question types */
 .qt{--c1:var(--a1);--c2:var(--a2)}
-.qt.late{--c1:#8b5cf6;--c2:#ec4899}
+.qt.late{--c1:#64748b;--c2:#94a3b8}
 .qt h3{margin:0;font-size:1.05rem}
 .qt .ic{font-size:1.5rem;line-height:1}
 .freq{display:inline-flex;gap:2px;margin-left:auto}
@@ -212,7 +212,7 @@ td:first-child{white-space:nowrap;font-weight:700;color:var(--a1);width:1%}
   <div class="view" id="v-qt"><div id="qts"></div></div>
   <div class="view" id="v-papers"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#06b6d4;--c2:#3b82f6">📄</span>What each paper asked</h2><p class="blurb">Click a row's topic words in the search bar of the other tabs to find the matching equations.</p><div class="grid" id="papers"></div></div>
   <div class="view" id="v-plan"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#16a34a;--c2:#10b981">✅</span>Midterm study plan <span class="cnt" id="plan-cnt" style="margin-left:auto;font-size:14px;color:var(--muted)"></span></h2><p class="blurb">Tier 1 first, then Tier 2 textbook problems. Tick each one off as you finish it.</p><div class="grid" id="plan"></div></div>
-  <div class="view" id="v-practice"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#ec4899;--c2:#8b5cf6">🧠</span>Practice questions</h2><p class="blurb">Every Tier 1 and Tier 2 question from the study plan, with a worked solution. Try it on paper first, then press “Reveal answer”. Ticking “done” here also ticks it in the Study plan. Sadiku numbers match your supplementary-exercise PDF.</p><div id="practice"></div></div>
+  <div class="view" id="v-practice"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#f97316;--c2:#f59e0b">🧠</span>Practice questions</h2><p class="blurb">Every Tier 1 and Tier 2 question from the study plan, with a worked solution. Try it on paper first, then press “Reveal answer”. Ticking “done” here also ticks it in the Study plan. Sadiku numbers match your supplementary-exercise PDF.</p><div id="practice"></div></div>
   <div class="empty hidden" id="empty">No matches — try a different search.</div>
   <p class="blurb" style="margin-left:0;margin-top:30px">Compiled from Lectures 1–4, Op Amps slides 1–9, Tutorials 1–2, the supplementary exercises and the 2016–2021 past papers. Every numerical answer was checked by solving the circuit equations; odd Sadiku answers also match the answer key. Ticks are saved in this browser.</p>
 </main>
@@ -225,7 +225,7 @@ td:first-child{white-space:nowrap;font-weight:700;color:var(--a1);width:1%}
 <script>
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const store = {get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
-const PALETTE = [["#6366f1","#8b5cf6"],["#0ea5e9","#06b6d4"],["#10b981","#34d399"],["#f59e0b","#f97316"],["#ec4899","#f43f5e"],["#8b5cf6","#d946ef"],["#64748b","#334155"]];
+const PALETTE = [["#0f766e","#14b8a6"],["#0ea5e9","#06b6d4"],["#10b981","#34d399"],["#f59e0b","#f97316"],["#ec4899","#f43f5e"],["#8b5cf6","#d946ef"],["#64748b","#334155"]];
 let done = store.get('done',{}), planDone = store.get('plan',{}), view = 'eqs', query = "", fExam=false, fTodo=false, fMid=false, fUndone=false;
 
 // Inside $…$ a bare < or > would be parsed as an HTML tag by innerHTML and break the maths; swap in TeX's \lt / \gt.
@@ -247,7 +247,7 @@ function build(){
     </div></section>`}).join('');
   $('#qts').innerHTML = ['mid','late'].map(sc=>{
     const list=QTYPES.filter(q=>q.scope===sc);
-    return `<div class="qgroup" data-scope="${sc}"><h2 class="sec"><span class="num" style="--c1:${sc==='mid'?'#6366f1':'#8b5cf6'};--c2:${sc==='mid'?'#06b6d4':'#ec4899'}">${sc==='mid'?'🎯':'📚'}</span>${sc==='mid'?'Lectures 1–4 + op amp slides 1–9 (midterm range)':'Later topics (show up on finals)'}</h2>
+    return `<div class="qgroup" data-scope="${sc}"><h2 class="sec"><span class="num" style="--c1:${sc==='mid'?'#0f766e':'#64748b'};--c2:${sc==='mid'?'#06b6d4':'#94a3b8'}">${sc==='mid'?'🎯':'📚'}</span>${sc==='mid'?'Lectures 1–4 + op amp slides 1–9 (midterm range)':'Later topics (show up on finals)'}</h2>
     <p class="blurb">${sc==='mid'?'Question patterns from the tutorials and the in-range parts of every past paper. Dots = how often it appears.':'Not on your midterm, but these fill the rest of every final paper.'}</p><div class="grid">
     ${list.map(q=>`<div class="card qt ${q.scope}" data-search="${(q.title+' '+q.sources.join(' ')+' '+q.steps.join(' ')+' '+q.find).toLowerCase().replace(/"/g,'')}">
       <div class="top"><div class="name"><span class="ic">${q.icon}</span><h3>${q.title}</h3></div>

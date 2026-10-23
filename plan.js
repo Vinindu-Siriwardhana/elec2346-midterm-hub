@@ -5,7 +5,7 @@ const PLAN = [
    ["Sat 24 Oct","Lecture 3: T1 Q2–Q5, 2016 Q1, 2017 Q2–Q3, 2018 Q2, 2019 Q1–Q2, Sadiku Ch 3 picks"],
    ["Sun 25 Oct","Lecture 4 + op amps: Tutorial 2, Thevenin/max-power past papers, op-amp slides 5–9, Sadiku Ch 4 picks"],
    ["Mon 26 Oct","Redo anything you got wrong; run the Equations tab in Quiz mode"]]},
- {id:"tut", title:"Tier 1 · Tutorials", icon:"📝", c:["#6366f1","#8b5cf6"], note:"Your lecturer's own questions. Do all ten without notes.", items:[
+ {id:"tut", title:"Tier 1 · Tutorials", icon:"📝", c:["#0f766e","#14b8a6"], note:"Your lecturer's own questions. Do all ten without notes.", items:[
    ["T1 Q1","$R_{eq}$ and $i_o$ (series–parallel)"],["T1 Q2","Nodal, four nodes"],["T1 Q3","Mesh: $v_{ab}$ and $i_o$"],["T1 Q4","Nodal with dependent sources"],["T1 Q5","Mesh with a shared current source"],
    ["T2 Q1","Superposition with a CCCS"],["T2 Q2","Source transformation"],["T2 Q3","Thevenin, then $i_x$"],["T2 Q4","Norton, then $i$"],["T2 Q5","Thevenin + Norton with a VCCS"]]},
  {id:"pp", title:"Tier 1 · Past-paper questions in range", icon:"📄", c:["#06b6d4","#3b82f6"], note:"All five papers are finals, so only these parts are midterm material.", items:[
