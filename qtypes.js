@@ -4,7 +4,7 @@
 const QTYPES = [
 {
  id:"q-th", icon:"🔌", scope:"mid", freq:5, title:"Thevenin / Norton equivalent",
- sources:["2016 Q2 – three parallel branches with sources (Sadiku 4.60)","2019 Q4 – find $V_{Th}$, $R_{Th}$, $I_N$ and the $R_L$ for max power","2020 B4 – Norton with a VCCS (gives $R_N=4\,\Omega$)","2020 B5 – Thevenin of a bridge","Tutorial 2 Q3–Q5"],
+ sources:["2016 Q2 – three parallel branches with sources (same layout as Sadiku 4.60, different values)","2019 Q4 – find $V_{Th}$, $R_{Th}$, $I_N$ and the $R_L$ for max power","2020 B4 – Norton with a VCCS (gives $R_N=4\\,\\Omega$)","2020 B5 – Thevenin of a bridge","Tutorial 2 Q3–Q5"],
  steps:["Remove the load and label terminals $a$, $b$.","$V_{Th}$: open-circuit voltage, usually by dividers or nodal.","$R_{Th}$: no dependent sources → kill sources, combine resistors. With dependent sources → $v_{oc}/i_{sc}$ or a 1 A test source.","$I_N=V_{Th}/R_{Th}$. Draw both equivalents with the values marked."],
  find:"thevenin"
 },
