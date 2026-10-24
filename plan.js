@@ -2,8 +2,8 @@
 const PLAN = [
  {id:"days", title:"3-day schedule", icon:"📅", c:["#f59e0b","#f97316"], note:"Midterm Mon 26 Oct. One lecture block per day, then a final review.", items:[
    ["Fri 23 Oct","Lectures 1–2: T1 Q1, 2020 A1–A2, Sadiku Ch 1–2 picks"],
-   ["Sat 24 Oct","Lecture 3: T1 Q2–Q5, 2016 Q1, 2017 Q2–Q3, 2018 Q2, 2019 Q1–Q2, Sadiku Ch 3 picks"],
-   ["Sun 25 Oct","Lecture 4 + op amps: Tutorial 2, Thevenin/max-power past papers, op-amp slides 5–9, Sadiku Ch 4 picks"],
+   ["Sat 24 Oct","Lecture 3: T1 Q2–Q5, 2016 Q1, 2017 Q2–Q3, 2018 Q2, 2019 Q1–Q2, Sadiku Ch 3 picks, extra types 1.9, 1.16, 2.7, 2.13, 2.49, 2.68"],
+   ["Sun 25 Oct","Lecture 4 + op amps: Tutorial 2, Thevenin/max-power past papers, op-amp slides 5–9, Sadiku Ch 4 picks, extra types 4.6, 4.31"],
    ["Mon 26 Oct","Redo anything you got wrong; run the Equations tab in Quiz mode"]]},
  {id:"tut", title:"Tier 1 · Tutorials", icon:"📝", c:["#0f766e","#14b8a6"], note:"Your lecturer's own questions. Do all ten without notes.", items:[
    ["T1 Q1","$R_{eq}$ and $i_o$ (series–parallel)"],["T1 Q2","Nodal, four nodes"],["T1 Q3","Mesh: $v_{ab}$ and $i_o$"],["T1 Q4","Nodal with dependent sources"],["T1 Q5","Mesh with a shared current source"],
@@ -20,6 +20,9 @@ const PLAN = [
  {id:"s2", title:"Tier 2 · Sadiku Ch 2 — basic laws", icon:"⚖️", c:["#64748b","#334155"], note:"", items:[["2.15",""],["2.21",""],["2.25",""],["2.35",""],["2.41",""],["2.43",""],["2.47",""]]},
  {id:"s3", title:"Tier 2 · Sadiku Ch 3 — nodal & mesh", icon:"🟢", c:["#64748b","#334155"], note:"", items:[["3.9",""],["3.13",""],["3.19",""],["3.21",""],["3.23",""],["3.49",""],["3.51",""],["3.67",""],["3.71",""]]},
  {id:"s4", title:"Tier 2 · Sadiku Ch 4 — theorems", icon:"🔌", c:["#64748b","#334155"], note:"", items:[["4.5",""],["4.13",""],["4.15",""],["4.17",""],["4.25",""],["4.33",""],["4.37",""],["4.47",""],["4.53",""],["4.63",""],["4.65",""],["4.71",""],["4.73",""],["4.83",""],["4.85",""]]},
+ {id:"ty", title:"Tier 2 · Extra question types from the supplementary PDF", icon:"🧷", c:["#64748b","#334155"], note:"One problem for each question type in the PDF that the lists above don't cover. Quick ones.", items:[
+   ["1.9","Charge from an $i(t)$ graph"],["1.16","Power and energy from $i$, $v$ graphs"],["2.7","Count branches and nodes"],["2.13","KCL on a diagram (watch the signs)"],
+   ["2.49","Δ → Y conversion"],["2.68","Ammeter loading error"],["4.6","Linearity table"],["4.31","Source transformation with a dependent source"]]},
  {id:"x", title:"Tier 3 · Extra odd-numbered practice", icon:"➕", c:["#94a3b8","#64748b"], note:"Only if you finish everything else. Answers are in the odd-number answer PDF (it drops minus signs).", items:[
    ["2.13",""],["2.17",""],["2.19",""],["2.23",""],["2.39",""],["2.45",""],["2.53",""],["2.57",""],["3.5",""],["3.7",""],["3.11",""],["3.15",""],["3.17",""],["3.27",""],["3.41",""],["3.45",""],["3.53",""],["3.69",""],
    ["4.1",""],["4.3",""],["4.7",""],["4.9",""],["4.19",""],["4.23",""],["4.31",""],["4.39",""],["4.41",""],["4.45",""],["4.49",""],["4.51",""],["4.59",""],["4.69",""],["4.75",""]]},

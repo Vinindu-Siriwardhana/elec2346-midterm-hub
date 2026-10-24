@@ -13,6 +13,7 @@ const FIGS = {
  "s2:0":["s2_15"],"s2:1":["s2_21"],"s2:2":["s2_25"],"s2:3":["s2_35"],"s2:4":["s2_41"],"s2:5":["s2_43"],"s2:6":["s2_47"],
  "s3:0":["s3_9"],"s3:1":["s3_13"],"s3:2":["s3_19"],"s3:3":["s3_21"],"s3:4":["s3_23"],"s3:5":["s3_49"],"s3:6":["s3_51"],"s3:7":["s3_67"],"s3:8":["s3_71"],
  "s4:0":["s4_5"],"s4:1":["s4_13"],"s4:2":["s4_15"],"s4:3":["s4_17"],"s4:4":["s4_25"],"s4:5":["s4_33"],"s4:6":["s4_37"],"s4:7":["s4_47"],
+ "ty:0":["ty_1_9"],"ty:1":["ty_1_16"],"ty:2":["ty_2_7"],"ty:3":["ty_2_13"],"ty:4":["ty_2_49"],"ty:5":["ty_2_68"],"ty:6":["ty_4_6"],"ty:7":["ty_4_31"],
  "s4:8":["s4_53"],"s4:9":["s4_63"],"s4:10":["s4_65"],"s4:11":["s4_71"],"s4:12":["s4_73"],"s4:14":["s4_85"],
 };
 const PRACTICE = [
@@ -334,4 +335,54 @@ const PRACTICE = [
  a:R`$6=V_{Th}\frac{10}{10+R}$ and $12=V_{Th}\frac{30}{30+R}$ (R in kΩ).<br>
  From the first, $V_{Th}=6+0.6R$. Then $360+12R=30(6+0.6R)\Rightarrow R=30$ kΩ.<br>
  (a) $V_{Th}=\mathbf{24\,V}$, $R_{Th}=\mathbf{30\,k\Omega}$. &nbsp; (b) $24\cdot\frac{20}{50}=\mathbf{9.6\,V}$.`},
+// ───────── Extra question types from the supplementary PDF ─────────
+{pid:"ty:0", src:"Sadiku 1.9 · charge from a graph", q:R`The current through an element is shown in Fig. 1.26. Find the total charge that has passed at (a) $t=1$ s, (b) $t=3$ s, (c) $t=5$ s.`,
+ a:R`$q=\int i\,dt$ is the area under the graph.<br>
+ • 0–1 s: $10\times1=10$ C.<br>
+ • 1–2 s: trapezoid $\tfrac{10+5}{2}\times1=7.5$ C. 2–3 s: $5\times1=5$ C.<br>
+ • 3–4 s: $5\times1=5$ C. 4–5 s: triangle $\tfrac12(5)(1)=2.5$ C.<br>
+ (a) $\mathbf{10\,C}$ &nbsp; (b) $10+7.5+5=\mathbf{22.5\,C}$ &nbsp; (c) $22.5+5+2.5=\mathbf{30\,C}$.`},
+{pid:"ty:1", src:"Sadiku 1.16 · power and energy from graphs", q:R`Fig. 1.27 shows the current through and the voltage across an element. (a) Sketch the power for $t>0$. (b) Find the total energy absorbed for $0<t<4$ s.`,
+ a:R`$p=vi$, piece by piece:<br>
+ • 0–2 s: $i=30t$ mA, $v=5$ V ⇒ $p=150t$ mW, a ramp from 0 to 300 mW.<br>
+ • 2–4 s: $i=30(4-t)$ mA, $v=-5$ V ⇒ $p=-150(4-t)$ mW, a ramp from −300 mW up to 0.<br>
+ Energy = area under $p$: $+\tfrac12(2)(300)=300$ mJ, then $-\tfrac12(2)(300)=-300$ mJ.<br>
+ Total $=\mathbf{0\,J}$: the element stores energy for 2 s and gives it all back.`},
+{pid:"ty:2", src:"Sadiku 2.7 · branches and nodes", q:R`Determine the number of branches and nodes in the circuit of Fig. 2.71.`,
+ a:R`A branch is one two-terminal element; a node is a point where two or more branches meet (a plain wire is the same node).<br>
+ • Branches: 12 V, 1 Ω, 4 Ω, 8 Ω, 5 Ω, 2 A ⇒ $b=\mathbf{6}$.<br>
+ • Nodes: top of the 12 V source (left end of 1 Ω); the 1 Ω–4 Ω–8 Ω junction; the 4 Ω–5 Ω–2 A junction; the bottom wire ⇒ $n=\mathbf{4}$.<br>
+ Check: $b=l+n-1\Rightarrow l=3$ independent loops.`},
+{pid:"ty:3", src:"Sadiku 2.13 · KCL on a diagram", q:R`For the circuit in Fig. 2.77, use KCL to find the branch currents $I_1$ to $I_4$.`,
+ a:R`Work from the right-hand node, where only one current is unknown.<br>
+ • Right node: 2 A comes in along the top; 4 A and $I_4$ (arrow points away, to the left) leave. $2=4+I_4\Rightarrow I_4=\mathbf{-2\,A}$.<br>
+ • Node between 7 A and $I_3$: $7+I_4=I_3\Rightarrow I_3=\mathbf{5\,A}$.<br>
+ • Node above the 3 A: 7 A and 3 A leave, and $I_2$ (arrow points left) leaves too: $0=7+3+I_2\Rightarrow I_2=\mathbf{-10\,A}$.<br>
+ • Left node: $I_1+I_2=2\Rightarrow I_1=\mathbf{12\,A}$.<br>
+ Check: the bottom wire carries $3+5+4=12$ A, matching $I_1$.<br>
+ The answer key prints 12, 10, 5, 2 because it drops minus signs.`},
+{pid:"ty:4", src:"Sadiku 2.49 · Δ → Y", q:R`Transform the circuits in Fig. 2.113 from Δ to Y.`,
+ a:R`Each Y resistor = (product of the two Δ resistors that touch its terminal) ÷ (sum of the three Δ resistors).<br>
+ (a) All three Δ resistors are 12 Ω: $R_Y=\dfrac{12\cdot12}{36}=\mathbf{4\,\Omega}$ each.<br>
+ (b) $R_{ab}=60$, $R_{ac}=30$, $R_{bc}=10$, sum $=100$:<br>
+ $R_a=\dfrac{60\cdot30}{100}=\mathbf{18\,\Omega}$, &nbsp; $R_b=\dfrac{60\cdot10}{100}=\mathbf{6\,\Omega}$, &nbsp; $R_c=\dfrac{30\cdot10}{100}=\mathbf{3\,\Omega}$.<br>
+ Check by going back to Δ: $R_{ab}=\dfrac{18\cdot6+6\cdot3+3\cdot18}{3}=60$ ✓.`},
+{pid:"ty:5", src:"Sadiku 2.68 · ammeter loading", q:R`(a) Find $I$ in Fig. 2.128(a). (b) An ammeter with 1 Ω internal resistance is inserted as in (b). What is $I'$? (c) Find the percentage error $\left|\dfrac{I-I'}{I}\right|\times100\%$.`,
+ a:R`(a) $40\parallel60=24\,\Omega$, so $I=\dfrac{4}{16+24}=\mathbf{0.1\,A}$.<br>
+ (b) The meter adds 1 Ω in series: $I'=\dfrac{4}{41}=\mathbf{97.56\,mA}$.<br>
+ (c) Error $=\dfrac{0.1-0.09756}{0.1}\times100=\mathbf{2.44\%}$.<br>
+ Same idea with a Thevenin view: error $=\dfrac{R_{meter}}{R_{Th}+R_{meter}}=\dfrac{1}{41}$, where $R_{Th}=40\,\Omega$ is what the meter sits in series with.`},
+{pid:"ty:6", src:"Sadiku 4.6 · linearity table", q:R`For the linear circuit in Fig. 4.74, use linearity to complete the table.`,
+ a:R`One independent source ⇒ $V_o=kV_s$. From experiment 1, $k=\dfrac{4}{12}=\dfrac13$.<br>
+ • Experiment 2: $V_o=16$ V ⇒ $V_s=16\cdot3=\mathbf{48\,V}$.<br>
+ • Experiment 3: $V_s=1$ V ⇒ $V_o=\mathbf{0.333\,V}$.<br>
+ • Experiment 4: $V_o=-2$ V ⇒ $V_s=\mathbf{-6\,V}$.<br>
+ This only works with a single independent source; with several, use superposition.`},
+{pid:"ty:7", src:"Sadiku 4.31 · source transformation with a dependent source", q:R`Determine $v_x$ in Fig. 4.99 using source transformation.`,
+ a:R`Call the top of the 8 Ω resistor node $N$ (ground at the bottom).<br>
+ • 12 V in series with 3 Ω ⇒ 4 A source into $N$, in parallel with 3 Ω.<br>
+ • $2v_x$ in series with 6 Ω ⇒ $2v_x/6=v_x/3$ source into $N$, in parallel with 6 Ω.<br>
+ The controlling variable $v_x$ is the voltage across the <i>original</i> 3 Ω, so it stays $v_x=12-v_N$ (don't replace it by $v_N$).<br>
+ KCL at $N$: $4+\dfrac{v_x}{3}=v_N\left(\dfrac13+\dfrac18+\dfrac16\right)$ ⇒ $4+4-\dfrac{v_N}{3}=0.625\,v_N$ ⇒ $v_N=8.348$ V.<br>
+ $v_x=12-8.348=\mathbf{3.652\,V}$ (matches the answer key).`},
 ];
