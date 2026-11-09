@@ -17,6 +17,8 @@ const FIGS = {
  "s4:8":["s4_53"],"s4:9":["s4_63"],"s4:10":["s4_65"],"s4:11":["s4_71"],"s4:12":["s4_73"],"s4:14":["s4_85"],
  "fpp:0":["f16_4"], "fpp:1":["f16_5"], "fpp:2":["f16_6"], "fpp:3":["f16_10"], "fpp:4":["f16_11"], "fpp:6":["f17_5"], "fpp:7":["f17_6"], "fpp:8":["f17_7"], "fpp:9":["f17_9"], "fpp:10":["f18_3"], "fpp:11":["f18_4"], "fpp:12":["f18_6"], "fpp:13":["f18_7"], "fpp:14":["f19_6"], "fpp:15":["f19_7"], "fpp:16":["f19_8"], "fpp:17":["f19_9"], "fpp:18":["f19_10"], "fpp:20":["f20_b1"], "fpp:21":["f20_b2"], "fpp:22":["f20_b3"],
 };
+// Post-midterm practice questions inside the Quiz 2 scope (Lectures 1–6, diodes up to slide 24)
+const Q2PRAC = ["fpp:1","fpp:3","fpp:4","fpp:5","fpp:14","fpp:15","fpp:17","fpp:18","fpp:21"];
 const PRACTICE = [
 // ───────── Tutorials ─────────
 {pid:"tut:0", src:"Tutorial 1 Q1", q:R`Find $R_{eq}$ and $i_o$ in the circuit of Fig. 1 (40 V source, 5 Ω in series).`,

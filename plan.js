@@ -1,22 +1,24 @@
 // Finals + next-quiz study plan (Lectures 5–8 first, then a review of the midterm material). Each item: [label, detail].
 // Ticks are stored under 'plan' in localStorage; the old midterm groups keep their ids so earlier ticks survive.
 const PLAN = [
- {id:"fdays", title:"Schedule to the final", icon:"📅", c:["#f59e0b","#f97316"], note:"Next quiz Thu 19 Nov (course info lists it as Quiz 3 — tentative). Homework due Fri 27 Nov. Final exam date TBA (past finals ran 10–19 Dec). Lab report: two weeks after your lab session.", items:[
+ {id:"fdays", title:"Schedule to the final", icon:"📅", c:["#f59e0b","#f97316"], note:"Quiz 2 covers Lectures 1–6, with Diodes only up to slide 24 (date: Thu 19 Nov is the tentative date in the course info, so confirm it). Use the “Quiz 2 scope” filter in Equations, Question types and Practice. Homework due Fri 27 Nov. Final exam date TBA (past finals ran 10–19 Dec). Lab report: two weeks after your lab session.", items:[
    ["Mon 9 – Wed 11 Nov","Op amps after slide 9: Lec 5 Examples 2–9, then 2017 Q4, 2019 Q6, 2020 B2, 2016 Q5, 2019 Q7"],
-   ["Thu 12 – Sat 14 Nov","Diodes: Lec 6 Examples 1–3 + rectifier slides, then 2016 Q10, Q11, 2019 Q9, Q10"],
-   ["Sun 15 – Tue 17 Nov","Capacitors & inductors: Lec 7 Examples 1–13, then 2016 Q4, 2017 Q5–Q6, 2018 Q4, 2020 A4, integrators 2016 Q6, 2017 Q9, 2018 Q3"],
-   ["Wed 18 Nov","Quiz prep: Equations tab in Quiz mode for Lectures 5–7; redo anything you got wrong"],
-   ["Thu 19 Nov","Quiz"],
-   ["Fri 20 – Thu 26 Nov","Homework (due 27 Nov) + transients as they're lectured: 2018 Q6, 2019 Q8, 2020 B1, then 2017 Q7, 2018 Q7, 2020 B3"],
+   ["Thu 12 – Fri 13 Nov","Diodes slides 1–24: models, Ex 1–2, clippers and logic, load line, small-signal $r_d$; then 2016 Q10, Q11, 2019 Q9, Q10"],
+   ["Sat 14 – Sun 15 Nov","Lectures 1–4 refresh for the quiz: redo your midterm mistakes and Tutorials 1–2, Equations tab in Quiz mode for Lec 1–4"],
+   ["Mon 16 – Tue 17 Nov","Mixed practice: turn on “Quiz 2 scope” + “Not done yet” in Practice and work through what's left"],
+   ["Wed 18 Nov","Write the Lec 1–6 formula list from memory, then Quiz mode on the Quiz 2 scope equations"],
+   ["Quiz 2","Lectures 1–6 (Diodes ≤ slide 24)"],
+   ["After the quiz (to Sun 22 Nov)","Diodes slides 25–32 (Ex 3, rectifiers) and Capacitors & inductors: Lec 7 Ex 1–13, 2016 Q4, 2017 Q5–Q6, 2018 Q4, 2020 A4, integrators 2016 Q6, 2017 Q9, 2018 Q3"],
+   ["Mon 23 – Thu 26 Nov","Homework (due 27 Nov) + transients as they're lectured: 2018 Q6, 2019 Q8, 2020 B1, then 2017 Q7, 2018 Q7, 2020 B3"],
    ["Sat 28 Nov – exam −7 days","One full past paper every two days, timed (3 h, skip phasor questions): 2019 → 2020 → 2018 → 2017 → 2016"],
    ["Between papers","Midterm refresh: Thevenin/max power, nodal/mesh with dependent sources (25–35% of every final)"],
    ["Last week","Weak topics only, Equations tab in Quiz mode, redo every question you got wrong"]]},
  {id:"q5", title:"Tier 1 · Lecture 5 examples (op amps, slides 10–30)", icon:"🔺", c:["#0f766e","#14b8a6"], note:"Rework each from a blank page, then check the slide.", items:[
    ["Ex 2","Inverting amp with two sources ($v_o=-1$ V), both methods"],["Ex 3","Voltage follower vs plain divider"],["Ex 4","Summer: $v_o$ and $i_o$"],["Ex 5","Design $v_o=-5v_1+3v_2$ (one and two op amps)"],
    ["Ex 6","Instrumentation amp: derive the gain"],["Ex 7","Two cascaded non-inverting stages"],["Ex 8","Two inverters into a summer"],["Ex 9","4-bit DAC output levels"]]},
- {id:"q6", title:"Tier 1 · Lecture 6 examples (diodes)", icon:"🔦", c:["#0ea5e9","#06b6d4"], note:"", items:[
+ {id:"q6", title:"Tier 1 · Lecture 6 examples (diodes)", icon:"🔦", c:["#0ea5e9","#06b6d4"], note:"Quiz 2 stops at slide 24: the last two items are for the final only.", items:[
    ["Slides 10–13","Rectifier, battery clipper, OR and AND gates (ideal model)"],["Ex 1–2","Assume and check with two diodes"],["Slides 16–19","Load line and iteration ($I_D=4.262$ mA)"],
-   ["Slide 21","Constant-voltage transfer characteristic"],["Ex 3","Small-signal: $I_D=2.9$ mA, $r_d$, $i_d(t)$"],["Slides 29–32","Half-wave, peak detector, bridge"]]},
+   ["Slide 21","Constant-voltage transfer characteristic"],["Slides 22–24","Small-signal model: $r_d=V_T/I_D$, a small signal riding on a DC bias"],["Ex 3 (after quiz)","Slides 25–28: $I_D=2.9$ mA, $r_d$, $i_d(t)$"],["Slides 29–32 (after quiz)","Half-wave, peak detector, bridge"]]},
  {id:"q7", title:"Tier 1 · Lecture 7 examples (capacitors & inductors)", icon:"🧱", c:["#10b981","#34d399"], note:"", items:[
    ["Ex 1–4","Charge, energy, $i=C\\,dv/dt$, $v$ from $\\int i$, piecewise $v(t)$"],["Ex 5, 8","DC steady state energies"],["Ex 6, 9","Equivalent C and L"],["Ex 7, 10","Inductor $v$, energy; parallel inductors with initial currents"],
    ["Ex 11","Summing integrator"],["Ex 12","Differentiator with a triangle input"],["Ex 13","Analog computer"]]},

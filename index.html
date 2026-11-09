@@ -178,7 +178,7 @@ td:first-child{white-space:nowrap;font-weight:700;color:var(--a1);width:1%}
   </div>
   <div class="prog"><i id="bar"></i></div>
   <div class="eq">v<sub>o</sub> = −(R<sub>f</sub>/R<sub>i</sub>)v<sub>i</sub> &nbsp;&nbsp; r<sub>d</sub> = V<sub>T</sub>/I<sub>D</sub> &nbsp;&nbsp; i = C dv/dt &nbsp;&nbsp; x(t) = x(∞) + [x(0)−x(∞)]e<sup>−t/τ</sup></div>
-  <p style="margin:10px 0 0;font-size:14px">📅 <b>Next quiz: Thu 19 Nov (tentative)</b> · <b>Homework due Fri 27 Nov</b> · <b>Final exam (40%): date TBA</b>, covers Lectures 1–8. In Question types, use “Since midterm only” to focus on the new material.</p>
+  <p style="margin:10px 0 0;font-size:14px">📅 <b>Quiz 2: Lectures 1–6, Diodes up to slide 24</b> (tentatively Thu 19 Nov; use the “Quiz 2 scope” filter) · <b>Homework due Fri 27 Nov</b> · <b>Final exam (40%): date TBA</b>, covers Lectures 1–8. In Question types, use “Since midterm only” to focus on the new material.</p>
 </div></div>
 
 <div class="toolbar"><div class="wrap"><div class="box">
@@ -193,6 +193,7 @@ td:first-child{white-space:nowrap;font-weight:700;color:var(--a1);width:1%}
     <input id="q" type="search" placeholder="Search equations, topics, years (e.g. integrator, diode, 2019, damping)…">
     <button class="chip" id="f-exam" data-eqonly>Past-paper hits</button>
     <button class="chip" id="f-todo" data-eqonly>Not mastered</button>
+    <button class="chip" id="f-q2" data-q2chip>Quiz 2 scope</button>
     <button class="chip" id="f-mid" data-qtonly>Since midterm only</button>
     <button class="chip" id="quiz" data-eqonly>Quiz mode</button>
     <button class="chip" id="f-undone" data-pronly>Not done yet</button>
@@ -226,7 +227,7 @@ td:first-child{white-space:nowrap;font-weight:700;color:var(--a1);width:1%}
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const store = {get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const PALETTE = [["#0f766e","#14b8a6"],["#0ea5e9","#06b6d4"],["#10b981","#34d399"],["#f59e0b","#f97316"],["#ec4899","#f43f5e"],["#8b5cf6","#d946ef"],["#64748b","#334155"]];
-let done = store.get('done',{}), planDone = store.get('plan',{}), view = 'eqs', query = "", fExam=false, fTodo=false, fMid=false, fUndone=false;
+let done = store.get('done',{}), planDone = store.get('plan',{}), view = 'eqs', query = "", fExam=false, fTodo=false, fMid=false, fUndone=false, fQ2=false;
 
 // Inside $…$ a bare < or > would be parsed as an HTML tag by innerHTML and break the maths; swap in TeX's \lt / \gt.
 const M = s => String(s).replace(/\$\$[\s\S]*?\$\$|\$[^$]*\$/g, m => m.replace(/</g,'\\lt ').replace(/>/g,'\\gt '));
@@ -237,7 +238,7 @@ function build(){
     return `<section id="${s.id}" style="--c1:${c1};--c2:${c2}">
     <h2 class="sec"><span class="num">${label}</span>${s.title.replace(/^[^·]*·\s*/,'').replace(/^Bonus · /,'')}</h2>
     <p class="blurb">${M(s.blurb)}</p><div class="grid">
-    ${s.eqs.map((e,i)=>{const id=s.id+i;return `<div class="card eq" data-id="${id}" data-exam="${e.tags.includes('exam')}" data-search="${(s.title+' '+e.name+' '+e.where+' '+e.vars+' '+e.tags.join(' ')).toLowerCase().replace(/"/g,'')}">
+    ${s.eqs.map((e,i)=>{const id=s.id+i;return `<div class="card eq" data-id="${id}" data-quiz="${['L1','L2','L3','L4','OA'].includes(s.id)||(s.id==='L6'&&e.q2!==false)}" data-exam="${e.tags.includes('exam')}" data-search="${(s.title+' '+e.name+' '+e.where+' '+e.vars+' '+e.tags.join(' ')).toLowerCase().replace(/"/g,'')}">
       <div class="top"><div class="name">${e.name}${e.tags.includes('exam')?'<span class="badge">PAST PAPER</span>':''}</div>
       <label class="chk"><input type="checkbox" ${done[id]?'checked':''}> mastered</label></div>
       <div class="eqrow ${DIAG[id]?'':'nofig'}"><div class="tex" data-tex="${encodeURIComponent(e.tex)}"></div>${DIAG[id]?`<figure class="fig">${safeSvg(id)}<figcaption>${DIAG[id].cap}</figcaption></figure>`:''}</div>
@@ -249,7 +250,7 @@ function build(){
     const list=QTYPES.filter(q=>q.scope===sc);
     return `<div class="qgroup" data-scope="${sc}"><h2 class="sec"><span class="num" style="--c1:${sc==='mid'?'#0f766e':'#64748b'};--c2:${sc==='mid'?'#06b6d4':'#94a3b8'}">${sc==='mid'?'🎯':'📚'}</span>${sc==='mid'?'Lectures 1–4 + op amp basics (midterm material, still ~35% of the final)':'Since the midterm: op amps, diodes, C &amp; L, transients'}</h2>
     <p class="blurb">${sc==='mid'?'Already covered for the midterm. Every final still opens with 2–5 of these.':'New material for the quiz and the final. Dots = how often it appears across the 2016–2020 finals.'}</p><div class="grid">
-    ${list.map(q=>`<div class="card qt ${q.scope}" data-search="${(q.title+' '+q.sources.join(' ')+' '+q.steps.join(' ')+' '+q.find).toLowerCase().replace(/"/g,'')}">
+    ${list.map(q=>`<div class="card qt ${q.scope}" data-quiz="${q.scope==='mid'||!!q.q2}" data-search="${(q.title+' '+q.sources.join(' ')+' '+q.steps.join(' ')+' '+q.find).toLowerCase().replace(/"/g,'')}">
       <div class="top"><div class="name"><span class="ic">${q.icon}</span><h3>${q.title}</h3></div>
       <span class="freq" title="Frequency across papers">${[1,2,3,4,5].map(n=>`<i class="${n<=q.freq?'f':''}"></i>`).join('')}</span></div>
       <div class="cols"><div><h4>Seen in</h4><ul>${q.sources.map(x=>`<li>${M(x)}</li>`).join('')}</ul></div>
@@ -265,7 +266,7 @@ function build(){
   $('#practice').innerHTML = PLAN.filter(g=>!/days$/.test(g.id)&&PRACTICE.some(p=>p.pid.startsWith(g.id+':'))).map(g=>{
     const list=PRACTICE.filter(p=>p.pid.startsWith(g.id+':'));
     return `<div class="pgroup"><h2 class="sec"><span class="num" style="--c1:${g.c[0]};--c2:${g.c[1]}">${g.icon}</span>${g.title}</h2><div class="grid">
-    ${list.map(p=>`<div class="card pq" style="--c1:${g.c[0]};--c2:${g.c[1]}" data-pid="${p.pid}" data-search="${(g.title+' '+p.src+' '+p.q).toLowerCase().replace(/<[^>]+>/g,' ').replace(/"/g,'')}">
+    ${list.map(p=>`<div class="card pq" style="--c1:${g.c[0]};--c2:${g.c[1]}" data-quiz="${!p.pid.startsWith('fpp:')||Q2PRAC.includes(p.pid)}" data-pid="${p.pid}" data-search="${(g.title+' '+p.src+' '+p.q).toLowerCase().replace(/<[^>]+>/g,' ').replace(/"/g,'')}">
       <div class="top"><div class="name">${p.src}</div><label class="chk"><input type="checkbox" data-pid="${p.pid}" ${planDone[p.pid]?'checked':''}> done</label></div>
       <div class="qbody">${M(p.q)}</div>
       ${FIGS[p.pid]?`<div class="figs">${FIGS[p.pid].map(f=>`<img src="img/${f}.png" alt="Figure for ${p.src}" loading="lazy">`).join('')}</div>`:''}
@@ -286,12 +287,13 @@ function apply(){
     let ok=!query||c.dataset.search.includes(query);
     if(fExam&&c.dataset.exam!=='true')ok=false;
     if(fTodo&&done[c.dataset.id])ok=false;
+    if(fQ2&&c.dataset.quiz!=='true')ok=false;
     c.classList.toggle('hidden',!ok); c.classList.toggle('done',!!done[c.dataset.id]);
     if(ok&&view==='eqs')n++;
   });
   $$('#eqs section').forEach(s=>s.classList.toggle('hidden',!s.querySelector('.card:not(.hidden)')));
   $$('.card.qt').forEach(c=>{
-    const ok=(!query||c.dataset.search.includes(query))&&!(fMid&&c.classList.contains('mid'));
+    const ok=(!query||c.dataset.search.includes(query))&&!(fMid&&c.classList.contains('mid'))&&!(fQ2&&c.dataset.quiz!=='true');
     c.classList.toggle('hidden',!ok); if(ok&&view==='qt')n++;});
   $$('.qgroup').forEach(g=>g.classList.toggle('hidden',!g.querySelector('.card:not(.hidden)')));
   $$('#papers .pap').forEach(p=>{const ok=!query||p.dataset.search.includes(query);p.classList.toggle('hidden',!ok);if(ok&&view==='papers')n++;});
@@ -299,7 +301,7 @@ function apply(){
     const bs=p.querySelectorAll('input'),d=[...bs].filter(b=>b.checked).length;
     bs.forEach(b=>b.closest('.pi').classList.toggle('ok',b.checked));
     p.querySelector('.cnt').textContent=d+'/'+bs.length; p.querySelector('.mini i').style.width=(100*d/bs.length)+'%';});
-  $$('.card.pq').forEach(c=>{const d=!!planDone[c.dataset.pid];const ok=(!query||c.dataset.search.includes(query))&&!(fUndone&&d);
+  $$('.card.pq').forEach(c=>{const d=!!planDone[c.dataset.pid];const ok=(!query||c.dataset.search.includes(query))&&!(fUndone&&d)&&!(fQ2&&c.dataset.quiz!=='true');
     c.classList.toggle('hidden',!ok);c.classList.toggle('done',d);if(ok&&view==='practice')n++;});
   $$('.pgroup').forEach(g=>g.classList.toggle('hidden',!g.querySelector('.card:not(.hidden)')));
   {const all=$$('#plan input'),d=all.filter(b=>b.checked).length;$('#plan-cnt').textContent=d+' / '+all.length+' done';}
@@ -310,6 +312,7 @@ function apply(){
   $$('[data-eqonly]').forEach(b=>b.classList.toggle('hidden',view!=='eqs'));
   $$('[data-qtonly]').forEach(b=>b.classList.toggle('hidden',view!=='qt'));
   $$('[data-pronly]').forEach(b=>b.classList.toggle('hidden',view!=='practice'));
+  document.querySelectorAll('[data-q2chip]').forEach(b=>b.classList.toggle('hidden',!['eqs','qt','practice'].includes(view)));
 }
 function setView(v){
   view=v; $$('.tab').forEach(t=>t.classList.toggle('on',t.dataset.v===v));
@@ -319,7 +322,7 @@ function init(){
   build(); render(); apply();
   $('#q').addEventListener('input',e=>{query=e.target.value.trim().toLowerCase();apply()});
   $('#tabs').addEventListener('click',e=>{const t=e.target.closest('.tab');if(t)setView(t.dataset.v)});
-  [['f-exam',v=>fExam=v],['f-todo',v=>fTodo=v],['f-mid',v=>fMid=v]].forEach(([id,fn])=>$('#'+id).addEventListener('click',e=>{e.target.classList.toggle('on');fn(e.target.classList.contains('on'));apply()}));
+  [['f-exam',v=>fExam=v],['f-todo',v=>fTodo=v],['f-mid',v=>fMid=v],['f-q2',v=>fQ2=v]].forEach(([id,fn])=>$('#'+id).addEventListener('click',e=>{e.target.classList.toggle('on');fn(e.target.classList.contains('on'));apply()}));
   $('#eqs').addEventListener('change',e=>{if(e.target.type==='checkbox'){const id=e.target.closest('.card').dataset.id;done[id]=e.target.checked;store.set('done',done);apply();}});
   const onPlanTick=e=>{const id=e.target.dataset.pid;if(!id)return;planDone[id]=e.target.checked;store.set('plan',planDone);
     $$(`input[data-pid="${id}"]`).forEach(b=>b.checked=e.target.checked);apply();};
