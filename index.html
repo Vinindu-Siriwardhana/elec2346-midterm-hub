@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ELEC2346 Midterm Hub</title>
+<title>ELEC2346 Finals Hub</title>
 <link rel="stylesheet" href="katex/katex.min.css">
 <script defer src="katex/katex.min.js"></script>
 <script defer src="katex/auto-render.min.js"></script>
@@ -169,16 +169,16 @@ td:first-child{white-space:nowrap;font-weight:700;color:var(--a1);width:1%}
 </head>
 <body>
 <div class="hero"><div class="wrap">
-  <h1>ELEC2346 Midterm Hub</h1>
-  <p>Every equation, where it shows up, and the question types from the tutorials and five past papers, with worked solutions, in one place.</p>
+  <h1>ELEC2346 Finals Hub</h1>
+  <p>Every equation from Lectures 1–8, where it shows up, and every question type from the tutorials and five past finals, with worked solutions, in one place.</p>
   <div class="stats">
     <div class="stat"><b id="s-eq">0</b><span>equations</span></div>
     <div class="stat"><b id="s-q">0</b><span>question types</span></div>
     <div class="stat"><b id="s-done">0</b><span>mastered</span></div>
   </div>
   <div class="prog"><i id="bar"></i></div>
-  <div class="eq">Σ i = 0 &nbsp;&nbsp; Σ v = 0 &nbsp;&nbsp; v = iR &nbsp;&nbsp; P<sub>max</sub> = V<sub>Th</sub>²/4R<sub>Th</sub></div>
-  <p style="margin:10px 0 0;font-size:14px">📅 <b>Midterm: Mon 26 Oct 2026 (20%).</b> Range: Lectures 1–4 and Operational Amplifiers slides 1–9. In Question types, use “Midterm scope only” to focus.</p>
+  <div class="eq">v<sub>o</sub> = −(R<sub>f</sub>/R<sub>i</sub>)v<sub>i</sub> &nbsp;&nbsp; r<sub>d</sub> = V<sub>T</sub>/I<sub>D</sub> &nbsp;&nbsp; i = C dv/dt &nbsp;&nbsp; x(t) = x(∞) + [x(0)−x(∞)]e<sup>−t/τ</sup></div>
+  <p style="margin:10px 0 0;font-size:14px">📅 <b>Next quiz: Thu 19 Nov (tentative)</b> · <b>Homework due Fri 27 Nov</b> · <b>Final exam (40%): date TBA</b>, covers Lectures 1–8. In Question types, use “Since midterm only” to focus on the new material.</p>
 </div></div>
 
 <div class="toolbar"><div class="wrap"><div class="box">
@@ -190,10 +190,10 @@ td:first-child{white-space:nowrap;font-weight:700;color:var(--a1);width:1%}
     <button class="tab" data-v="practice">🧠 Practice</button>
   </div>
   <div class="row">
-    <input id="q" type="search" placeholder="Search equations, topics, years (e.g. thevenin, 2019, supernode)…">
+    <input id="q" type="search" placeholder="Search equations, topics, years (e.g. integrator, diode, 2019, damping)…">
     <button class="chip" id="f-exam" data-eqonly>Past-paper hits</button>
     <button class="chip" id="f-todo" data-eqonly>Not mastered</button>
-    <button class="chip" id="f-mid" data-qtonly>Midterm scope only</button>
+    <button class="chip" id="f-mid" data-qtonly>Since midterm only</button>
     <button class="chip" id="quiz" data-eqonly>Quiz mode</button>
     <button class="chip" id="f-undone" data-pronly>Not done yet</button>
     <button class="chip" id="revall" data-pronly>Show all answers</button>
@@ -211,10 +211,10 @@ td:first-child{white-space:nowrap;font-weight:700;color:var(--a1);width:1%}
   </div>
   <div class="view" id="v-qt"><div id="qts"></div></div>
   <div class="view" id="v-papers"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#06b6d4;--c2:#3b82f6">📄</span>What each paper asked</h2><p class="blurb">Click a row's topic words in the search bar of the other tabs to find the matching equations.</p><div class="grid" id="papers"></div></div>
-  <div class="view" id="v-plan"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#16a34a;--c2:#10b981">✅</span>Midterm study plan <span class="cnt" id="plan-cnt" style="margin-left:auto;font-size:14px;color:var(--muted)"></span></h2><p class="blurb">Tier 1 first, then Tier 2 textbook problems (including the extra question types). Tick each one off as you finish it.</p><div class="grid" id="plan"></div></div>
-  <div class="view" id="v-practice"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#f97316;--c2:#f59e0b">🧠</span>Practice questions</h2><p class="blurb">Every Tier 1 and Tier 2 question from the study plan, with a worked solution. Try it on paper first, then press “Reveal answer”. Ticking “done” here also ticks it in the Study plan. Sadiku numbers match your supplementary-exercise PDF.</p><div id="practice"></div></div>
+  <div class="view" id="v-plan"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#16a34a;--c2:#10b981">✅</span>Finals study plan <span class="cnt" id="plan-cnt" style="margin-left:auto;font-size:14px;color:var(--muted)"></span></h2><p class="blurb">Follow the schedule at the top. Tier 1 is the new material (lecture examples and past-paper questions), Tier 2 is full timed papers, and the Midterm review groups keep your earlier ticks for revision.</p><div class="grid" id="plan"></div></div>
+  <div class="view" id="v-practice"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#f97316;--c2:#f59e0b">🧠</span>Practice questions</h2><p class="blurb">Every past-paper and textbook question from the study plan, with a worked solution. The new finals questions are at the top. Try it on paper first, then press “Reveal answer”. Ticking “done” here also ticks it in the Study plan. Sadiku numbers match your supplementary-exercise PDF.</p><div id="practice"></div></div>
   <div class="empty hidden" id="empty">No matches — try a different search.</div>
-  <p class="blurb" style="margin-left:0;margin-top:30px">Compiled from Lectures 1–4, Op Amps slides 1–9, Tutorials 1–2, the supplementary exercises and the 2016–2021 past papers. Every numerical answer was checked by solving the circuit equations; odd Sadiku answers also match the answer key. Ticks are saved in this browser.</p>
+  <p class="blurb" style="margin-left:0;margin-top:30px">Compiled from Lectures 1–7 (Lecture 8 equations from the course outline and past papers), Tutorials 1–2, the supplementary exercises and the 2016–2021 past papers. Every numerical answer was checked by solving the circuit equations; odd Sadiku answers also match the answer key. Ticks are saved in this browser.</p>
 </main>
 
 <script src="data.js"></script>
@@ -233,7 +233,7 @@ const M = s => String(s).replace(/\$\$[\s\S]*?\$\$|\$[^$]*\$/g, m => m.replace(/
 function build(){
   $('#tips').innerHTML = SOLVING_TIPS.map(t=>`<div class="tip"><div class="name">${M(t.t)}</div><div class="vars">${M(t.b)}</div></div>`).join('');
   $('#eqs').innerHTML = SECTIONS.map((s,si)=>{
-    const [c1,c2]=PALETTE[si%PALETTE.length], label=s.id==="OA"?"▷":s.id.slice(1);
+    const [c1,c2]=PALETTE[si%PALETTE.length], label=s.id==="OA"?"5":s.id.slice(1);
     return `<section id="${s.id}" style="--c1:${c1};--c2:${c2}">
     <h2 class="sec"><span class="num">${label}</span>${s.title.replace(/^[^·]*·\s*/,'').replace(/^Bonus · /,'')}</h2>
     <p class="blurb">${M(s.blurb)}</p><div class="grid">
@@ -245,10 +245,10 @@ function build(){
       ${e.vars?`<div class="vars">${M(e.vars)}</div>`:''}
       <div class="where"><b class="lbl">Where it comes up:</b> ${M(e.where)}</div></div>`}).join('')}
     </div></section>`}).join('');
-  $('#qts').innerHTML = ['mid','late'].map(sc=>{
+  $('#qts').innerHTML = ['late','mid'].map(sc=>{
     const list=QTYPES.filter(q=>q.scope===sc);
-    return `<div class="qgroup" data-scope="${sc}"><h2 class="sec"><span class="num" style="--c1:${sc==='mid'?'#0f766e':'#64748b'};--c2:${sc==='mid'?'#06b6d4':'#94a3b8'}">${sc==='mid'?'🎯':'📚'}</span>${sc==='mid'?'Lectures 1–4 + op amp slides 1–9 (midterm range)':'Later topics (show up on finals)'}</h2>
-    <p class="blurb">${sc==='mid'?'Question patterns from the tutorials and the in-range parts of every past paper. Dots = how often it appears.':'Not on your midterm, but these fill the rest of every final paper.'}</p><div class="grid">
+    return `<div class="qgroup" data-scope="${sc}"><h2 class="sec"><span class="num" style="--c1:${sc==='mid'?'#0f766e':'#64748b'};--c2:${sc==='mid'?'#06b6d4':'#94a3b8'}">${sc==='mid'?'🎯':'📚'}</span>${sc==='mid'?'Lectures 1–4 + op amp basics (midterm material, still ~35% of the final)':'Since the midterm: op amps, diodes, C &amp; L, transients'}</h2>
+    <p class="blurb">${sc==='mid'?'Already covered for the midterm. Every final still opens with 2–5 of these.':'New material for the quiz and the final. Dots = how often it appears across the 2016–2020 finals.'}</p><div class="grid">
     ${list.map(q=>`<div class="card qt ${q.scope}" data-search="${(q.title+' '+q.sources.join(' ')+' '+q.steps.join(' ')+' '+q.find).toLowerCase().replace(/"/g,'')}">
       <div class="top"><div class="name"><span class="ic">${q.icon}</span><h3>${q.title}</h3></div>
       <span class="freq" title="Frequency across papers">${[1,2,3,4,5].map(n=>`<i class="${n<=q.freq?'f':''}"></i>`).join('')}</span></div>
@@ -262,7 +262,7 @@ function build(){
     <div class="top"><h3>${g.icon} ${g.title}</h3><span class="cnt"></span></div>${g.note?`<small>${g.note}</small>`:''}<div class="mini"><i></i></div>
     <div class="items">${g.items.map((it,k)=>{const pid=g.id+':'+k;return `<label class="pi"><input type="checkbox" data-pid="${pid}" ${planDone[pid]?'checked':''}><b>${it[0]}</b>${it[1]?`<span>${it[1]}</span>`:''}</label>`}).join('')}</div></div>`).join('')
     + `<div class="skip">🚫 ${PLAN_SKIP}</div>`;
-  $('#practice').innerHTML = PLAN.filter(g=>g.id!=='days'&&PRACTICE.some(p=>p.pid.startsWith(g.id+':'))).map(g=>{
+  $('#practice').innerHTML = PLAN.filter(g=>!/days$/.test(g.id)&&PRACTICE.some(p=>p.pid.startsWith(g.id+':'))).map(g=>{
     const list=PRACTICE.filter(p=>p.pid.startsWith(g.id+':'));
     return `<div class="pgroup"><h2 class="sec"><span class="num" style="--c1:${g.c[0]};--c2:${g.c[1]}">${g.icon}</span>${g.title}</h2><div class="grid">
     ${list.map(p=>`<div class="card pq" style="--c1:${g.c[0]};--c2:${g.c[1]}" data-pid="${p.pid}" data-search="${(g.title+' '+p.src+' '+p.q).toLowerCase().replace(/<[^>]+>/g,' ').replace(/"/g,'')}">
@@ -271,7 +271,7 @@ function build(){
       ${FIGS[p.pid]?`<div class="figs">${FIGS[p.pid].map(f=>`<img src="img/${f}.png" alt="Figure for ${p.src}" loading="lazy">`).join('')}</div>`:''}
       <button class="chip rev">Reveal answer</button>
       <div class="ans">${M(p.a)}</div></div>`).join('')}</div></div>`}).join('');
-  $('#nav').innerHTML = SECTIONS.map(s=>`<a href="#${s.id}">${s.id==='OA'?'Op amp':'Lec '+s.id.slice(1)}</a>`).join('');
+  $('#nav').innerHTML = SECTIONS.map(s=>`<a href="#${s.id}">${s.id==='OA'?'Lec 5':'Lec '+s.id.slice(1)}</a>`).join('');
   $('#s-eq').textContent = SECTIONS.reduce((a,s)=>a+s.eqs.length,0);
   $('#s-q').textContent = QTYPES.length;
 }
@@ -291,7 +291,7 @@ function apply(){
   });
   $$('#eqs section').forEach(s=>s.classList.toggle('hidden',!s.querySelector('.card:not(.hidden)')));
   $$('.card.qt').forEach(c=>{
-    const ok=(!query||c.dataset.search.includes(query))&&!(fMid&&c.classList.contains('late'));
+    const ok=(!query||c.dataset.search.includes(query))&&!(fMid&&c.classList.contains('mid'));
     c.classList.toggle('hidden',!ok); if(ok&&view==='qt')n++;});
   $$('.qgroup').forEach(g=>g.classList.toggle('hidden',!g.querySelector('.card:not(.hidden)')));
   $$('#papers .pap').forEach(p=>{const ok=!query||p.dataset.search.includes(query);p.classList.toggle('hidden',!ok);if(ok&&view==='papers')n++;});

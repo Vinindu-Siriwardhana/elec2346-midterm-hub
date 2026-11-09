@@ -15,6 +15,7 @@ const FIGS = {
  "s4:0":["s4_5"],"s4:1":["s4_13"],"s4:2":["s4_15"],"s4:3":["s4_17"],"s4:4":["s4_25"],"s4:5":["s4_33"],"s4:6":["s4_37"],"s4:7":["s4_47"],
  "ty:0":["ty_1_9"],"ty:1":["ty_1_16"],"ty:2":["ty_2_7"],"ty:3":["ty_2_13"],"ty:4":["ty_2_49"],"ty:5":["ty_2_68"],"ty:6":["ty_4_6"],"ty:7":["ty_4_31"],
  "s4:8":["s4_53"],"s4:9":["s4_63"],"s4:10":["s4_65"],"s4:11":["s4_71"],"s4:12":["s4_73"],"s4:14":["s4_85"],
+ "fpp:0":["f16_4"], "fpp:1":["f16_5"], "fpp:2":["f16_6"], "fpp:3":["f16_10"], "fpp:4":["f16_11"], "fpp:6":["f17_5"], "fpp:7":["f17_6"], "fpp:8":["f17_7"], "fpp:9":["f17_9"], "fpp:10":["f18_3"], "fpp:11":["f18_4"], "fpp:12":["f18_6"], "fpp:13":["f18_7"], "fpp:14":["f19_6"], "fpp:15":["f19_7"], "fpp:16":["f19_8"], "fpp:17":["f19_9"], "fpp:18":["f19_10"], "fpp:20":["f20_b1"], "fpp:21":["f20_b2"], "fpp:22":["f20_b3"],
 };
 const PRACTICE = [
 // ───────── Tutorials ─────────
@@ -385,4 +386,121 @@ const PRACTICE = [
  The controlling variable $v_x$ is the voltage across the <i>original</i> 3 Ω, so it stays $v_x=12-v_N$ (don't replace it by $v_N$).<br>
  KCL at $N$: $4+\dfrac{v_x}{3}=v_N\left(\dfrac13+\dfrac18+\dfrac16\right)$ ⇒ $4+4-\dfrac{v_N}{3}=0.625\,v_N$ ⇒ $v_N=8.348$ V.<br>
  $v_x=12-8.348=\mathbf{3.652\,V}$ (matches the answer key).`},
+// ───────── Finals: past-paper questions since the midterm (pid fpp:N) ─────────
+{pid:"fpp:0", src:"2016 Q4 (5 marks)", q:R`Find the equivalent capacitance across terminals a–b in the network of Figure 4 (six equal capacitors $C$, three jumper wires).`,
+ a:R`Name the nodes along the chain $a,n_1,n_2,n_3,n_4,n_5,b$. The jumpers join $a=n_2$, $n_1=n_3$ and $n_3=n_5$. So there are only three useful nodes: $A=\{a,n_2\}$, $X=\{n_1,n_3,n_5\}$, and $b$ (plus the floating $n_4$).<br>
+ • $C_1$, $C_2$, $C_3$ all sit between $A$ and $X$ ⇒ $3C$ in parallel.<br>
+ • $C_4$ and $C_5$ both go from $X$ to $n_4$, which connects to nothing else ⇒ they carry no charge from a to b. Ignore them.<br>
+ • $C_6$ is between $X$ and $b$.<br>
+ $C_{eq}=\dfrac{3C\cdot C}{3C+C}=\mathbf{\tfrac34C}$.`},
+{pid:"fpp:1", src:"2016 Q5 (15 marks)", q:R`The op-amp circuit in Figure 5 is a Howland current pump. Find the relation between $V_{in}$ and $i_L$, and explain why it is called a "current pump".`,
+ a:R`Let the load node (top of $R_L$, also the + input) be $v_L$.<br>
+ • − input: $R$ to ground and $R$ to $v_o$ form a divider, so $v_-=v_o/2$. Ideal op amp: $v_+=v_-$ ⇒ $v_L=v_o/2$, i.e. $v_o=2v_L$.<br>
+ • KCL at the load node (no current into the + input): $\dfrac{V_{in}-v_L}{R}+\dfrac{v_o-v_L}{R}=i_L$<br>
+ ⇒ $\dfrac{V_{in}-v_L+2v_L-v_L}{R}=i_L$ ⇒ $\mathbf{i_L=V_{in}/R}$.<br>
+ $R_L$ has dropped out: the load current is set by $V_{in}$ alone, whatever the load. The circuit behaves as a voltage-controlled current source that "pumps" a fixed current into any load (while the op amp stays out of saturation).`},
+{pid:"fpp:2", src:"2016 Q6 (10 marks)", q:R`Given that $v(t)=V$ (constant), find $i_o(t)$ for the circuit in Figure 6. The switch closes at $t=0$ and the capacitor starts uncharged.`,
+ a:R`It's an integrator with $RC=(1\,\text{k}\Omega)(1\,\text{mF})=1$ s.<br>
+ $v_o(t)=-\dfrac1{RC}\int_0^t V\,d\tau=-Vt$ volts.<br>
+ $i_o(t)=\dfrac{v_o}{10}=\mathbf{-0.1\,V\,t}$ A for $t\ge0$ (a ramp), until $v_o$ reaches the negative supply rail and the op amp saturates.`},
+{pid:"fpp:3", src:"2016 Q10 (10 marks)", q:R`Determine the transfer function $V_o/V_i$ for the circuit in Figure 10. Use the ideal diode model.`,
+ a:R`Top branch: $D_1$ points toward the output and its battery drops $V$ in that direction, so it conducts when $V_i-V>V_o$. Bottom branch: $D_2$ points toward the input and its battery drops $V$ going right-to-left, so it conducts when $V_o-V>V_i$.<br>
+ • $V_i>V$: $D_1$ ON, $D_2$ OFF ⇒ $V_o=V_i-V$.<br>
+ • $-V\le V_i\le V$: neither branch can push current, $V_o=0$.<br>
+ • $V_i<-V$: $D_2$ ON ⇒ $V_o=V_i+V$.<br>
+ Transfer curve: a dead zone of width $2V$ around the origin, then slope-1 lines on either side, i.e. $V_o=\mathbf{\operatorname{sign}(V_i)\,\max(|V_i|-V,0)}$.`},
+{pid:"fpp:4", src:"2016 Q11 (10 marks)", q:R`Use the small-signal model to find the change in $V_{out}$ for a 1 V change in $V_{in}$. $R$ is chosen so that $V_{out}=0.7$ V (two diodes in series to ground).`,
+ a:R`DC: $I_D=\dfrac{V_{in}-0.7}{R}$; each diode has $r_d=V_T/I_D$, so the stack is $2r_d$.<br>
+ Small signal: $\Delta V_{out}=\Delta V_{in}\dfrac{2r_d}{R+2r_d}=\Delta V_{in}\dfrac{2V_T}{I_DR+2V_T}=\Delta V_{in}\dfrac{2V_T}{V_{in}-0.7+2V_T}$.<br>
+ $R$ cancels out. The paper doesn't print $V_{in}$; with e.g. $V_{in}=5$ V and $V_T=26$ mV: $\Delta V_{out}=\dfrac{0.052}{4.3+0.052}\times1\text{ V}\approx\mathbf{12\,mV}$. In the exam, state the $V_{in}$ you assume.`},
+{pid:"fpp:5", src:"2017 Q4 (9 marks)", q:R`(a) Design a difference amplifier with $v_o=8(v_b-v_a)$ using an ideal op amp and ±8 V supplies. (b) With $v_a=1$ V, what range of $v_b$ keeps the op amp linear?`,
+ a:R`(a) Use the balanced difference amp: $v_a$ through $R_1$ to the − input, $R_2$ feedback; $v_b$ through $R_3$ to the + input with $R_4$ to ground. Need $R_2/R_1=8$ and $R_1/R_2=R_3/R_4$.<br>
+ E.g. $R_1=R_3=\mathbf{10\,k\Omega}$, $R_2=R_4=\mathbf{80\,k\Omega}$.<br>
+ (b) $v_o=8v_b-8$. Linear while $-8\le8v_b-8\le8$ ⇒ $\mathbf{0\le v_b\le2\,V}$.`},
+{pid:"fpp:6", src:"2017 Q5 (10 marks)", q:R`(a) Find $C_{eq}$ in Figure 4(a). (b) Find $L_{eq}$ in Figure 4(b). All capacitors are $C$, all inductors $L$.`,
+ a:R`(a) Nodes: $T$ (top terminal), $M$ (bottom terminal / bottom middle), $P$ (top right), $Q$ (right tip). Capacitors: $T$–$P$, $T$–$M$, $P$–$M$, $P$–$Q$, $M$–$Q$.<br>
+ $P$–$Q$–$M$ in series: $C/2$; parallel with $P$–$M$: $1.5C$; in series with $T$–$P$: $\dfrac{C\cdot1.5C}{2.5C}=0.6C$; parallel with $T$–$M$: $C_{eq}=\mathbf{1.6\,C}$.<br>
+ (b) The left arc is a wire joining the top-left corner, the left end of the middle row and the bottom-left (one node, the left terminal). Same on the right. So three inductors join the left node to the middle-left node $C$ ⇒ $L/3$; one inductor $C$–$D$; three join $D$ to the right node ⇒ $L/3$. Series: $L/3+L+L/3=5L/3$. In parallel with the top inductor (left node to right node):<br>
+ $L_{eq}=\dfrac{(5L/3)L}{5L/3+L}=\mathbf{\tfrac58L}$.`},
+{pid:"fpp:7", src:"2017 Q6 (12 marks)", q:R`In Figure 5, $i_1(t)=0.6e^{-2t}$ A (6 H) and $i(0)=1.4$ A. Find (a) $i_2(0)$, $i_2(t)$, $i(t)$; (b) $v_1(t)$, $v_2(t)$, $v(t)$.`,
+ a:R`(a) $i_2(0)=i(0)-i_1(0)=1.4-0.6=\mathbf{0.8\,A}$.<br>
+ $v_1=6\dfrac{di_1}{dt}=6(-1.2e^{-2t})=-7.2e^{-2t}$ V (same across the 3 H).<br>
+ $i_2=0.8+\dfrac13\int_0^t(-7.2e^{-2\tau})d\tau=0.8-1.2(1-e^{-2t})=\mathbf{-0.4+1.2e^{-2t}\,A}$.<br>
+ $i=i_1+i_2=\mathbf{-0.4+1.8e^{-2t}\,A}$.<br>
+ (b) $v_1=\mathbf{-7.2e^{-2t}\,V}$, $v_2=8\dfrac{di}{dt}=\mathbf{-28.8e^{-2t}\,V}$, $v=v_1+v_2=\mathbf{-36e^{-2t}\,V}$.<br>
+ Check: $L_{eq}=2+8=10$ H and $10\,di/dt=-36e^{-2t}$ ✓.`},
+{pid:"fpp:8", src:"2017 Q7 (13 marks)", q:R`Parallel RLC, $L=50$ mH, $C=0.2\,\mu$F. (a) Roots for $R=200\,\Omega$; (b) damping type; (c) repeat for $R=312.5\,\Omega$; (d) $R$ for critical damping.`,
+ a:R`$\omega_0=1/\sqrt{LC}=1/\sqrt{10^{-8}}=10^4$ rad/s; $\alpha=1/(2RC)$.<br>
+ (a,b) $R=200$: $\alpha=12\,500>\omega_0$ ⇒ $s=-12\,500\pm\sqrt{12\,500^2-10^8}=-12\,500\pm7500$ ⇒ $\mathbf{-5000,\,-20\,000}$ s⁻¹, <b>overdamped</b>.<br>
+ (c) $R=312.5$: $\alpha=8000<\omega_0$ ⇒ $s=\mathbf{-8000\pm j6000}$, <b>underdamped</b>.<br>
+ (d) $\alpha=\omega_0$ ⇒ $R=\dfrac1{2\omega_0C}=\dfrac1{2(10^4)(0.2\times10^{-6})}=\mathbf{250\,\Omega}$.`},
+{pid:"fpp:9", src:"2017 Q9 (10 marks)", q:R`At the instant the switch reaches terminal a, the 0.1 µF capacitor has 5 V (+ on the input side). After 9 ms the switch moves to b. How long after reaching b does the op amp (±6 V rails) saturate?`,
+ a:R`$RC=(100\text{ k})(0.1\,\mu)=10$ ms. The + input is grounded so $v_-=0$, and $v_o=-5$ V at the start.<br>
+ Terminal a is −10 V (the source's + is at the bottom): $v_o=-5-\dfrac{1}{0.01}\int_0^t(-10)d\tau=-5+1000t$. At 9 ms: $v_o=4$ V (still linear).<br>
+ Terminal b is +8 V: $v_o=4-800t'$. Saturates at −6 V: $4-800t'=-6$ ⇒ $t'=\mathbf{12.5\,ms}$.`},
+{pid:"fpp:10", src:"2018 Q3 (8 marks)", q:R`Find $v_o$ when a dc input of 2.5 mV is applied at $t=0$ to the integrator in Figure 3 (100 kΩ, 20 µF, capacitor initially uncharged).`,
+ a:R`$RC=(100\times10^3)(20\times10^{-6})=2$ s.<br>
+ $v_o=-\dfrac1{RC}\int_0^t2.5\,\text{mV}\,d\tau=\mathbf{-1.25\,t\ mV}$ (until saturation).`},
+{pid:"fpp:11", src:"2018 Q4 (16 marks)", q:R`(a) Design an analog computer to simulate $\dfrac{d^2v}{dt^2}+5v=-2f(t)$. (b) Find $L_{eq}$ in Figure 4.`,
+ a:R`(a) $\dfrac{d^2v}{dt^2}=-2f(t)-5v$.<br>
+ • Stage 1, summing integrator with inputs $f$ and $v$: $-\int(2f+5v)dt=\dfrac{dv}{dt}$. With $C=1\,\mu$F: $R_f=\dfrac{1}{2C}=500$ kΩ, $R_v=\dfrac1{5C}=200$ kΩ.<br>
+ • Stage 2, integrator ($R=1$ MΩ, $C=1\,\mu$F): input $dv/dt$, output $-v$.<br>
+ • Stage 3, unity inverter (two equal resistors): $-v\to v$, fed back to the 200 kΩ input of stage 1. Initial conditions go on the two capacitors.<br>
+ (b) The outer rectangle is one node $K$. Left node $P$: two inductors to $K$ ⇒ $L/2$. Right node $Q$: two inductors to $K$ ⇒ $L/2$. Between the terminals $P$ and $Q$: $L\parallel(L/2+L/2)=L\parallel L=\mathbf{L/2}$.`},
+{pid:"fpp:12", src:"2018 Q6 (12 marks)", q:R`$S_1$ closes at $t=0$, $S_2$ (shorting the 20 Ω) closes at $t=2$ s. Find $i(t)$ for all $t$, and $i(1)$, $i(3)$.`,
+ a:R`$t<0$: $i=0$. Source transform: 6 A ∥ 15 Ω = 90 V behind 15 Ω.<br>
+ $0<t<2$: $R=15+10+20=45\,\Omega$, $i(\infty)=2$ A, $\tau=5/45=1/9$ s ⇒ $i=\mathbf{2(1-e^{-9t})}$ A. $i(1)=\mathbf{2.00\,A}$ (1.9998), $i(2)\approx2$ A.<br>
+ $t>2$: $R=25\,\Omega$, $i(\infty)=3.6$ A, $\tau=0.2$ s ⇒ $i=\mathbf{3.6-1.6e^{-5(t-2)}}$ A. $i(3)=3.6-1.6e^{-5}=\mathbf{3.589\,A}$.`},
+{pid:"fpp:13", src:"2018 Q7 (15 marks)", q:R`Parallel RLC: 0.125 µF, 8 H, 20 kΩ; $V_0=0$, $I_0=-12.25$ mA. (a) roots; (b) $v$ and $dv/dt$ at $0^+$; (c) $v(t)$; (d) sketch for 0–11 ms.`,
+ a:R`(a) $\alpha=\dfrac1{2RC}=\dfrac1{2(20\text{k})(0.125\mu)}=200$; $\omega_0^2=\dfrac1{LC}=10^6$. $s=-200\pm j\sqrt{10^6-200^2}=\mathbf{-200\pm j979.8}$ (underdamped).<br>
+ (b) $v(0^+)=V_0=\mathbf{0}$. KCL (all currents downward): $i_C=-i_L-i_R=12.25$ mA $-0$ ⇒ $\dfrac{dv}{dt}=\dfrac{i_C}{C}=\mathbf{98\,000\,V/s}$.<br>
+ (c) $v=e^{-200t}(B_1\cos979.8t+B_2\sin979.8t)$; $B_1=0$, $979.8B_2=98\,000$ ⇒ $v=\mathbf{100\,e^{-200t}\sin979.8t\ V}$.<br>
+ (d) Decaying sine, period $2\pi/979.8=6.41$ ms: first peak ≈ 71 V at 1.4 ms, zero crossings at 3.2, 6.4, 9.6 ms.`},
+{pid:"fpp:14", src:"2019 Q6 (10 marks)", q:R`Find $R_1$ and $R_2$ in Figure 5 so that $V_o=5(V_2-V_1)$.`,
+ a:R`Stage 1 is non-inverting (feedback from the $R_1$/$R_2$ divider): $V_x=\left(1+\dfrac{R_1}{R_2}\right)V_1$.<br>
+ Stage 2: $V_x$ through $R_1$ to the − input, $R_2$ feedback, $V_2$ on the + input:<br>
+ $V_o=\left(1+\dfrac{R_2}{R_1}\right)V_2-\dfrac{R_2}{R_1}V_x=\left(1+\dfrac{R_2}{R_1}\right)V_2-\left(\dfrac{R_2}{R_1}+1\right)V_1=\left(1+\dfrac{R_2}{R_1}\right)(V_2-V_1)$.<br>
+ Need $1+R_2/R_1=5$ ⇒ $\mathbf{R_2=4R_1}$, e.g. $R_1=10$ kΩ, $R_2=40$ kΩ.`},
+{pid:"fpp:15", src:"2019 Q7 (8 marks)", q:R`Sketch the transfer function of the circuit in Figure 6 and explain why it is called a comparator.`,
+ a:R`No feedback, so the full open-loop gain $A$ (~10⁵) acts on $V_{in}-V_{ref}$. A few µV of difference drives the output to a rail:<br>
+ $V_{out}=+V_{CC}$ for $V_{in}>V_{ref}$, $-V_{CC}$ for $V_{in}<V_{ref}$.<br>
+ Sketch: horizontal line at $-V_{CC}$, a (practically vertical) step at $V_{in}=V_{ref}$, horizontal line at $+V_{CC}$.<br>
+ It "compares" two voltages and gives a two-level (digital-like) answer saying which is bigger.`},
+{pid:"fpp:16", src:"2019 Q8 (12 marks)", q:R`The 2 kΩ is disconnected at $t=0$ and reconnected at $t=100$ ms. Find $i(t)$ (through the 8 kΩ, toward the middle node) for $t>0$.`,
+ a:R`$t<0$ (C open): middle node $=2\cdot\dfrac{2}{2+6}=0.5$ V, so $v_C(0)=0.5$ V.<br>
+ $0<t<100$ ms: C sees 8 k + 6 k = 14 kΩ to 2 V. $\tau_1=70$ ms, $v_C=2-1.5e^{-t/0.07}$.<br>
+ $i=\dfrac{v_C-2}{14\text{k}}=\mathbf{-107.1\,e^{-t/70\text{ms}}\ \mu A}$. At 100 ms: $v_C=1.6405$ V.<br>
+ $t>100$ ms: Thevenin seen by C: $V_{Th}=0.5$ V, $R_{Th}=8+(2\parallel6)=9.5$ kΩ, $\tau_2=47.5$ ms.<br>
+ $i=\dfrac{v_C-0.5}{9.5\text{k}}=\mathbf{120.1\,e^{-(t-0.1)/47.5\text{ms}}\ \mu A}$ (it jumps from −25.7 µA to +120.1 µA at 100 ms).`},
+{pid:"fpp:17", src:"2019 Q9 (10 marks)", q:R`Sketch $V_o$ vs $V_i$ for Figure 8 using the ideal diode model.`,
+ a:R`Read the battery symbols: the left battery's long plate is at the bottom, so the left diode's anode sits at −2 V. The right battery puts the right diode's cathode at +3 V.<br>
+ • Right diode (X → +3 V) is ON when $V_o>3$ V. Left diode (−2 V → 2 kΩ → X) is ON when $V_o<-2$ V.<br>
+ • $-2\le V_i\le3$: both OFF, no current in the 4 kΩ, $\mathbf{V_o=V_i}$.<br>
+ • $V_i>3$: right diode clamps, $\mathbf{V_o=3\,V}$.<br>
+ • $V_i<-2$: divider between $V_i$ and −2 V: $\mathbf{V_o=-2+\tfrac13(V_i+2)}$ (slope 1/3).<br>
+ Sketch: slope 1/3 below −2, slope 1 from (−2,−2) to (3,3), flat at 3 V above.`},
+{pid:"fpp:18", src:"2019 Q10 (8 marks)", q:R`Use the small-signal model to find $v_o/v_s$ in Figure 9 (diode biased by current source $I$, coupling capacitors $C_1$, $C_2$).`,
+ a:R`DC: the capacitors block, so all of $I$ flows through the diode: $r_d=V_T/I$.<br>
+ AC: capacitors are shorts, the ideal current source is an open circuit, the diode is $r_d$. That leaves a divider $R_s$ – $r_d$:<br>
+ $\dfrac{v_o}{v_s}=\mathbf{\dfrac{r_d}{R_s+r_d}=\dfrac{V_T}{IR_s+V_T}}$.`},
+{pid:"fpp:19", src:"2020 A4 (5 marks)", q:R`The current into the + terminal of a 0.5 F capacitor is $i=2t-2$ A for $t>0$, with $v(0)=4$ V. When is the stored energy smallest?`,
+ a:R`$v(t)=4+\dfrac1{0.5}\int_0^t(2\tau-2)d\tau=4+2(t^2-2t)=2(t-1)^2+2$ V.<br>
+ $w=\tfrac12Cv^2$ is smallest when $|v|$ is smallest: at $\mathbf{t=1\,s}$ ($v=2$ V, $w=1$ J).`},
+{pid:"fpp:20", src:"2020 B1 (20 marks)", q:R`In Fig. B1, $v(0^-)=12$ V across the 3 Ω. The switch (across the 10 A source) closes at $t=0$. Find (a) $i(0^-)$; (b) $v(0^+)$; (c) $di/dt(0^+)$; (d) the energy in the 3 H before switching.`,
+ a:R`(a) Before: the 3 H is a short, so the 2 Ω is in parallel with the 3 Ω: $i(0^-)=12/2=\mathbf{6\,A}$ (check: 10 A into 3∥2 = 1.2 Ω gives 12 V ✓).<br>
+ (b) The switch shorts the source, so the 15 Ω now runs from the node to ground. $i(0^+)=6$ A must return up through $15\parallel3=2.5\,\Omega$: $v(0^+)=-6(2.5)=\mathbf{-15\,V}$.<br>
+ (c) KVL round the inductor branch: $3\dfrac{di}{dt}=v-2i=-15-12=-27$ ⇒ $\dfrac{di}{dt}=\mathbf{-9\,A/s}$.<br>
+ (d) $w=\tfrac12(3)(6)^2=\mathbf{54\,J}$.`},
+{pid:"fpp:21", src:"2020 B2 (20 marks)", q:R`Non-inverting summer (Fig. B2): (a) $R_f$ for $v_o=v_1+2v_2+4v_3$; (b) $i_1$ for $v_1=1$, $v_2=0.5$, $v_3=0.25$ V; (c) $i_o$; (d) the largest $v_3$ (±12 V rails) with $v_1$, $v_2$ unchanged.`,
+ a:R`(a) KCL at the + input (1 kΩ to ground): $v_+=\dfrac{v_1/4+v_2/2+v_3/1}{1/4+1/2+1+1}=\dfrac{v_1+2v_2+4v_3}{11}$. Need gain $1+R_f/10\text{k}=11$ ⇒ $R_f=\mathbf{100\,k\Omega}$.<br>
+ (b) $v_+=3/11=0.2727$ V; $i_1=\dfrac{1-0.2727}{4\text{k}}=\mathbf{181.8\,\mu A}$.<br>
+ (c) $v_o=3$ V. $i_o=\dfrac{3}{5\text{k}}+\dfrac{3-0.2727}{100\text{k}}=0.6+0.0273=\mathbf{0.627\,mA}$.<br>
+ (d) $v_o=1+1+4v_3\le12$ ⇒ $v_3\le\mathbf{2.5\,V}$.`},
+{pid:"fpp:22", src:"2020 B3 (20 marks)", q:R`Source-free parallel RLC with $R=1$ kΩ, $C=1\,\mu$F. (a) $L$ for roots −200 and −800; (b) $L$ for critical damping; (c) derive the ODE for $i$; (d) $i(t)$ for $R=5\,\Omega$, $L=2$ H, $C=0.04$ F, $v(0)=0$, $i(0)=2$ A.`,
+ a:R`$\alpha=\dfrac1{2RC}=500$ (check: $-(s_1+s_2)/2=500$ ✓).<br>
+ (a) $\omega_0^2=s_1s_2=160\,000$ ⇒ $L=\dfrac1{\omega_0^2C}=\mathbf{6.25\,H}$.<br>
+ (b) $\omega_0=\alpha=500$ ⇒ $L=\dfrac1{500^2\times10^{-6}}=\mathbf{4\,H}$.<br>
+ (c) $v=L\dfrac{di}{dt}$. KCL: $\dfrac vR+i+C\dfrac{dv}{dt}=0$ ⇒ $\mathbf{\dfrac{d^2i}{dt^2}+\dfrac1{RC}\dfrac{di}{dt}+\dfrac{i}{LC}=0}$.<br>
+ (d) $s^2+5s+12.5=0$ ⇒ $s=-2.5\pm j2.5$. $i=e^{-2.5t}(A\cos2.5t+B\sin2.5t)$; $i(0)=2$ ⇒ $A=2$; $di/dt(0)=v(0)/L=0$ ⇒ $-2.5A+2.5B=0$ ⇒ $B=2$.<br>
+ $i(t)=\mathbf{2e^{-2.5t}(\cos2.5t+\sin2.5t)\ A}$.`},
 ];
