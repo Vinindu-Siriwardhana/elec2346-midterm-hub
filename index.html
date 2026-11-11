@@ -215,7 +215,7 @@ td:first-child{white-space:nowrap;font-weight:700;color:var(--a1);width:1%}
   <div class="view" id="v-plan"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#16a34a;--c2:#10b981">✅</span>Finals study plan <span class="cnt" id="plan-cnt" style="margin-left:auto;font-size:14px;color:var(--muted)"></span></h2><p class="blurb">Follow the schedule at the top. Tier 1 is the new material (lecture examples and past-paper questions), Tier 2 is full timed papers, and the Midterm review groups keep your earlier ticks for revision.</p><div class="grid" id="plan"></div></div>
   <div class="view" id="v-practice"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#f97316;--c2:#f59e0b">🧠</span>Practice questions</h2><p class="blurb">Every past-paper and textbook question from the study plan, with a worked solution. The new finals questions are at the top. Try it on paper first, then press “Reveal answer”. Ticking “done” here also ticks it in the Study plan. Sadiku numbers match your supplementary-exercise PDF.</p><div id="practice"></div></div>
   <div class="empty hidden" id="empty">No matches — try a different search.</div>
-  <p class="blurb" style="margin-left:0;margin-top:30px">Compiled from Lectures 1–7 (Lecture 8 equations from the course outline and past papers), Tutorials 1–2, the supplementary exercises and the 2016–2021 past papers. Every numerical answer was checked by solving the circuit equations; odd Sadiku answers also match the answer key. Ticks are saved in this browser.</p>
+  <p class="blurb" style="margin-left:0;margin-top:30px">Compiled from Lectures 1–7 (Lecture 8 equations from the course outline and past papers), Tutorials 1–2, Supplementary Exercises Parts 1–3, the supplementary exercises and the 2016–2021 past papers. Every numerical answer was checked by solving the circuit equations; odd Sadiku answers also match the answer key. Ticks are saved in this browser.</p>
 </main>
 
 <script src="data.js"></script>
@@ -266,7 +266,7 @@ function build(){
   $('#practice').innerHTML = PLAN.filter(g=>!/days$/.test(g.id)&&PRACTICE.some(p=>p.pid.startsWith(g.id+':'))).map(g=>{
     const list=PRACTICE.filter(p=>p.pid.startsWith(g.id+':'));
     return `<div class="pgroup"><h2 class="sec"><span class="num" style="--c1:${g.c[0]};--c2:${g.c[1]}">${g.icon}</span>${g.title}</h2><div class="grid">
-    ${list.map(p=>`<div class="card pq" style="--c1:${g.c[0]};--c2:${g.c[1]}" data-quiz="${!p.pid.startsWith('fpp:')||Q2PRAC.includes(p.pid)}" data-pid="${p.pid}" data-search="${(g.title+' '+p.src+' '+p.q).toLowerCase().replace(/<[^>]+>/g,' ').replace(/"/g,'')}">
+    ${list.map(p=>`<div class="card pq" style="--c1:${g.c[0]};--c2:${g.c[1]}" data-quiz="${inQ2(p.pid)}" data-pid="${p.pid}" data-search="${(g.title+' '+p.src+' '+p.q).toLowerCase().replace(/<[^>]+>/g,' ').replace(/"/g,'')}">
       <div class="top"><div class="name">${p.src}</div><label class="chk"><input type="checkbox" data-pid="${p.pid}" ${planDone[p.pid]?'checked':''}> done</label></div>
       <div class="qbody">${M(p.q)}</div>
       ${FIGS[p.pid]?`<div class="figs">${FIGS[p.pid].map(f=>`<img src="img/${f}.png" alt="Figure for ${p.src}" loading="lazy">`).join('')}</div>`:''}

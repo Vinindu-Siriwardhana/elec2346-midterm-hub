@@ -16,9 +16,12 @@ const FIGS = {
  "ty:0":["ty_1_9"],"ty:1":["ty_1_16"],"ty:2":["ty_2_7"],"ty:3":["ty_2_13"],"ty:4":["ty_2_49"],"ty:5":["ty_2_68"],"ty:6":["ty_4_6"],"ty:7":["ty_4_31"],
  "s4:8":["s4_53"],"s4:9":["s4_63"],"s4:10":["s4_65"],"s4:11":["s4_71"],"s4:12":["s4_73"],"s4:14":["s4_85"],
  "fpp:0":["f16_4"], "fpp:1":["f16_5"], "fpp:2":["f16_6"], "fpp:3":["f16_10"], "fpp:4":["f16_11"], "fpp:6":["f17_5"], "fpp:7":["f17_6"], "fpp:8":["f17_7"], "fpp:9":["f17_9"], "fpp:10":["f18_3"], "fpp:11":["f18_4"], "fpp:12":["f18_6"], "fpp:13":["f18_7"], "fpp:14":["f19_6"], "fpp:15":["f19_7"], "fpp:16":["f19_8"], "fpp:17":["f19_9"], "fpp:18":["f19_10"], "fpp:20":["f20_b1"], "fpp:21":["f20_b2"], "fpp:22":["f20_b3"],
+ "sp3:0":["sp3_1"], "sp3:1":["sp3_2"], "sp3:2":["sp3_3","sp3_3b"], "sp3:3":["sp3_4","sp3_4b"], "sp3:4":["sp3_5"], "sp3:5":["sp3_5"], "c5:0":["c5_13"], "c5:1":["c5_17"], "c5:2":["c5_19"], "c5:3":["c5_21"], "c5:4":["c5_25"], "c5:5":["c5_27"], "c5:6":["c5_31"], "c5:7":["c5_33"], "c5:8":["c5_37"], "c5:9":["c5_39"], "c5:10":["c5_47"], "c5:12":["c5_61"], "c5:13":["c5_65"], "c6:3":["c6_17","c6_17b","c6_17c"], "c6:4":["c6_19"], "c6:5":["c6_21"], "c6:9":["c6_49"], "c6:10":["c6_51"], "c6:11":["c6_53"], "c6:12":["c6_61"], "c7:1":["c7_3"], "c7:2":["c7_9"], "c7:3":["c7_11"], "c7:5":["c7_17"], "c7:6":["c7_19"], "c7:8":["c7_39"], "c7:9":["c7_43"], "c7:10":["c7_45"], "c7:11":["c7_53","c7_53b"], "c7:12":["c7_59"], "c7:13":["c7_61"], "c7:14":["c7_63"], "c7:15":["c7_71"], "c8:0":["c8_1"], "c8:1":["c8_5"], "c8:4":["c8_13"], "c8:6":["c8_23"], "c8:8":["c8_31"], "c8:9":["c8_43"], "c8:10":["c8_45"], "c8:11":["c8_47"], "c8:12":["c8_49"],
 };
 // Post-midterm practice questions inside the Quiz 2 scope (Lectures 1–6, diodes up to slide 24)
 const Q2PRAC = ["fpp:1","fpp:3","fpp:4","fpp:5","fpp:14","fpp:15","fpp:17","fpp:18","fpp:21"];
+// In Quiz 2 scope? Post-midterm past-paper items are listed above; Sadiku Ch 6–8 sets are finals-only.
+const inQ2 = pid => pid.startsWith("fpp:") ? Q2PRAC.includes(pid) : !/^c[678]:/.test(pid);
 const PRACTICE = [
 // ───────── Tutorials ─────────
 {pid:"tut:0", src:"Tutorial 1 Q1", q:R`Find $R_{eq}$ and $i_o$ in the circuit of Fig. 1 (40 V source, 5 Ω in series).`,
@@ -505,4 +508,240 @@ const PRACTICE = [
  (c) $v=L\dfrac{di}{dt}$. KCL: $\dfrac vR+i+C\dfrac{dv}{dt}=0$ ⇒ $\mathbf{\dfrac{d^2i}{dt^2}+\dfrac1{RC}\dfrac{di}{dt}+\dfrac{i}{LC}=0}$.<br>
  (d) $s^2+5s+12.5=0$ ⇒ $s=-2.5\pm j2.5$. $i=e^{-2.5t}(A\cos2.5t+B\sin2.5t)$; $i(0)=2$ ⇒ $A=2$; $di/dt(0)=v(0)/L=0$ ⇒ $-2.5A+2.5B=0$ ⇒ $B=2$.<br>
  $i(t)=\mathbf{2e^{-2.5t}(\cos2.5t+\sin2.5t)\ A}$.`},
+// ───────── Supplementary Exercise Part 3: diodes (pid sp3:N) — Quiz 2 scope ─────────
+{pid:"sp3:0", src:"Supp. Part 3 Q1", q:R`Find $v_L$ in Fig. 1 ($D$ ideal) for $v_s<0$ and $v_s>0$.`,
+ a:R`• $v_s<0$: the diode's anode is pulled below its cathode, so it is reverse-biased (open) and $\mathbf{v_L=0}$.<br>
+ • $v_s>0$: the diode is a short, so $R_L$ sits in parallel with $R_1$ and the source sees a divider:<br>
+ $v_L=\mathbf{v_s\dfrac{R_L\parallel R_1}{R_S+R_L\parallel R_1}}$.`},
+{pid:"sp3:1", src:"Supp. Part 3 Q2", q:R`Constant-voltage model, $V_{D,on}=0.7$ V, $E=5$ V. (a) $R$ for $I=5$ mA? (b) The diode needs at least 1 mA to conduct. With that $R$, what is the smallest $E$ that still gives 1 mA?`,
+ a:R`(a) KVL: $E=IR+0.7$ ⇒ $R=\dfrac{5-0.7}{5\times10^{-3}}=\mathbf{860\,\Omega}$.<br>
+ (b) $\dfrac{E_{min}-0.7}{860}=1\times10^{-3}$ ⇒ $E_{min}=0.86+0.7=\mathbf{1.56\,V}$.`},
+{pid:"sp3:2", src:"Supp. Part 3 Q3", q:R`Which diodes in Fig. 3(a)–(e) are forward-biased and which are reverse-biased?`,
+ a:R`Rule: forward-biased if the anode (triangle side) is at a higher potential than the cathode (bar side).<br>
+ (a) anode at 0 V, cathode pulled up to +5 V through $R$ ⇒ <b>reverse</b>.<br>
+ (b) cathode at +5 V, anode pulled up to +10 V ⇒ <b>forward</b>.<br>
+ (c) anode at −10 V side, cathode at +5 V ⇒ <b>reverse</b>.<br>
+ (d) cathode at −12 V, anode pulled to −5 V ⇒ <b>forward</b> (−5 > −12).<br>
+ (e) anode at 0 V, cathode pulled to −10 V ⇒ <b>forward</b>.`},
+{pid:"sp3:3", src:"Supp. Part 3 Q4", q:R`For Fig. 4(a)–(c), which diodes conduct? With 0.7 V across each conducting diode, find $v_{out}$.`,
+ a:R`All diodes point from the common node (anode) to an input (cathode), and $R$ connects the node to a supply. The diode whose cathode is <i>lowest</i> turns on first and pins the node 0.7 V above that input; the rest are then reverse-biased.<br>
+ (a) $R$ to +5 V; lowest inputs are −5 V ⇒ <b>D2, D4 on</b>, D1, D3 off. $v_{out}=-5+0.7=\mathbf{-4.3\,V}$.<br>
+ (b) $R$ to +15 V; lowest input −10 V ⇒ <b>D3 on</b>, D1, D2 off. $v_{out}=-10+0.7=\mathbf{-9.3\,V}$.<br>
+ (c) $R$ to <i>−10 V</i>: the node is pulled down below both inputs (−5 V and +5 V), so both diodes are reverse-biased, no current flows in $R$ and $v_{out}=\mathbf{-10\,V}$. (The suggested-answer sheet skips this part.)`},
+{pid:"sp3:4", src:"Supp. Part 3 Q5", q:R`Sketch $v_o(t)$ for Fig. 5 with an ideal diode and $v_s(t)=10\sin(2000\pi t)$.`,
+ a:R`The diode's anode sits on the +4 V battery and its cathode on the output node.<br>
+ • Diode off: the two 10 Ω form a divider, $v_o=v_s/2$.<br>
+ • Diode on when the output would fall below 4 V: it clamps $v_o=4$ V.<br>
+ So $v_o=\max(v_s/2,\,4)$: $\mathbf{v_o=4\,V}$ for $v_s<8$ V, and $\mathbf{v_o=v_s/2}$ for $v_s\ge8$ V. Peaks reach 5 V; the period is 1 ms (f = 1 kHz).<br>
+ <img src="img/sp3_5a.png" alt="Q5 output waveform" style="max-width:260px;background:#fff;border-radius:8px;padding:4px;margin-top:6px">`},
+{pid:"sp3:5", src:"Supp. Part 3 Q6", q:R`Repeat Q5 with the constant-voltage model ($V_{D,on}=0.7$ V).`,
+ a:R`Now the diode turns on when $v_o$ drops to $4-0.7=3.3$ V.<br>
+ $\mathbf{v_o=3.3\,V}$ for $v_s<6.6$ V, and $\mathbf{v_o=v_s/2}$ for $v_s\ge6.6$ V (peak still 5 V).<br>
+ <img src="img/sp3_6a.png" alt="Q6 output waveform" style="max-width:280px;background:#fff;border-radius:8px;padding:4px;margin-top:6px">`},
+// ───────── Sadiku Ch 5: op amps (pid c5:N) — Quiz 2 scope ─────────
+{pid:"c5:0", src:"Sadiku 5.13", q:R`Find $v_o$ and $i_o$ in the circuit of Fig. 5.52.`,
+ a:R`+ input from the 10 k/90 k divider: $v_+=1\cdot\dfrac{90}{100}=0.9$ V.<br>
+ Non-inverting with $R_f=100$ k, $R_1=50$ k: $v_o=0.9(1+100/50)=\mathbf{2.7\,V}$.<br>
+ $i_o$ feeds the 10 k load and the 150 k feedback path: $i_o=\dfrac{2.7}{10\text{k}}+\dfrac{2.7}{150\text{k}}=270+18=\mathbf{288\,\mu A}$.`},
+{pid:"c5:1", src:"Sadiku 5.17", q:R`Find the gain $v_o/v_i$ of Fig. 5.56 with the switch in position 1, 2 and 3.`,
+ a:R`Inverting amplifier with $R_i=5$ k; the switch picks $R_f$.<br>
+ (1) $-12/5=\mathbf{-2.4}$ &nbsp; (2) $-80/5=\mathbf{-16}$ &nbsp; (3) $-2000/5=\mathbf{-400}$.<br>
+ The 10 kΩ load doesn't change the gain (ideal output).`},
+{pid:"c5:2", src:"Sadiku 5.19", q:R`Determine $i_o$ in the circuit of Fig. 5.58.`,
+ a:R`Thevenin of 750 mV, 2 k, 4 k: $V_{Th}=0.5$ V, $R_{Th}=1.333$ k. Add the 4 k in series: input resistance 5.333 k.<br>
+ Inverting: $v_o=-\dfrac{10}{5.333}(0.5)=-0.9375$ V.<br>
+ KCL at the output: $i_o=\dfrac{v_o}{2\text{k}}+\dfrac{v_o-0}{10\text{k}}=-0.469-0.094=\mathbf{-562.5\,\mu A}$ (so 562.5 µA flows <i>into</i> the op-amp output).`},
+{pid:"c5:3", src:"Sadiku 5.21", q:R`Calculate $v_o$ in the op-amp circuit of Fig. 5.60.`,
+ a:R`$v_-=v_+=1$ V. KCL at the − node: $\dfrac{3-1}{4\text{k}}=\dfrac{1-v_o}{10\text{k}}$ ⇒ $5=1-v_o$ ⇒ $\mathbf{v_o=-4\,V}$.<br>
+ (Superposition check: $-\tfrac{10}{4}(3)+(1+\tfrac{10}{4})(1)=-7.5+3.5=-4$.)`},
+{pid:"c5:4", src:"Sadiku 5.25", q:R`Calculate $v_o$ in Fig. 5.63.`,
+ a:R`A voltage follower gives 3.7 V at its output with no loading, then the 12 k/20 k divider:<br>
+ $v_o=3.7\cdot\dfrac{20}{32}=\mathbf{2.3125\,V}$.`},
+{pid:"c5:5", src:"Sadiku 5.27", q:R`Find $v_o$ in Fig. 5.65.`,
+ a:R`$v_1=7.5\cdot\dfrac{24}{40}=4.5$ V (no current into the + input). Follower: $v_2=4.5$ V.<br>
+ $v_o=4.5\cdot\dfrac{12}{8+12}=\mathbf{2.7\,V}$.`},
+{pid:"c5:6", src:"Sadiku 5.31", q:R`Find $i_x$ in Fig. 5.69.`,
+ a:R`Call the top of the 3 k node A and the node between the 6 k's node B (it feeds the + input). The op amp is a follower, so $v_o=v_B$.<br>
+ No current into + ⇒ the 6 k from A to B and the 6 k from B to ground form a divider: $v_B=v_A/2$.<br>
+ KCL at A: $4\text{ mA}=\dfrac{v_A}{3}+\dfrac{v_A-v_B}{6}+\dfrac{v_A-v_o}{12}=v_A\left(\dfrac13+\dfrac1{12}+\dfrac1{24}\right)=\dfrac{11v_A}{24}$ ⇒ $v_A=8.727$ V.<br>
+ $i_x=\dfrac{v_B}{6\text{k}}=\dfrac{4.364}{6\text{k}}=\mathbf{727.2\,\mu A}$.`},
+{pid:"c5:7", src:"Sadiku 5.33", q:R`In Fig. 5.71 find $i_x$ and the power absorbed by the 3 kΩ resistor.`,
+ a:R`The + input hops over the wire and connects to the source/4 k node; no current flows into it, so all 1 mA goes through the 4 k: $v_+=4$ V.<br>
+ The − input sits on the 1 k/2 k divider from the output: non-inverting gain $1+1/2=1.5$ ⇒ $v_o=6$ V.<br>
+ $i_x=6/3\text{k}=\mathbf{2\,mA}$; $p=\dfrac{6^2}{3\text{k}}=\mathbf{12\,mW}$.`},
+{pid:"c5:8", src:"Sadiku 5.37", q:R`Determine the output of the summing amplifier in Fig. 5.74.`,
+ a:R`Read the source polarities: the inputs at the resistors are $+2$ V, $-2$ V and $-4.5$ V (the 4.5 V source has its + on the ground side).<br>
+ $v_o=-\left(\dfrac{30}{10}(2)+\dfrac{30}{20}(-2)+\dfrac{30}{30}(-4.5)\right)=-(6-3-4.5)=\mathbf{1.5\,V}$.`},
+{pid:"c5:9", src:"Sadiku 5.39", q:R`For Fig. 5.76, find $v_2$ so that $v_o=-16.5$ V.`,
+ a:R`Summer with $R_f=50$ k: $v_o=-\left(5(2)+2.5v_2+1(-1)\right)=-(9+2.5v_2)$.<br>
+ $-(9+2.5v_2)=-16.5$ ⇒ $\mathbf{v_2=3\,V}$.`},
+{pid:"c5:10", src:"Sadiku 5.47", q:R`The circuit in Fig. 5.79 is a difference amplifier. Find $v_o$ for $v_1=1$ V, $v_2=2$ V.`,
+ a:R`$v_+=v_2\dfrac{20}{22}=1.818$ V. KCL at the − node with $v_-=v_+$:<br>
+ $v_o=\left(1+\dfrac{30}{2}\right)v_+-\dfrac{30}{2}v_1=16(1.818)-15=\mathbf{14.09\,V}$.<br>
+ (Not a balanced difference amp, since $2/30\ne2/20$, so you can't just use $\tfrac{R_2}{R_1}(v_2-v_1)$.)`},
+{pid:"c5:11", src:"Sadiku 5.55", q:R`A three-stage amplifier needs an overall gain of 42 dB. Stages 1 and 2 have equal gain; stage 3 has one-fourth of each of those. Find each gain.`,
+ a:R`$A=10^{42/20}=125.9$. With $A_1=A_2=a$, $A_3=a/4$: $a^3/4=125.9$ ⇒ $a^3=503.6$ ⇒ $a=\mathbf{7.956}$.<br>
+ Gains: $\mathbf{7.956,\ 7.956,\ 1.989}$.`},
+{pid:"c5:12", src:"Sadiku 5.61", q:R`Determine $v_o$ in Fig. 5.88.`,
+ a:R`Stage 1, inverting: $v_a=-\dfrac{20}{10}(0.4)=-0.8$ V.<br>
+ Stage 2 is an inverting summer ($R_f=40$ k) fed by −0.2 V through 10 k and $v_a$ through 20 k:<br>
+ $v_o=-\left(\dfrac{40}{10}(-0.2)+\dfrac{40}{20}(-0.8)\right)=-(-0.8-1.6)=\mathbf{2.4\,V}$.`},
+{pid:"c5:13", src:"Sadiku 5.65", q:R`Find $v_o$ in Fig. 5.92.`,
+ a:R`Stage 1 is a follower (the 50 k carries no current): 6 mV.<br>
+ Stage 2, inverting: $-\dfrac{30}{10}(6)=-18$ mV.<br>
+ Stage 3, non-inverting (the 20 k into the + input carries no current; $R_f=8$ k, $R_g=40$ k): $v_o=-18\left(1+\dfrac{8}{40}\right)=\mathbf{-21.6\,mV}$.`},
+// ───────── Sadiku Ch 6: capacitors & inductors (pid c6:N) — final ─────────
+{pid:"c6:0", src:"Sadiku 6.7", q:R`At $t=0$ a 25 mF capacitor has 10 V. Find its voltage for $t>0$ when a current of $5t$ mA flows through it.`,
+ a:R`$v(t)=v(0)+\dfrac1C\int_0^t i\,d\tau=10+\dfrac{1}{0.025}\int_0^t0.005\tau\,d\tau=10+40(0.0025t^2)=\mathbf{0.1t^2+10\ V}$.`},
+{pid:"c6:1", src:"Sadiku 6.9", q:R`The current through a 0.5 F capacitor is $6(1-e^{-t})$ A, $v(0)=0$. Find the voltage and power at $t=2$ s.`,
+ a:R`$v=\dfrac1{0.5}\int_0^t6(1-e^{-\tau})d\tau=12(t+e^{-t}-1)$. At 2 s: $v=12(1+0.1353)=\mathbf{13.62\,V}$.<br>
+ $i(2)=6(1-e^{-2})=5.188$ A ⇒ $p=vi=\mathbf{70.7\,W}$.`},
+{pid:"c6:2", src:"Sadiku 6.15", q:R`25 µF and 75 µF capacitors are connected to 100 V. Find the energy in each when they are (a) in parallel, (b) in series.`,
+ a:R`(a) Both see 100 V: $w_{25}=\tfrac12(25\mu)(100^2)=\mathbf{125\,mJ}$, $w_{75}=\mathbf{375\,mJ}$.<br>
+ (b) Series: same charge, so the voltage splits inversely to C: $v_{25}=100\cdot\tfrac{75}{100}=75$ V, $v_{75}=25$ V.<br>
+ $w_{25}=\tfrac12(25\mu)(75^2)=\mathbf{70.31\,mJ}$, $w_{75}=\tfrac12(75\mu)(25^2)=\mathbf{23.44\,mJ}$.`},
+{pid:"c6:3", src:"Sadiku 6.17", q:R`Determine the equivalent capacitance of each circuit in Fig. 6.51.`,
+ a:R`(a) 12 F in series with the bottom-right 4 F: 3 F. In parallel with 6 F and 3 F: $3+6+3=12$ F. In series with the input 4 F: $\mathbf{3\,F}$.<br>
+ (b) 4 F ∥ 2 F = 6 F, in series with 6 F: 3 F. In parallel with the 5 F across the terminals: $\mathbf{8\,F}$.<br>
+ (c) 3 F series 6 F = 2 F, ∥ 4 F = 6 F. Then 2 F, 6 F, 3 F in series: $\tfrac1{1/2+1/6+1/3}=\mathbf{1\,F}$.`},
+{pid:"c6:4", src:"Sadiku 6.19", q:R`Find the equivalent capacitance between a and b in Fig. 6.53 (all in µF).`,
+ a:R`Nodes: P (after the first 12), Q (bottom-left = b), R (the top junction where the diagonals meet), U (bottom middle). The top-right wire is part of R and the bottom-right corner is joined to U by the bottom wire. Remember: capacitors in parallel <i>add</i>.<br>
+ • R–U: the 30, the 20 diagonal and the 10 are all between R and U ⇒ $30+20+10=60$.<br>
+ • Q–U is the 60 on the bottom; in series with the 60 above ⇒ 30 from Q to R. Add the 50 diagonal (Q–R) ⇒ 80.<br>
+ • P–R: $80+40=120$; in series with that 80 ⇒ $\tfrac{120\cdot80}{200}=48$ from P to Q. Add the 12 (P–Q) ⇒ 60.<br>
+ • In series with the input 12: $\dfrac{12\cdot60}{72}=\mathbf{10\,\mu F}$.`},
+{pid:"c6:5", src:"Sadiku 6.21", q:R`Determine the equivalent capacitance at terminals a-b in Fig. 6.55.`,
+ a:R`Work from the right: 4 series 12 = 3; ∥ 3 = 6; series 6 = 3; ∥ 2 = 5; series 5 = $\mathbf{2.5\,\mu F}$.`},
+{pid:"c6:6", src:"Sadiku 6.37", q:R`The current through a 12 mH inductor is $4\sin100t$ A. Find the voltage for $0<t<\pi/200$ s and the energy stored at $t=\pi/200$ s.`,
+ a:R`$v=L\dfrac{di}{dt}=0.012(400\cos100t)=\mathbf{4.8\cos100t\ V}$.<br>
+ At $t=\pi/200$: $i=4\sin(\pi/2)=4$ A ⇒ $w=\tfrac12(0.012)(16)=\mathbf{96\,mJ}$.`},
+{pid:"c6:7", src:"Sadiku 6.39", q:R`The voltage across a 200 mH inductor is $v=3t^2+2t+4$ V for $t>0$. Find $i(t)$ if $i(0)=1$ A.`,
+ a:R`$i=1+\dfrac1{0.2}\int_0^t(3\tau^2+2\tau+4)d\tau=1+5(t^3+t^2+4t)=\mathbf{5t^3+5t^2+20t+1\ A}$.`},
+{pid:"c6:8", src:"Sadiku 6.41", q:R`The voltage across a 2 H inductor is $20(1-e^{-2t})$ V. With $i(0)=0.3$ A, find the current and the stored energy at $t=1$ s.`,
+ a:R`$i=0.3+\dfrac12\int_0^t20(1-e^{-2\tau})d\tau=0.3+10t+5e^{-2t}-5$.<br>
+ $i(1)=0.3+10+0.677-5=\mathbf{5.977\,A}$; $w=\tfrac12(2)(5.977)^2=\mathbf{35.72\,J}$.`},
+{pid:"c6:9", src:"Sadiku 6.49", q:R`Find the equivalent inductance of Fig. 6.72 (all inductors 10 mH).`,
+ a:R`The top wire joins the top-left corner to the middle vertical line, so the horizontal inductor runs from the middle-left node back to the top node: it is in parallel with the upper-left inductor ⇒ 5 mH.<br>
+ 5 + lower-left 10 = 15 mH (top to bottom). In parallel with the middle-column lower 10 mH and the right 10 mH:<br>
+ $15\parallel10\parallel10=15\parallel5=\mathbf{3.75\,mH}$.`},
+{pid:"c6:10", src:"Sadiku 6.51", q:R`Determine $L_{eq}$ at terminals a-b of Fig. 6.73.`,
+ a:R`60 ∥ 20 ∥ 30 = 10 mH, in series with 25 mH = 35 mH. The top 10 mH runs from a to b, so it is in parallel with that 35:<br>
+ $L_{eq}=\dfrac{10\cdot35}{45}=\mathbf{7.778\,mH}$.`},
+{pid:"c6:11", src:"Sadiku 6.53", q:R`Find $L_{eq}$ at the terminals of Fig. 6.75.`,
+ a:R`Let P be after the 6 mH, T after the 10 mH, R the right vertex of the triangle.<br>
+ • P–R: 5 ∥ (8 + 12) = 4 mH. &nbsp; • R–T: 6 ∥ (4 + 8) = 4 mH.<br>
+ • P–T: 8 ∥ (4 + 4) = 4 mH.<br>
+ $L_{eq}=6+4+10=\mathbf{20\,mH}$.`},
+{pid:"c6:12", src:"Sadiku 6.61", q:R`In Fig. 6.83, $i_s=3e^{-t}$ mA. Find (a) $L_{eq}$, $i_1(t)$, $i_2(t)$; (b) $v_o(t)$; (c) the energy in the 20 mH at $t=1$ s.`,
+ a:R`(a) $L_{eq}=20\parallel(4+6)=\mathbf{6.667\,mH}$. Parallel inductors split current inversely to L (zero initial currents): $i_1=\tfrac{10}{30}i_s=\mathbf{e^{-t}\,mA}$, $i_2=\mathbf{2e^{-t}\,mA}$.<br>
+ (b) $v_o=L_{eq}\dfrac{di_s}{dt}=6.667\text{m}\times(-3e^{-t}\text{ mA/s})=\mathbf{-20e^{-t}\,\mu V}$.<br>
+ (c) $w=\tfrac12(0.02)(e^{-1}\times10^{-3})^2=\mathbf{1.353\,nJ}$.`},
+{pid:"c6:13", src:"Sadiku 6.67", q:R`An op-amp integrator has $R=50$ kΩ, $C=0.04\,\mu$F. Find $v_o$ for $v_i=10\sin50t$ mV.`,
+ a:R`$RC=2$ ms. $v_o=-\dfrac1{RC}\int_0^t10\sin50\tau\,d\tau=-500\cdot\dfrac{10}{50}(1-\cos50t)=\mathbf{-100(1-\cos50t)\ mV}$.<br>
+ The textbook key quotes only the AC part, $100\cos50t$ mV.`},
+{pid:"c6:14", src:"Sadiku 6.71", q:R`Show how a single op amp can give $v_o=-\int_0^t(v_1+4v_2+10v_3)dt$. With $C=2\,\mu$F, find the other component values.`,
+ a:R`Use a summing integrator: three input resistors into the − node, $C$ in feedback, + grounded. Each weight is $1/(R_kC)$:<br>
+ $R_1=\dfrac{1}{1\cdot2\mu}=\mathbf{500\,k\Omega}$, $R_2=\dfrac1{4\cdot2\mu}=\mathbf{125\,k\Omega}$, $R_3=\dfrac1{10\cdot2\mu}=\mathbf{50\,k\Omega}$.`},
+{pid:"c6:15", src:"Sadiku 6.75", q:R`An op-amp differentiator has $R=250$ kΩ, $C=10\,\mu$F. The input is the ramp $12t$ mV. Find $v_o$.`,
+ a:R`$RC=2.5$ s. $v_o=-RC\dfrac{dv_i}{dt}=-2.5(12\text{ mV/s})=\mathbf{-30\,mV}$ (constant).`},
+// ───────── Sadiku Ch 7: first-order circuits (pid c7:N) — final ─────────
+{pid:"c7:0", src:"Sadiku 7.1", q:R`In an RC circuit, $v=56e^{-200t}$ V and $i=8e^{-200t}$ mA for $t>0$. (a) Find $R$ and $C$. (b) τ? (c) Time for $v$ to halve.`,
+ a:R`(a) $R=v/i=56/8\text{m}=\mathbf{7\,k\Omega}$; $\tau=1/200=5$ ms ⇒ $C=\tau/R=\mathbf{0.714\,\mu F}$.<br>
+ (b) $\tau=\mathbf{5\,ms}$. (c) $e^{-t/\tau}=0.5$ ⇒ $t=\tau\ln2=\mathbf{3.466\,ms}$.`},
+{pid:"c7:1", src:"Sadiku 7.3", q:R`Determine the time constant for the circuit in Fig. 7.83.`,
+ a:R`Resistance seen by the capacitor: $10+40\parallel(20+30)=10+22.22=32.22$ kΩ.<br>
+ $\tau=32.22\text{k}\times100\text{p}=\mathbf{3.222\,\mu s}$.`},
+{pid:"c7:2", src:"Sadiku 7.9", q:R`The switch in Fig. 7.89 opens at $t=0$. Find $v_o$ for $t>0$.`,
+ a:R`Before (C open): $v_o(0)=6\cdot\dfrac{4}{6}=4$ V. After: the 3 mF discharges into the 4 kΩ alone, $\tau=4\text{k}\times3\text{m}=12$ s.<br>
+ $v_o=\mathbf{4e^{-t/12}\ V}$.`},
+{pid:"c7:3", src:"Sadiku 7.11", q:R`For the circuit in Fig. 7.91, find $i_o$ for $t>0$.`,
+ a:R`Before (switch closed, L short): $4\parallel8=2.667\,\Omega$, total 6.667 Ω, source current 3.6 A, node voltage 9.6 V ⇒ $i_o(0)=9.6/8=1.2$ A.<br>
+ After the switch opens, the 4 H sees $4+8=12\,\Omega$: $\tau=4/12=1/3$ s.<br>
+ $i_o=\mathbf{1.2e^{-3t}\ A}$.`},
+{pid:"c7:4", src:"Sadiku 7.13", q:R`For an RL circuit, $v=80e^{-10^3t}$ V and $i=5e^{-10^3t}$ mA. (a) Find $R$, $L$, τ. (b) Energy dissipated in R for $0<t<0.5$ ms.`,
+ a:R`(a) $R=80/5\text{m}=\mathbf{16\,k\Omega}$, $\tau=\mathbf{1\,ms}$, $L=R\tau=\mathbf{16\,H}$.<br>
+ (b) $w=\int_0^{0.5\text{m}}vi\,dt=0.4\int_0^{0.5\text{m}}e^{-2000t}dt=0.4\cdot\dfrac{1-e^{-1}}{2000}=\mathbf{126.4\,\mu J}$.`},
+{pid:"c7:5", src:"Sadiku 7.17", q:R`In Fig. 7.97, find $v_o(t)$ if $i(0)=6$ A and $v(t)=0$.`,
+ a:R`With the source at 0 V the inductor sees $1+3=4\,\Omega$: $\tau=\tfrac{1/4}{4}=\tfrac1{16}$ s, so $i=6e^{-16t}$ A.<br>
+ $v_o$ is across the 3 Ω + L branch: $v_o=3i+\tfrac14\dfrac{di}{dt}=18e^{-16t}-24e^{-16t}=\mathbf{-6e^{-16t}\,V}$ (equivalently $-1\Omega\times i$).`},
+{pid:"c7:6", src:"Sadiku 7.19", q:R`In Fig. 7.99, find $i(t)$ for $t>0$ if $i(0)=6$ A.`,
+ a:R`Find the resistance the 6 H sees. With $i$ flowing left→right through L:<br>
+ • right node: $i=0.5i+v_R/40$ ⇒ $v_R=20i$. &nbsp; • left node: $i$ is drawn up through the 10 Ω ⇒ $v_L=-10i$.<br>
+ $6\dfrac{di}{dt}=v_L-v_R=-30i$ ⇒ $\tau=0.2$ s ⇒ $i=\mathbf{6e^{-5t}\ A}$ (equivalent resistance 30 Ω).`},
+{pid:"c7:7", src:"Sadiku 7.37", q:R`A circuit obeys $4\dfrac{dv}{dt}+v=10$. (a) τ? (b) $v(\infty)$? (c) $v(t)$ if $v(0)=2$.`,
+ a:R`(a) $\tau=\mathbf{4\,s}$. (b) $v(\infty)=\mathbf{10\,V}$. (c) $v=10+(2-10)e^{-t/4}=\mathbf{10-8e^{-t/4}\ V}$.`},
+{pid:"c7:8", src:"Sadiku 7.39(a)", q:R`Find the capacitor voltage for $t<0$ and $t>0$ in Fig. 7.106(a). (The switch opens at $t=0$.)`,
+ a:R`$t<0$: C open, divider $20\cdot\dfrac{1}{4+1}=\mathbf{4\,V}$.<br>
+ $t>0$: the 1 Ω is disconnected; C charges through 4 Ω toward 20 V, $\tau=4\times2=8$ s.<br>
+ $v=\mathbf{20-16e^{-t/8}\ V}$.`},
+{pid:"c7:9", src:"Sadiku 7.43", q:R`Find $i(t)$ for $t<0$ and $t>0$ in Fig. 7.110 (the switch opens at $t=0$).`,
+ a:R`$t<0$ (C open): KCL at the capacitor node A: $\dfrac{80-v_A}{40}+0.5i=i$, and $v_A=80i$ (30 Ω + 50 Ω carry $i$). ⇒ $2-2i=0.5i$ ⇒ $i=\mathbf{0.8\,A}$, $v_A=64$ V.<br>
+ $t>0$: KCL at A: $3\dfrac{dv}{dt}+i-0.5i=0$ with $i=v/80$ ⇒ $\dfrac{dv}{dt}=-\dfrac{v}{480}$, $\tau=480$ s.<br>
+ $i=\mathbf{0.8e^{-t/480}\ A}$.`},
+{pid:"c7:10", src:"Sadiku 7.45", q:R`Find $v_o$ in Fig. 7.112 for $v_s=30u(t)$ V and $v_o(0)=5$ V.`,
+ a:R`Thevenin seen by the 3 µF: $V_{Th}=30\cdot\dfrac{40}{60}=20$ V, $R_{Th}=10+20\parallel40=23.33$ kΩ, $\tau=70$ ms.<br>
+ $v_o=20+(5-20)e^{-t/0.07}=\mathbf{20-15e^{-14.29t}\ V}$.`},
+{pid:"c7:11", src:"Sadiku 7.53", q:R`Find the inductor current $i$ for $t<0$ and $t>0$ in each circuit of Fig. 7.119.`,
+ a:R`(a) $t<0$: $i=25/(3+2)=\mathbf{5\,A}$. At $t=0$ the switch shorts the middle node to ground, so the 4 H decays through 2 Ω: $\tau=2$ s, $i=\mathbf{5e^{-t/2}\ A}$.<br>
+ (b) $t<0$: the inductor shorts the 4 Ω and 2 Ω, so $i=\mathbf{6\,A}$. At $t=0$ the switch disconnects the source and 4 Ω, leaving 3 H with 2 Ω: $\tau=1.5$ s, $i=\mathbf{6e^{-2t/3}\ A}$.`},
+{pid:"c7:12", src:"Sadiku 7.59", q:R`Find the step response $v_o(t)$ to $v_s=18u(t)$ in Fig. 7.124.`,
+ a:R`Thevenin seen by the 4 Ω + 1.5 H branch: $V_{Th}=18\cdot\tfrac36=6$ V, $R_{Th}=6\parallel3=2\,\Omega$ (+4 Ω = 6 Ω).<br>
+ $i=1-e^{-4t}$ A ($\tau=1.5/6$). $v_o=1.5\dfrac{di}{dt}=\mathbf{6e^{-4t}u(t)\ V}$.`},
+{pid:"c7:13", src:"Sadiku 7.61", q:R`In Fig. 7.126, $i_s$ steps from 5 A to 10 A at $t=0$. Find $v$ and $i$.`,
+ a:R`$i(0)=5$ A (L shorts the 4 Ω before). $i(\infty)=10$ A, $\tau=0.5/4=1/8$ s.<br>
+ $i=\mathbf{10-5e^{-8t}\ A}$; $v=0.5\dfrac{di}{dt}=\mathbf{20e^{-8t}\ V}$ ($t>0$).`},
+{pid:"c7:14", src:"Sadiku 7.63", q:R`Obtain $v(t)$ and $i(t)$ in Fig. 7.128.`,
+ a:R`$t<0$: L short ⇒ $i=10/5=2$ A, $v=0$.<br>
+ $t>0$: source is 0 V, L sees $5\parallel20=4\,\Omega$, $\tau=0.125$ s.<br>
+ $i=\mathbf{2e^{-8t}\ A}$, $v=0.5\dfrac{di}{dt}=\mathbf{-8e^{-8t}\ V}$.`},
+{pid:"c7:15", src:"Sadiku 7.71", q:R`For the op-amp circuit in Fig. 7.136, $v_0=0$ and $v_s=3$ V. Find $v(t)$ for $t>0$.`,
+ a:R`The op amp is non-inverting with gain $1+10/10=2$: its output is 6 V. That drives the 20 kΩ/10 µF RC with $\tau=0.2$ s.<br>
+ $v=\mathbf{6(1-e^{-5t})\ V}$.`},
+// ───────── Sadiku Ch 8: second-order circuits (pid c8:N) — final ─────────
+{pid:"c8:0", src:"Sadiku 8.1", q:R`For Fig. 8.62 (switch opens at $t=0$) find (a) $i(0^+)$, $v(0^+)$; (b) $di/dt$, $dv/dt$ at $0^+$; (c) $i(\infty)$, $v(\infty)$.`,
+ a:R`(a) Before: L short, C open ⇒ $i=12/6=\mathbf{2\,A}$, $v=\mathbf{12\,V}$ (no current in the 4 Ω).<br>
+ (b) After, one loop: 6 Ω + 2 H down, 0.4 F + 4 Ω back up, so the capacitor current is $-i$.<br>
+ $\dfrac{dv}{dt}=\dfrac{-2}{0.4}=\mathbf{-5\,V/s}$. Top-node voltage from the right branch: $12+4(-2)=4$ V, so $2\dfrac{di}{dt}=4-6(2)$ ⇒ $\dfrac{di}{dt}=\mathbf{-4\,A/s}$.<br>
+ (c) No source: $\mathbf{0\,A,\ 0\,V}$.`},
+{pid:"c8:1", src:"Sadiku 8.5", q:R`For Fig. 8.66 find (a) $i(0^+)$, $v(0^+)$; (b) $di/dt$, $dv/dt$ at $0^+$; (c) $i(\infty)$, $v(\infty)$.`,
+ a:R`(a) Before $t=0$ the source is off: everything is zero, $\mathbf{i=0,\ v=0}$.<br>
+ (b) At $0^+$: $v_C=0$ and $i_L=0$, so the full 4 A charges the ¼ F: $dv_C/dt=16$ V/s. $i=v_C/4$ ⇒ $\dfrac{di}{dt}=\mathbf{4\,A/s}$. $v=6i_L$ and $v_L=v_C-6i_L=0$ ⇒ $\dfrac{dv}{dt}=\mathbf{0}$.<br>
+ (c) L short, C open: 4 A splits between 4 Ω and 6 Ω: $i=\mathbf{2.4\,A}$, $v=6(1.6)=\mathbf{9.6\,V}$.`},
+{pid:"c8:2", src:"Sadiku 8.9", q:R`$\dfrac{d^2i}{dt^2}+10\dfrac{di}{dt}+25i=0$, $i(0)=10$ A, $i'(0)=0$. Find $i(t)$.`,
+ a:R`$s^2+10s+25=0$ ⇒ $s=-5$ (double, critically damped). $i=(A+Bt)e^{-5t}$.<br>
+ $A=10$; $i'(0)=-5A+B=0$ ⇒ $B=50$. $i=\mathbf{(10+50t)e^{-5t}\ A}$.`},
+{pid:"c8:3", src:"Sadiku 8.11", q:R`$\dfrac{d^2v}{dt^2}+2\dfrac{dv}{dt}+v=0$, $v(0)=10$ V, $v'(0)=0$. Find $v(t)$.`,
+ a:R`Double root $s=-1$: $v=(A+Bt)e^{-t}$, $A=10$, $-A+B=0$ ⇒ $B=10$. $v=\mathbf{(10+10t)e^{-t}\ V}$.`},
+{pid:"c8:4", src:"Sadiku 8.13", q:R`For Fig. 8.68, find $R$ for a critically damped response.`,
+ a:R`Series RLC with $R_{eq}=60\parallel R$, $L=4$ H, $C=0.01$ F. $\omega_0=1/\sqrt{0.04}=5$.<br>
+ Critical: $\alpha=\dfrac{R_{eq}}{2L}=5$ ⇒ $R_{eq}=40$ ⇒ $\dfrac{60R}{60+R}=40$ ⇒ $R=\mathbf{120\,\Omega}$.`},
+{pid:"c8:5", src:"Sadiku 8.15", q:R`A series RLC has $v_C=30-10e^{-20t}+30e^{-10t}$ V and $i_L=40e^{-20t}-60e^{-10t}$ mA. Find $R$, $L$, $C$.`,
+ a:R`$i=C\,dv_C/dt=C(200e^{-20t}-300e^{-10t})$. Match $40$ mA: $C=0.04/200=\mathbf{200\,\mu F}$.<br>
+ Roots −20, −10: $\omega_0^2=s_1s_2=200=\dfrac1{LC}$ ⇒ $L=\mathbf{25\,H}$. $2\alpha=30=R/L$ ⇒ $R=\mathbf{750\,\Omega}$.`},
+{pid:"c8:6", src:"Sadiku 8.23", q:R`For Fig. 8.76, what $C$ makes the response underdamped with $\alpha=1$?`,
+ a:R`Parallel RLC: $C$ and the 10 mF add, $C_{tot}=C+0.01$. $\alpha=\dfrac{1}{2RC_{tot}}=1$ with $R=10$ ⇒ $C_{tot}=0.05$ F ⇒ $C=\mathbf{40\,mF}$.<br>
+ Check: $\omega_0=1/\sqrt{0.02\times0.05}=31.6>\alpha$, so it is underdamped.`},
+{pid:"c8:7", src:"Sadiku 8.27", q:R`$\dfrac{d^2v}{dt^2}+4\dfrac{dv}{dt}+8v=24$, $v(0)=0=v'(0)$. Find $v(t)$.`,
+ a:R`Final value $24/8=3$. Roots $s=-2\pm j2$. $v=3+e^{-2t}(A\cos2t+B\sin2t)$.<br>
+ $v(0)=0$ ⇒ $A=-3$; $v'(0)=-2A+2B=0$ ⇒ $B=-3$.<br>
+ $v=\mathbf{3-3e^{-2t}(\cos2t+\sin2t)\ V}$.`},
+{pid:"c8:8", src:"Sadiku 8.31", q:R`For Fig. 8.79, find $v_L(0^+)$ and $v_C(0^+)$.`,
+ a:R`$t<0$ ($2u(t)=0$): L short, C open. The 50 V drives 1 A through 10 Ω and 40 Ω into the inductor: $i_L=1$ A, $v_C=40$ V.<br>
+ $t=0^+$: $v_C=\mathbf{40\,V}$, $i_L=1$ A. KCL at the inductor node with the 2 A source on: $2+\dfrac{40-v_L}{40}=1$ ⇒ $v_L=\mathbf{80\,V}$.`},
+{pid:"c8:9", src:"Sadiku 8.43", q:R`The switch in Fig. 8.91 opens at $t=0$ after steady state. Choose $R$ and $C$ so that $\alpha=8$ Np/s and $\omega_d=30$ rad/s.`,
+ a:R`After opening, R, C and the 0.5 H form a series loop.<br>
+ $\alpha=R/2L=8$ ⇒ $R=\mathbf{8\,\Omega}$. $\omega_0^2=\alpha^2+\omega_d^2=964=\dfrac1{LC}$ ⇒ $C=\dfrac{1}{0.5\times964}=\mathbf{2.075\,mF}$.`},
+{pid:"c8:10", src:"Sadiku 8.45", q:R`In Fig. 8.92 find $v(t)$ and $i(t)$ for $t>0$, with $v(0)=0$, $i(0)=1$ A.`,
+ a:R`Parallel RLC driven by 4 A: $\alpha=\dfrac1{2RC}=0.5$, $\omega_0=1/\sqrt{LC}=\sqrt2$, $\omega_d=1.3229$. Final $i=4$ A.<br>
+ $i=4+e^{-t/2}(A\cos1.3229t+B\sin1.3229t)$; $A=-3$; $i'(0)=v(0)/L=0$ ⇒ $B=-1.134$.<br>
+ $i=\mathbf{4-e^{-t/2}(3\cos1.3229t+1.134\sin1.3229t)\ A}$, $v=L\dfrac{di}{dt}=\mathbf{4.536e^{-t/2}\sin1.3229t\ V}$.`},
+{pid:"c8:11", src:"Sadiku 8.47", q:R`Find $v_o(t)$ in Fig. 8.94 (the switch closes at $t=0$, shorting the 10 Ω).`,
+ a:R`$t<0$: L short; 3 A splits between 5 Ω and (10 Ω + L): $i_L(0)=3\cdot\dfrac{5}{15}=1$ A, $v_o(0)=0$.<br>
+ $t>0$: parallel 5 Ω, 1 H, 10 mF: $\alpha=\dfrac{1}{2(5)(0.01)}=10=\omega_0$ ⇒ critically damped, final $v_o=0$.<br>
+ $C\,dv_o/dt(0)=3-0-1=2$ ⇒ $dv_o/dt=200$. $v_o=(A+Bt)e^{-10t}$ with $A=0$, $B=200$:<br>
+ $v_o=\mathbf{200te^{-10t}\ V}$.`},
+{pid:"c8:12", src:"Sadiku 8.49", q:R`Determine $i(t)$ for $t>0$ in Fig. 8.96 (the switch opens at $t=0$).`,
+ a:R`$t<0$: L short: $i(0)=12/4+3=6$ A, $v_C(0)=0$.<br>
+ $t>0$: parallel 5 Ω, 5 H, 1/20 F with 3 A: $\alpha=\dfrac1{2(5)(0.05)}=2=\omega_0$ ⇒ critically damped, $i(\infty)=3$ A.<br>
+ $i=3+(A+Bt)e^{-2t}$, $A=3$, $i'(0)=v(0)/L=0$ ⇒ $B=6$. $i=\mathbf{3+(3+6t)e^{-2t}\ A}$.`},
 ];

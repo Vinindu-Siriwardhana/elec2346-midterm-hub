@@ -3,13 +3,13 @@
 const PLAN = [
  {id:"fdays", title:"Schedule to the final", icon:"📅", c:["#f59e0b","#f97316"], note:"Quiz 2 covers Lectures 1–6, with Diodes only up to slide 24 (date: Thu 19 Nov is the tentative date in the course info, so confirm it). Use the “Quiz 2 scope” filter in Equations, Question types and Practice. Homework due Fri 27 Nov. Final exam date TBA (past finals ran 10–19 Dec). Lab report: two weeks after your lab session.", items:[
    ["Mon 9 – Wed 11 Nov","Op amps after slide 9: Lec 5 Examples 2–9, then 2017 Q4, 2019 Q6, 2020 B2, 2016 Q5, 2019 Q7"],
-   ["Thu 12 – Fri 13 Nov","Diodes slides 1–24: models, Ex 1–2, clippers and logic, load line, small-signal $r_d$; then 2016 Q10, Q11, 2019 Q9, Q10"],
-   ["Sat 14 – Sun 15 Nov","Lectures 1–4 refresh for the quiz: redo your midterm mistakes and Tutorials 1–2, Equations tab in Quiz mode for Lec 1–4"],
+   ["Thu 12 – Fri 13 Nov","Diodes slides 1–24: models, Ex 1–2, clippers and logic, load line, small-signal $r_d$; then Supplementary Part 3 Q1–Q6 and 2016 Q10, Q11, 2019 Q9, Q10"],
+   ["Sat 14 – Sun 15 Nov","Sadiku Ch 5 set (14 op-amp problems), then Lectures 1–4 refresh: redo your midterm mistakes and Tutorials 1–2"],
    ["Mon 16 – Tue 17 Nov","Mixed practice: turn on “Quiz 2 scope” + “Not done yet” in Practice and work through what's left"],
    ["Wed 18 Nov","Write the Lec 1–6 formula list from memory, then Quiz mode on the Quiz 2 scope equations"],
    ["Quiz 2","Lectures 1–6 (Diodes ≤ slide 24)"],
-   ["After the quiz (to Sun 22 Nov)","Diodes slides 25–32 (Ex 3, rectifiers) and Capacitors & inductors: Lec 7 Ex 1–13, 2016 Q4, 2017 Q5–Q6, 2018 Q4, 2020 A4, integrators 2016 Q6, 2017 Q9, 2018 Q3"],
-   ["Mon 23 – Thu 26 Nov","Homework (due 27 Nov) + transients as they're lectured: 2018 Q6, 2019 Q8, 2020 B1, then 2017 Q7, 2018 Q7, 2020 B3"],
+   ["After the quiz (to Sun 22 Nov)","Diodes slides 25–32 (Ex 3, rectifiers) and Capacitors & inductors: Lec 7 Ex 1–13, Sadiku Ch 6 set, 2016 Q4, 2017 Q5–Q6, 2018 Q4, 2020 A4, integrators 2016 Q6, 2017 Q9, 2018 Q3"],
+   ["Mon 23 – Thu 26 Nov","Homework (due 27 Nov) + transients as they're lectured: Sadiku Ch 7 set, 2018 Q6, 2019 Q8, 2020 B1, then Sadiku Ch 8 set, 2017 Q7, 2018 Q7, 2020 B3"],
    ["Sat 28 Nov – exam −7 days","One full past paper every two days, timed (3 h, skip phasor questions): 2019 → 2020 → 2018 → 2017 → 2016"],
    ["Between papers","Midterm refresh: Thevenin/max power, nodal/mesh with dependent sources (25–35% of every final)"],
    ["Last week","Weak topics only, Equations tab in Quiz mode, redo every question you got wrong"]]},
@@ -28,6 +28,28 @@ const PLAN = [
    ["2018 Q3","Integrator, dc input"],["2018 Q4","Analog computer + $L_{eq}$"],["2018 Q6","RL with two switches"],["2018 Q7","Underdamped parallel RLC"],
    ["2019 Q6","Two-op-amp difference amp"],["2019 Q7","Comparator"],["2019 Q8","RC, resistor switched out and in"],["2019 Q9","Diode transfer curve"],["2019 Q10","Diode small-signal"],
    ["2020 A4","Capacitor minimum energy"],["2020 B1","RL switching snapshots"],["2020 B2","Non-inverting summer"],["2020 B3","Parallel RLC"]]},
+ {id:"sp3", title:"Tier 1 · Supplementary Part 3 — diodes (Quiz 2)", icon:"🔦", c:["#0ea5e9","#06b6d4"], note:"Dr Lee's own diode set. All six use the ideal or constant-voltage model, so they're inside the Quiz 2 scope.", items:[
+   ["Q1","Ideal diode: $v_L$ for $v_s<0$ and $v_s>0$"],["Q2","Constant-voltage model: $R$ for 5 mA, smallest $E$"],["Q3","Forward or reverse? Five single-diode cases"],
+   ["Q4","Diode OR/AND networks: which conduct, $v_{out}$"],["Q5","Clipper with a 4 V battery (ideal model)"],["Q6","Same clipper, constant-voltage model"]]},
+ {id:"c5", title:"Tier 1 · Sadiku Ch 5 — op amps (Quiz 2)", icon:"🔺", c:["#0f766e","#14b8a6"], note:"From Supplementary Exercise Part 2. Odd numbers, so every answer is checked against the textbook key.", items:[
+   ["5.13","Non-inverting: $v_o$ and $i_o$"],["5.17","Inverting gain, three switch positions"],["5.19","Inverting with a source network: $i_o$"],["5.21","Inputs on both pins"],
+   ["5.25","Follower then divider"],["5.27","Divider, follower, divider"],["5.31","Follower inside a network: $i_x$"],["5.33","Non-inverting: $i_x$ and power"],
+   ["5.37","Inverting summer (watch polarities)"],["5.39","Summer: find the input"],["5.47","Unbalanced difference amp"],["5.55","Three-stage gain from dB"],
+   ["5.61","Inverter into a summer"],["5.65","Three cascaded stages"]]},
+ {id:"c6", title:"Tier 2 · Sadiku Ch 6 — capacitors & inductors (final)", icon:"🧱", c:["#10b981","#34d399"], note:"After the quiz. Not in Quiz 2 scope.", items:[
+   ["6.7","$v(t)$ from $i=5t$ mA"],["6.9","$v$ and $p$ from $i(t)$"],["6.15","Energy: parallel vs series"],["6.17","Three $C_{eq}$ networks"],["6.19","Bigger $C_{eq}$ network"],
+   ["6.21","Ladder $C_{eq}$"],["6.37","Inductor $v$ and energy"],["6.39","Inductor $i$ from $v$"],["6.41","Inductor $i$ and energy"],["6.49","$L_{eq}$ with a jumper"],
+   ["6.51","$L_{eq}$ bridge"],["6.53","$L_{eq}$ triangle"],["6.61","Parallel inductors: divider, $v_o$, energy"],["6.67","Integrator with a sine input"],
+   ["6.71","Design a summing integrator"],["6.75","Differentiator with a ramp"]]},
+ {id:"c7", title:"Tier 2 · Sadiku Ch 7 — first-order circuits (final)", icon:"⏱️", c:["#8b5cf6","#d946ef"], note:"Do these once Lecture 8 starts.", items:[
+   ["7.1","R, C, τ from $v$ and $i$"],["7.3","τ of an RC network"],["7.9","RC discharge after a switch"],["7.11","RL discharge after a switch"],["7.13","RL: R, L, τ, energy"],
+   ["7.17","RL natural response, $v_o$"],["7.19","RL with a dependent source"],["7.37","First-order ODE"],["7.39(a)","RC step after a switch"],["7.43","RC with a dependent source"],
+   ["7.45","RC step via Thevenin"],["7.53","RL before and after a switch (two circuits)"],["7.59","RL step response"],["7.61","RL with a stepped current source"],
+   ["7.63","RL with $10u(-t)$"],["7.71","First-order op-amp circuit"]]},
+ {id:"c8", title:"Tier 2 · Sadiku Ch 8 — second-order circuits (final)", icon:"〰️", c:["#ec4899","#f43f5e"], note:"Do these once Lecture 8 covers RLC circuits.", items:[
+   ["8.1","Initial and final values"],["8.5","Initial and final values with a step source"],["8.9","Critically damped ODE"],["8.11","Critically damped ODE"],
+   ["8.13","R for critical damping"],["8.15","Find R, L, C from responses"],["8.23","C for α = 1"],["8.27","Underdamped step ODE"],["8.31","$v_L(0^+)$, $v_C(0^+)$"],
+   ["8.43","Choose R, C for α and $\omega_d$"],["8.45","Parallel RLC step response"],["8.47","Critically damped parallel RLC"],["8.49","Critically damped with a switch"]]},
  {id:"mock", title:"Tier 2 · Full papers under exam conditions", icon:"⏱️", c:["#ec4899","#f43f5e"], note:"3 hours, closed notes, then mark against the Practice tab.", items:[
    ["2019","All 10 questions"],["2020","Section A + four of B"],["2018","Skip Q5, Q8"],["2017","Skip Q8"],["2016","Skip Q7–Q9"]]},
  {id:"tut", title:"Midterm review · Tutorials", icon:"📝", c:["#0f766e","#14b8a6"], note:"Your lecturer's own questions. Do all ten without notes.", items:[
