@@ -20,7 +20,7 @@ const FIGS = {
 };
 // Post-midterm practice questions inside the Quiz 2 scope (Lectures 1–6, diodes up to slide 24)
 // Quiz 2 (revised): Lectures 1–7 in full, Diodes up to slide 24, First-order up to slide 10 (source-free RC/RL)
-const Q2PRAC = ["fpp:0","fpp:1","fpp:2","fpp:3","fpp:4","fpp:5","fpp:6","fpp:7","fpp:9","fpp:10","fpp:11","fpp:14","fpp:15","fpp:17","fpp:18","fpp:19","fpp:21"];
+const Q2PRAC = ["fpp:0","fpp:1","fpp:2","fpp:3","fpp:4","fpp:5","fpp:6","fpp:7","fpp:9","fpp:10","fpp:11","fpp:14","fpp:15","fpp:17","fpp:18","fpp:19","fpp:20","fpp:21"];
 const Q2C7 = ["c7:0","c7:1","c7:2","c7:3","c7:4","c7:5","c7:6"];
 // In Quiz 2 scope? Past-paper and Ch 7 items are listed above; Ch 8 is finals-only.
 const inQ2 = pid => pid.startsWith("fpp:") ? Q2PRAC.includes(pid) : pid.startsWith("c7:") ? Q2C7.includes(pid) : !pid.startsWith("c8:");
