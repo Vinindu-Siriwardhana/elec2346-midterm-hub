@@ -50,12 +50,18 @@ const PLAN = [
    ["6.7","$v(t)$ from $i=5t$ mA"],["6.9","$v$ and $p$ from $i(t)$"],["6.15","Energy: parallel vs series"],["6.17","Three $C_{eq}$ networks"],["6.19","Bigger $C_{eq}$ network"],
    ["6.21","Ladder $C_{eq}$"],["6.37","Inductor $v$ and energy"],["6.39","Inductor $i$ from $v$"],["6.41","Inductor $i$ and energy"],["6.49","$L_{eq}$ with a jumper"],
    ["6.51","$L_{eq}$ bridge"],["6.53","$L_{eq}$ triangle"],["6.61","Parallel inductors: divider, $v_o$, energy"],["6.67","Integrator with a sine input"],
-   ["6.71","Design a summing integrator"],["6.75","Differentiator with a ramp"]]},
- {id:"c7", title:"Sadiku Ch 7 — first-order circuits", icon:"⏱️", c:["#8b5cf6","#d946ef"], note:"7.1–7.19 (source-free RC/RL) are in Quiz 2 scope. 7.37 onward (step response) is for the final.", items:[
+   ["6.71","Design a summing integrator"],["6.75","Differentiator with a ramp"],
+   ["6.1","$i$ and $p$ from $v=2te^{-3t}$"],["6.5","Current from a triangle voltage"],["6.11","Sketch $v$ from a current graph"],["6.27","Min and max of four capacitors"],
+   ["6.29","Two $C_{eq}$ networks"],["6.35","$L$ from $\\Delta i$ and $v$"],["6.43","Inductor energy"],["6.45","Inductor $i$ from a sawtooth $v$"],
+   ["6.47","Equal C and L energy at DC"],["6.55","Two $L_{eq}$ networks"]]},
+ {id:"c7", title:"Sadiku Ch 7 — first-order circuits", icon:"⏱️", c:["#8b5cf6","#d946ef"], note:"Source-free RC/RL (7.1–7.23, 19 problems) are in Quiz 2 scope. 7.37 onward (step response) is for the final. Even-numbered ones have no textbook key; their answers were checked by hand and in Python.", items:[
    ["7.1","R, C, τ from $v$ and $i$"],["7.3","τ of an RC network"],["7.9","RC discharge after a switch"],["7.11","RL discharge after a switch"],["7.13","RL: R, L, τ, energy"],
    ["7.17","RL natural response, $v_o$"],["7.19","RL with a dependent source"],["7.37","First-order ODE"],["7.39(a)","RC step after a switch"],["7.43","RC with a dependent source"],
    ["7.45","RC step via Thevenin"],["7.53","RL before and after a switch (two circuits)"],["7.59","RL step response"],["7.61","RL with a stepped current source"],
-   ["7.63","RL with $10u(-t)$"],["7.71","First-order op-amp circuit"]]},
+   ["7.63","RL with $10u(-t)$"],["7.71","First-order op-amp circuit"],
+   ["7.2","τ of an RC network"],["7.4","RC discharge after a switch"],["7.6","RC discharge after a switch"],["7.8","RC: R, C, τ, 50% energy time"],
+   ["7.10","RC discharge and one-third time"],["7.14","τ of an RL network"],["7.15","τ of two RL networks"],["7.18","RL natural response, $v_o$"],
+   ["7.20","RL: L, R, τ, energy fraction"],["7.21","R for 1 J stored at DC"],["7.22","RL natural response, $i$ and $v$"],["7.23","RL natural response, $v_o$ and $v_x$"]]},
  {id:"c8", title:"Tier 2 · Sadiku Ch 8 — second-order circuits (final)", icon:"〰️", c:["#ec4899","#f43f5e"], note:"Do these once Lecture 8 covers RLC circuits.", items:[
    ["8.1","Initial and final values"],["8.5","Initial and final values with a step source"],["8.9","Critically damped ODE"],["8.11","Critically damped ODE"],
    ["8.13","R for critical damping"],["8.15","Find R, L, C from responses"],["8.23","C for α = 1"],["8.27","Underdamped step ODE"],["8.31","$v_L(0^+)$, $v_C(0^+)$"],

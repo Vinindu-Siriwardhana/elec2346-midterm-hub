@@ -17,11 +17,12 @@ const FIGS = {
  "s4:8":["s4_53"],"s4:9":["s4_63"],"s4:10":["s4_65"],"s4:11":["s4_71"],"s4:12":["s4_73"],"s4:14":["s4_85"],
  "fpp:0":["f16_4"], "fpp:1":["f16_5"], "fpp:2":["f16_6"], "fpp:3":["f16_10"], "fpp:4":["f16_11"], "fpp:6":["f17_5"], "fpp:7":["f17_6"], "fpp:8":["f17_7"], "fpp:9":["f17_9"], "fpp:10":["f18_3"], "fpp:11":["f18_4"], "fpp:12":["f18_6"], "fpp:13":["f18_7"], "fpp:14":["f19_6"], "fpp:15":["f19_7"], "fpp:16":["f19_8"], "fpp:17":["f19_9"], "fpp:18":["f19_10"], "fpp:20":["f20_b1"], "fpp:21":["f20_b2"], "fpp:22":["f20_b3"],
  "sp3:0":["sp3_1"], "sp3:1":["sp3_2"], "sp3:2":["sp3_3","sp3_3b"], "sp3:3":["sp3_4","sp3_4b"], "sp3:4":["sp3_5"], "sp3:5":["sp3_5"], "c5:0":["c5_13"], "c5:1":["c5_17"], "c5:2":["c5_19"], "c5:3":["c5_21"], "c5:4":["c5_25"], "c5:5":["c5_27"], "c5:6":["c5_31"], "c5:7":["c5_33"], "c5:8":["c5_37"], "c5:9":["c5_39"], "c5:10":["c5_47"], "c5:12":["c5_61"], "c5:13":["c5_65"], "c6:3":["c6_17","c6_17b","c6_17c"], "c6:4":["c6_19"], "c6:5":["c6_21"], "c6:9":["c6_49"], "c6:10":["c6_51"], "c6:11":["c6_53"], "c6:12":["c6_61"], "c7:1":["c7_3"], "c7:2":["c7_9"], "c7:3":["c7_11"], "c7:5":["c7_17"], "c7:6":["c7_19"], "c7:8":["c7_39"], "c7:9":["c7_43"], "c7:10":["c7_45"], "c7:11":["c7_53","c7_53b"], "c7:12":["c7_59"], "c7:13":["c7_61"], "c7:14":["c7_63"], "c7:15":["c7_71"], "c8:0":["c8_1"], "c8:1":["c8_5"], "c8:4":["c8_13"], "c8:6":["c8_23"], "c8:8":["c8_31"], "c8:9":["c8_43"], "c8:10":["c8_45"], "c8:11":["c8_47"], "c8:12":["c8_49"],
+ "c6:17":["c6_5"], "c6:18":["c6_11"], "c6:20":["c6_29","c6_29b"], "c6:23":["c6_45"], "c6:24":["c6_47"], "c6:25":["c6_55","c6_55b"], "c7:16":["c7_2"], "c7:17":["c7_4"], "c7:18":["c7_6"], "c7:20":["c7_10"], "c7:21":["c7_14"], "c7:22":["c7_15"], "c7:23":["c7_18"], "c7:25":["c7_21"], "c7:26":["c7_22"], "c7:27":["c7_23"],
 };
 // Post-midterm practice questions inside the Quiz 2 scope (Lectures 1–6, diodes up to slide 24)
 // Quiz 2 (revised): Lectures 1–7 in full, Diodes up to slide 24, First-order up to slide 10 (source-free RC/RL)
 const Q2PRAC = ["fpp:0","fpp:1","fpp:2","fpp:3","fpp:4","fpp:5","fpp:6","fpp:7","fpp:9","fpp:10","fpp:11","fpp:14","fpp:15","fpp:17","fpp:18","fpp:19","fpp:20","fpp:21"];
-const Q2C7 = ["c7:0","c7:1","c7:2","c7:3","c7:4","c7:5","c7:6"];
+const Q2C7 = ["c7:0","c7:1","c7:2","c7:3","c7:4","c7:5","c7:6","c7:16","c7:17","c7:18","c7:19","c7:20","c7:21","c7:22","c7:23","c7:24","c7:25","c7:26","c7:27"];
 // In Quiz 2 scope? Past-paper and Ch 7 items are listed above; Ch 8 is finals-only.
 const inQ2 = pid => pid.startsWith("fpp:") ? Q2PRAC.includes(pid) : pid.startsWith("c7:") ? Q2C7.includes(pid) : !pid.startsWith("c8:");
 const PRACTICE = [
@@ -746,4 +747,75 @@ const PRACTICE = [
  a:R`$t<0$: L short: $i(0)=12/4+3=6$ A, $v_C(0)=0$.<br>
  $t>0$: parallel 5 Ω, 5 H, 1/20 F with 3 A: $\alpha=\dfrac1{2(5)(0.05)}=2=\omega_0$ ⇒ critically damped, $i(\infty)=3$ A.<br>
  $i=3+(A+Bt)e^{-2t}$, $A=3$, $i'(0)=v(0)/L=0$ ⇒ $B=6$. $i=\mathbf{3+(3+6t)e^{-2t}\ A}$.`},
+// ───────── More Ch 6 (pid c6:16+) and Ch 7 source-free (pid c7:16+) ─────────
+{pid:"c6:16", src:"Sadiku 6.1", q:R`The voltage across a 7.5 F capacitor is $2te^{-3t}$ V. Find the current and the power.`,
+ a:R`$i=C\dfrac{dv}{dt}=7.5\cdot2(1-3t)e^{-3t}=\mathbf{15(1-3t)e^{-3t}\ A}$.<br>
+ $p=vi=\mathbf{30t(1-3t)e^{-6t}\ W}$.`},
+{pid:"c6:17", src:"Sadiku 6.5", q:R`The voltage across a 4 µF capacitor is shown in Fig. 6.45. Find the current waveform.`,
+ a:R`$i=C\times$(slope). The slopes are ±10 V per 2 ms = ±5000 V/s, so $|i|=4\mu\times5000=20$ mA.<br>
+ $i=\mathbf{20\,mA}$ for $0<t<2$ ms, $\mathbf{-20\,mA}$ for $2<t<6$ ms, $\mathbf{20\,mA}$ for $6<t<8$ ms (a square wave).`},
+{pid:"c6:18", src:"Sadiku 6.11", q:R`A 4 mF capacitor carries the current in Fig. 6.48, with $v(0)=10$ V. Sketch $v(t)$.`,
+ a:R`$dv/dt=i/C$: 15 mA → 3.75 V/s, −10 mA → −2.5 V/s, 10 mA → 2.5 V/s. Integrate piece by piece:<br>
+ • $0<t<2$: $v=\mathbf{10+3.75t}$ (reaches 17.5 V)<br>
+ • $2<t<4$: $v=\mathbf{22.5-2.5t}$ (down to 12.5 V)<br>
+ • $4<t<6$: $v=\mathbf{12.5\,V}$ (no current)<br>
+ • $6<t<8$: $v=\mathbf{2.5t-2.5}$ (up to 17.5 V)<br>
+ The voltage is continuous everywhere, even where the current jumps.`},
+{pid:"c6:19", src:"Sadiku 6.27", q:R`Four 4 µF capacitors can be connected in series and/or parallel. What are the minimum and maximum $C_{eq}$?`,
+ a:R`Minimum: all in series, $4/4=\mathbf{1\,\mu F}$. Maximum: all in parallel, $4\times4=\mathbf{16\,\mu F}$.`},
+{pid:"c6:20", src:"Sadiku 6.29", q:R`Determine $C_{eq}$ for each circuit in Fig. 6.61.`,
+ a:R`(a) Same network as 2017 Q5(a): the right two C in series ($C/2$) ∥ middle C = $1.5C$, series with the top C = $0.6C$, ∥ the left C: $\mathbf{1.6\,C}$.<br>
+ (b) The horizontal wire joins the left and right vertices, so the top two C are in parallel ($2C$) and so are the bottom two ($2C$). In series between the terminals: $\mathbf{C}$.`},
+{pid:"c6:21", src:"Sadiku 6.35", q:R`An inductor's current changes linearly from 50 mA to 100 mA in 2 ms, inducing 160 mV. Find $L$.`,
+ a:R`$v=L\dfrac{\Delta i}{\Delta t}$ ⇒ $L=\dfrac{0.16\times0.002}{0.05}=\mathbf{6.4\,mH}$.`},
+{pid:"c6:22", src:"Sadiku 6.43", q:R`The current in an 80 mH inductor rises from 0 to 60 mA. How much energy is stored?`,
+ a:R`$w=\tfrac12Li^2=\tfrac12(0.08)(0.06)^2=\mathbf{144\,\mu J}$ (only the final current matters).`},
+{pid:"c6:23", src:"Sadiku 6.45", q:R`The voltage in Fig. 6.68 is applied to a 10 mH inductor with $i(0)=0$. Find $i(t)$.`,
+ a:R`$i=\dfrac1L\int v\,dt=100\int v\,dt$.<br>
+ • $0<t<1$: $v=5t$ ⇒ $i=\mathbf{250t^2\ A}$ ($i(1)=250$ A).<br>
+ • $1<t<2$: $v=5t-10$ ⇒ $i=250+100\left[2.5(t^2-1)-10(t-1)\right]=\mathbf{250t^2-1000t+1000\ A}$ $=(1-t+0.25t^2)$ kA, back to 0 at $t=2$.`},
+{pid:"c6:24", src:"Sadiku 6.47", q:R`In Fig. 6.70, find $R$ so that, under DC conditions, the capacitor stores the same energy as the inductor.`,
+ a:R`DC: L is a short, so its top node is at 0 V, and the capacitor (in parallel with $R$) sees the full node voltage $v_A$. The inductor current is the current through $R$: $i_L=v_A/R$.<br>
+ Equal energies: $\tfrac12(160\mu)v_A^2=\tfrac12(4\text{m})\left(\dfrac{v_A}{R}\right)^2$ ⇒ $R^2=\dfrac{4\times10^{-3}}{160\times10^{-6}}=25$ ⇒ $R=\mathbf{5\,\Omega}$.`},
+{pid:"c6:25", src:"Sadiku 6.55", q:R`Find $L_{eq}$ in each circuit of Fig. 6.77.`,
+ a:R`(a) $(L+L)\parallel(L\parallel L)=2L\parallel\tfrac{L}{2}=0.4L$, plus the series $L$: $\mathbf{1.4\,L}$.<br>
+ (b) Same as 2018 Q4(b): the rectangle is one node, each side is $L/2$, and $L\parallel(L/2+L/2)=\mathbf{L/2}$.`},
+{pid:"c7:16", src:"Sadiku 7.2", q:R`Find the time constant for the RC circuit in Fig. 7.82.`,
+ a:R`Kill the 50 V (short). The capacitor sees $12+120\parallel80=12+48=60\,\Omega$.<br>
+ $\tau=60\times0.2=\mathbf{12\,s}$.`},
+{pid:"c7:17", src:"Sadiku 7.4", q:R`The switch in Fig. 7.84 has been at A for a long time and moves to B at $t=0$. Find $v$ for $t>0$.`,
+ a:R`At A (long time, C open): no current, so $v(0)=40$ V. At B the capacitor discharges through 2 kΩ: $\tau=2\text{k}\times10\mu=20$ ms.<br>
+ $v=\mathbf{40e^{-50t}\ V}$.`},
+{pid:"c7:18", src:"Sadiku 7.6", q:R`The switch in Fig. 7.86 has been closed for a long time and opens at $t=0$. Find $v(t)$ for $t\ge0$.`,
+ a:R`Before: $v(0)=40\cdot\dfrac{2}{10+2}=6.667$ V. After: 40 µF discharges into 2 kΩ, $\tau=80$ ms.<br>
+ $v=\mathbf{6.667e^{-12.5t}\ V}$.`},
+{pid:"c7:19", src:"Sadiku 7.8", q:R`An RC circuit has $v=10e^{-4t}$ V and $i=0.2e^{-4t}$ A for $t>0$. (a) $R$, $C$; (b) τ; (c) initial energy; (d) time to dissipate 50% of it.`,
+ a:R`(a) $R=10/0.2=\mathbf{50\,\Omega}$; $\tau=0.25$ s ⇒ $C=\tau/R=\mathbf{5\,mF}$. (b) $\tau=\mathbf{0.25\,s}$.<br>
+ (c) $w_0=\tfrac12(5\text{m})(10^2)=\mathbf{0.25\,J}$.<br>
+ (d) Stored energy decays as $e^{-2t/\tau}$: $e^{-8t}=0.5$ ⇒ $t=\dfrac{\ln2}{8}=\mathbf{86.6\,ms}$.`},
+{pid:"c7:20", src:"Sadiku 7.10", q:R`For Fig. 7.90 (switch opens at $t=0$), find $v_o(t)$ and the time for the capacitor voltage to fall to one-third of its $t=0$ value.`,
+ a:R`Before: $v_o(0)=36\cdot\dfrac{3}{9+3}=9$ V. After: 20 µF with 3 kΩ, $\tau=60$ ms.<br>
+ $v_o=\mathbf{9e^{-t/0.06}\ V}$. One-third: $e^{-t/\tau}=1/3$ ⇒ $t=0.06\ln3=\mathbf{65.9\,ms}$.`},
+{pid:"c7:21", src:"Sadiku 7.14", q:R`Calculate the time constant of the circuit in Fig. 7.94.`,
+ a:R`The 5 mH sees $(40+20)\parallel(10+30)=60\parallel40=24$ kΩ.<br>
+ $\tau=L/R=\dfrac{5\times10^{-3}}{24\times10^3}=\mathbf{0.208\,\mu s}$.`},
+{pid:"c7:22", src:"Sadiku 7.15", q:R`Find the time constant for each circuit in Fig. 7.95.`,
+ a:R`(a) $10\parallel40=8\,\Omega$, plus 2 Ω: the 5 H sees 10 Ω ⇒ $\tau=\mathbf{0.5\,s}$.<br>
+ (b) The 20 mH sees $48+40\parallel160=48+32=80\,\Omega$ ⇒ $\tau=\mathbf{250\,\mu s}$.`},
+{pid:"c7:23", src:"Sadiku 7.18", q:R`For Fig. 7.98, find $v_o(t)$ when $i(0)=5$ A and $v(t)=0$.`,
+ a:R`With $v=0$ the left end of the 0.4 H is at ground; it sees $2\parallel3=1.2\,\Omega$, so $\tau=1/3$ s and $i=5e^{-3t}$ A.<br>
+ $i$ splits into the 3 Ω and back through the 2 Ω: $v_o=1.2\,i=\mathbf{6e^{-3t}\ V}$.`},
+{pid:"c7:24", src:"Sadiku 7.20", q:R`For Fig. 7.100, $v=90e^{-50t}$ V and $i=30e^{-50t}$ A. Find (a) $L$, $R$; (b) τ; (c) initial energy; (d) the fraction of it dissipated in 10 ms.`,
+ a:R`(a) $R=90/30=\mathbf{3\,\Omega}$, $\tau=20$ ms ⇒ $L=R\tau=\mathbf{60\,mH}$. (b) $\mathbf{20\,ms}$.<br>
+ (c) $w_0=\tfrac12(0.06)(30^2)=\mathbf{27\,J}$.<br>
+ (d) $1-e^{-2(0.01)/0.02}=1-e^{-1}=\mathbf{63.2\%}$.`},
+{pid:"c7:25", src:"Sadiku 7.21", q:R`In Fig. 7.101, find $R$ so that the steady-state energy in the 2 H inductor is 1 J.`,
+ a:R`$\tfrac12(2)i_L^2=1$ ⇒ $i_L=1$ A. DC: L is a short. Thevenin of 60 V, 40 Ω, 80 Ω: 40 V behind 26.67 Ω.<br>
+ $\dfrac{40}{26.67+R}=1$ ⇒ $R=\mathbf{13.33\,\Omega}$.`},
+{pid:"c7:26", src:"Sadiku 7.22", q:R`Find $i(t)$ and $v(t)$ for $t>0$ in Fig. 7.102 if $i(0)=10$ A.`,
+ a:R`The 2 H sees $1+5\parallel20=1+4=5\,\Omega$ ⇒ $\tau=0.4$ s, $i=\mathbf{10e^{-2.5t}\ A}$.<br>
+ $i$ flows down the inductor branch and back up through the 5 Ω ∥ 20 Ω, so $v=-4i=\mathbf{-40e^{-2.5t}\ V}$.`},
+{pid:"c7:27", src:"Sadiku 7.23", q:R`In Fig. 7.103, $v_o(0)=10$ V. Find $v_o$ and $v_x$ for $t>0$.`,
+ a:R`The ⅓ H sees $2\parallel(3+1)=\tfrac43\,\Omega$ ⇒ $\tau=0.25$ s. $v_o$ is across the inductor's terminals, so $v_o=\mathbf{10e^{-4t}\ V}$.<br>
+ $v_x$ by the 3 Ω/1 Ω divider: $v_x=\tfrac14v_o=\mathbf{2.5e^{-4t}\ V}$.`},
 ];
