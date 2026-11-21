@@ -1,15 +1,15 @@
 // Finals + next-quiz study plan (Lectures 5–8 first, then a review of the midterm material). Each item: [label, detail].
 // Ticks are stored under 'plan' in localStorage; the old midterm groups keep their ids so earlier ticks survive.
 const PLAN = [
- {id:"fdays", title:"Schedule to the final", icon:"📅", c:["#f59e0b","#f97316"], note:"Quiz 2 is a 40-minute, open-book, multiple-choice quiz on Moodle covering Lectures 1–7, Diodes up to slide 24 and First-order Circuits up to slide 10, with more weight on the newer topics. Turn on “Quiz 2 scope” in Equations, Question types and Practice. Homework due Fri 27 Nov. Final exam date TBA.", items:[
-   ["Now → quiz, block 1","Capacitors & inductors (heaviest new topic): Lec 7 Examples 1–13, then the Sadiku Ch 6 set, then 2016 Q4, 2017 Q5–Q6, 2018 Q4(b), 2020 A4"],
-   ["Block 2","Op amps with capacitors: integrator, differentiator, analog computer: 2016 Q6, 2017 Q9, 2018 Q3, 2018 Q4(a), Sadiku 6.67, 6.71, 6.75"],
-   ["Block 3","First-order slides 1–10: derive $v=V_0e^{-t/\\tau}$ and $i=I_0e^{-t/\\tau}$ yourself, Examples 1–2, then Sadiku 7.1, 7.3, 7.9, 7.11, 7.13, 7.17, 7.19"],
-   ["Block 4","Diodes ≤ slide 24 and op amps: Supplementary Part 3, Sadiku Ch 5 set, and anything still unticked in those groups"],
-   ["Block 5","Lectures 1–4: Equations tab in Quiz mode only; redo the tutorial questions you got wrong"],
-   ["Day before","Do the “Open-book MCQ prep” checklist below; then Quiz mode on the Quiz 2 scope equations"],
-   ["Quiz 2","40 min, open book, MCQ on Moodle"],
-   ["After the quiz","Homework (due 27 Nov), then step response and RLC: Sadiku Ch 7 rest and Ch 8, 2018 Q6–Q7, 2019 Q8, 2020 B1, B3, 2017 Q7"],
+ {id:"fdays", title:"Schedule to the final", icon:"📅", c:["#f59e0b","#f97316"], note:"Quiz 2 is on Thu 26 Nov: a 40-minute, open-book, multiple-choice quiz on Moodle covering Lectures 1–7, Diodes up to slide 24 and First-order Circuits up to slide 10, with more weight on the newer topics. Turn on “Quiz 2 scope” in Equations, Question types and Practice. Homework due Fri 27 Nov. Final exam date TBA.", items:[
+   ["Sat 21 Nov","Capacitors & inductors (heaviest new topic): Lec 7 Examples 1–13, then the Sadiku Ch 6 set (6.7–6.53)"],
+   ["Sun 22 Nov","C & L past papers (2016 Q4, 2017 Q5–Q6, 2018 Q4(b), 2020 A4) + op amps with capacitors: 2016 Q6, 2017 Q9, 2018 Q3, 2018 Q4(a), Sadiku 6.61–6.75"],
+   ["Mon 23 Nov","First-order slides 1–10: derive $v=V_0e^{-t/\\tau}$ and $i=I_0e^{-t/\\tau}$, Examples 1–2, then Sadiku 7.1, 7.3, 7.9, 7.11, 7.13, 7.17, 7.19. Start the homework in the evening"],
+   ["Tue 24 Nov","Diodes ≤ slide 24 and op amps: Supplementary Part 3, Sadiku Ch 5 set, and anything still unticked there. Homework"],
+   ["Wed 25 Nov","Lectures 1–4 in Quiz mode only, then the “Open-book MCQ prep” checklist and Quiz mode on all Quiz 2 scope equations"],
+   ["Thu 26 Nov","Quiz 2: 40 min, open book, MCQ on Moodle"],
+   ["Fri 27 Nov","Homework due: finish and submit"],
+   ["From Sat 28 Nov","Step response and RLC: Sadiku Ch 7 rest and Ch 8, 2018 Q6–Q7, 2019 Q8, 2020 B1, B3, 2017 Q7"],
    ["Before the final","One full past paper every two days, timed (3 h, skip phasor questions): 2019 → 2020 → 2018 → 2017 → 2016"],
    ["Between papers","Midterm refresh: Thevenin/max power, nodal/mesh with dependent sources (25–35% of every final)"],
    ["Last week","Weak topics only, Equations tab in Quiz mode, redo every question you got wrong"]]},
