@@ -19,9 +19,11 @@ const FIGS = {
  "sp3:0":["sp3_1"], "sp3:1":["sp3_2"], "sp3:2":["sp3_3","sp3_3b"], "sp3:3":["sp3_4","sp3_4b"], "sp3:4":["sp3_5"], "sp3:5":["sp3_5"], "c5:0":["c5_13"], "c5:1":["c5_17"], "c5:2":["c5_19"], "c5:3":["c5_21"], "c5:4":["c5_25"], "c5:5":["c5_27"], "c5:6":["c5_31"], "c5:7":["c5_33"], "c5:8":["c5_37"], "c5:9":["c5_39"], "c5:10":["c5_47"], "c5:12":["c5_61"], "c5:13":["c5_65"], "c6:3":["c6_17","c6_17b","c6_17c"], "c6:4":["c6_19"], "c6:5":["c6_21"], "c6:9":["c6_49"], "c6:10":["c6_51"], "c6:11":["c6_53"], "c6:12":["c6_61"], "c7:1":["c7_3"], "c7:2":["c7_9"], "c7:3":["c7_11"], "c7:5":["c7_17"], "c7:6":["c7_19"], "c7:8":["c7_39"], "c7:9":["c7_43"], "c7:10":["c7_45"], "c7:11":["c7_53","c7_53b"], "c7:12":["c7_59"], "c7:13":["c7_61"], "c7:14":["c7_63"], "c7:15":["c7_71"], "c8:0":["c8_1"], "c8:1":["c8_5"], "c8:4":["c8_13"], "c8:6":["c8_23"], "c8:8":["c8_31"], "c8:9":["c8_43"], "c8:10":["c8_45"], "c8:11":["c8_47"], "c8:12":["c8_49"],
 };
 // Post-midterm practice questions inside the Quiz 2 scope (Lectures 1–6, diodes up to slide 24)
-const Q2PRAC = ["fpp:1","fpp:3","fpp:4","fpp:5","fpp:14","fpp:15","fpp:17","fpp:18","fpp:21"];
-// In Quiz 2 scope? Post-midterm past-paper items are listed above; Sadiku Ch 6–8 sets are finals-only.
-const inQ2 = pid => pid.startsWith("fpp:") ? Q2PRAC.includes(pid) : !/^c[678]:/.test(pid);
+// Quiz 2 (revised): Lectures 1–7 in full, Diodes up to slide 24, First-order up to slide 10 (source-free RC/RL)
+const Q2PRAC = ["fpp:0","fpp:1","fpp:2","fpp:3","fpp:4","fpp:5","fpp:6","fpp:7","fpp:9","fpp:10","fpp:11","fpp:14","fpp:15","fpp:17","fpp:18","fpp:19","fpp:21"];
+const Q2C7 = ["c7:0","c7:1","c7:2","c7:3","c7:4","c7:5","c7:6"];
+// In Quiz 2 scope? Past-paper and Ch 7 items are listed above; Ch 8 is finals-only.
+const inQ2 = pid => pid.startsWith("fpp:") ? Q2PRAC.includes(pid) : pid.startsWith("c7:") ? Q2C7.includes(pid) : !pid.startsWith("c8:");
 const PRACTICE = [
 // ───────── Tutorials ─────────
 {pid:"tut:0", src:"Tutorial 1 Q1", q:R`Find $R_{eq}$ and $i_o$ in the circuit of Fig. 1 (40 V source, 5 Ω in series).`,
