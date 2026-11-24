@@ -1,35 +1,36 @@
 // Finals + next-quiz study plan (Lectures 5–8 first, then a review of the midterm material). Each item: [label, detail].
 // Ticks are stored under 'plan' in localStorage; the old midterm groups keep their ids so earlier ticks survive.
 const PLAN = [
- {id:"fdays", title:"Schedule to the final", icon:"📅", c:["#f59e0b","#f97316"], note:"Quiz 2 is on Thu 26 Nov: a 40-minute, open-book, multiple-choice quiz on Moodle covering Lectures 1–7, Diodes up to slide 24 and First-order Circuits up to slide 10, with more weight on the newer topics. Turn on “Quiz 2 scope” in Equations, Question types and Practice. Homework due Fri 27 Nov. Final exam date TBA.", items:[
+ {id:"fdays", title:"Schedule to the final", icon:"📅", c:["#f59e0b","#f97316"], note:"Quiz 3 is on Thu 26 Nov at 12:05 pm (arrive by 12:00; A–Q in CYPP4, R–Z in MW-T3): a 40-minute, open-book, multiple-choice quiz on Moodle covering Basic Circuit Principles, Laws, Methods of Analysis, Circuit Theorems, Op Amps, all of Diodes, Capacitors & Inductors and First-order Circuits up to page 10, with more weight on the newer topics. Turn on “Quiz 3 scope” in Equations, Question types and Practice. Homework due Fri 27 Nov. Final exam date TBA.", items:[
    ["Sat 21 Nov","Capacitors & inductors (heaviest new topic): Lec 7 Examples 1–13, then the Sadiku Ch 6 set (6.7–6.53)"],
    ["Sun 22 Nov","C & L past papers (2016 Q4, 2017 Q5–Q6, 2018 Q4(b), 2020 A4) + op amps with capacitors: 2016 Q6, 2017 Q9, 2018 Q3, 2018 Q4(a), Sadiku 6.61–6.75"],
    ["Mon 23 Nov","First-order slides 1–10: derive $v=V_0e^{-t/\\tau}$ and $i=I_0e^{-t/\\tau}$, Examples 1–2, then Sadiku 7.1, 7.3, 7.9, 7.11, 7.13, 7.17, 7.19. Start the homework in the evening"],
-   ["Tue 24 Nov","Diodes ≤ slide 24 and op amps: Supplementary Part 3, Sadiku Ch 5 set, and anything still unticked there. Homework"],
-   ["Wed 25 Nov","Lectures 1–4 in Quiz mode only, then the “Open-book MCQ prep” checklist and Quiz mode on all Quiz 2 scope equations"],
-   ["Thu 26 Nov","Quiz 2: 40 min, open book, MCQ on Moodle"],
+   ["Tue 24 Nov","Diodes (all slides, incl. Ex 3 small-signal and rectifiers/peak detector) and op amps: Supplementary Part 3, Sadiku Ch 5 set, and anything still unticked there. Homework"],
+   ["Wed 25 Nov","Lectures 1–4 in Quiz mode only, then the “Open-book MCQ prep” checklist and Quiz mode on all Quiz 3 scope equations"],
+   ["Thu 26 Nov","Quiz 3 at 12:05 pm, arrive by 12:00 (A–Q CYPP4, R–Z MW-T3): 40 min, open book, MCQ on Moodle. Charged laptop/tablet + scientific calculator; sign off or no score"],
    ["Fri 27 Nov","Homework due: finish and submit"],
    ["From Sat 28 Nov","Step response and RLC: Sadiku Ch 7 rest and Ch 8, 2018 Q6–Q7, 2019 Q8, 2020 B1, B3, 2017 Q7"],
    ["Before the final","One full past paper every two days, timed (3 h, skip phasor questions): 2019 → 2020 → 2018 → 2017 → 2016"],
    ["Between papers","Midterm refresh: Thevenin/max power, nodal/mesh with dependent sources (25–35% of every final)"],
    ["Last week","Weak topics only, Equations tab in Quiz mode, redo every question you got wrong"]]},
- {id:"mcqprep", title:"Open-book MCQ prep (for Quiz 2)", icon:"📋", c:["#f97316","#ef4444"], note:"Open book means looking things up is cheap; working slowly is the real risk. 40 minutes for the whole quiz.", items:[
-   ["Formula sheet","Print the Equations tab with “Quiz 2 scope” on (🖨 button), or keep it open in a tab, so every formula is one glance away"],
+ {id:"mcqprep", title:"Open-book MCQ prep (for Quiz 3)", icon:"📋", c:["#f97316","#ef4444"], note:"Open book means looking things up is cheap; working slowly is the real risk. 40 minutes for the whole quiz.", items:[
+   ["Formula sheet","Print the Equations tab with “Quiz 3 scope” on (🖨 button), or keep it open in a tab, so every formula is one glance away"],
    ["Bookmarks","Keep the slide PDFs for Lectures 5–8 open and know where the worked examples are (Lec 7 Ex 6, 9 for $C_{eq}$/$L_{eq}$; Lec 8 Ex 1–2 for RC)"],
    ["Calculator","Practise $e^{-x}$, $\\ln$ and powers of ten on your calculator; most first-order answers need them"],
    ["Time budget","Roughly 3–4 minutes per question; skip and come back to anything that needs a full nodal solve"],
    ["Check by elimination","Test the options: $v(0)$ and $v(\\infty)$ of an exponential, sign of an inverting stage, units (µ vs m)"],
+   ["On the day","Arrive by 12:00 (A–Q CYPP4, R–Z MW-T3), device charged, scientific calculator, sign the attendance sheet at check-off"],
    ["Watch the traps","Parallel C adds (opposite of R); $\\tau=L/R$ not $LR$; energy uses $v^2$ or $i^2$; diode at 0.7 V vs ideal"]]},
  {id:"q5", title:"Tier 1 · Lecture 5 examples (op amps, slides 10–30)", icon:"🔺", c:["#0f766e","#14b8a6"], note:"Rework each from a blank page, then check the slide.", items:[
    ["Ex 2","Inverting amp with two sources ($v_o=-1$ V), both methods"],["Ex 3","Voltage follower vs plain divider"],["Ex 4","Summer: $v_o$ and $i_o$"],["Ex 5","Design $v_o=-5v_1+3v_2$ (one and two op amps)"],
    ["Ex 6","Instrumentation amp: derive the gain"],["Ex 7","Two cascaded non-inverting stages"],["Ex 8","Two inverters into a summer"],["Ex 9","4-bit DAC output levels"]]},
- {id:"q6", title:"Tier 1 · Lecture 6 examples (diodes)", icon:"🔦", c:["#0ea5e9","#06b6d4"], note:"Quiz 2 stops at slide 24: the last two items are for the final only.", items:[
+ {id:"q6", title:"Tier 1 · Lecture 6 examples (diodes)", icon:"🔦", c:["#0ea5e9","#06b6d4"], note:"All of Lecture 6 is in Quiz 3 scope, including Example 3 and the rectifiers.", items:[
    ["Slides 10–13","Rectifier, battery clipper, OR and AND gates (ideal model)"],["Ex 1–2","Assume and check with two diodes"],["Slides 16–19","Load line and iteration ($I_D=4.262$ mA)"],
-   ["Slide 21","Constant-voltage transfer characteristic"],["Slides 22–24","Small-signal model: $r_d=V_T/I_D$, a small signal riding on a DC bias"],["Ex 3 (after quiz)","Slides 25–28: $I_D=2.9$ mA, $r_d$, $i_d(t)$"],["Slides 29–32 (after quiz)","Half-wave, peak detector, bridge"]]},
- {id:"q7", title:"Tier 1 · Lecture 7 examples (capacitors & inductors)", icon:"🧱", c:["#10b981","#34d399"], note:"All of Lecture 7 is in Quiz 2 scope.", items:[
+   ["Slide 21","Constant-voltage transfer characteristic"],["Slides 22–24","Small-signal model: $r_d=V_T/I_D$, a small signal riding on a DC bias"],["Ex 3","Slides 25–28: $I_D=2.9$ mA, $r_d$, $i_d(t)$"],["Slides 29–32","Half-wave, peak detector, bridge"]]},
+ {id:"q7", title:"Tier 1 · Lecture 7 examples (capacitors & inductors)", icon:"🧱", c:["#10b981","#34d399"], note:"All of Lecture 7 is in Quiz 3 scope.", items:[
    ["Ex 1–4","Charge, energy, $i=C\\,dv/dt$, $v$ from $\\int i$, piecewise $v(t)$"],["Ex 5, 8","DC steady state energies"],["Ex 6, 9","Equivalent C and L"],["Ex 7, 10","Inductor $v$, energy; parallel inductors with initial currents"],
    ["Ex 11","Summing integrator"],["Ex 12","Differentiator with a triangle input"],["Ex 13","Analog computer"]]},
- {id:"q8", title:"Tier 1 · Lecture 8 slides 1–10 (source-free RC/RL)", icon:"📉", c:["#8b5cf6","#d946ef"], note:"In Quiz 2 scope. Slides 11–13 (more RL examples) are good extra practice.", items:[
+ {id:"q8", title:"Tier 1 · Lecture 8 slides 1–10 (source-free RC/RL)", icon:"📉", c:["#8b5cf6","#d946ef"], note:"In Quiz 3 scope. Slides 11–13 (more RL examples) are good extra practice.", items:[
    ["Slides 4–5","Derive the RC ODE and $v=V_0e^{-t/RC}$"],["Slide 6","Meaning of τ, 5τ rule, resistor energy"],["Ex 1","$R_{eq}=4\\,\\Omega$, $v_C$, $v_x$, $i_x$"],
    ["Ex 2","Switch opens: $v_C(0)=15$ V, $\\tau=0.2$ s, initial energy"],["Slides 9–10","RL: $i=I_0e^{-tR/L}$ and resistor energy"],["Ex 3–5 (extra)","Slides 11–13: $R_{eq}$ with a dependent source, switching RL"]]},
  {id:"fpp", title:"Tier 1 · Past-paper questions since the midterm", icon:"📄", c:["#8b5cf6","#d946ef"], note:"Worked solutions in the Practice tab. Phasor questions (2016 Q7–Q9, 2017 Q8, 2018 Q5, Q8) are left out: they aren't in this year's outline.", items:[
@@ -38,15 +39,15 @@ const PLAN = [
    ["2018 Q3","Integrator, dc input"],["2018 Q4","Analog computer + $L_{eq}$"],["2018 Q6","RL with two switches"],["2018 Q7","Underdamped parallel RLC"],
    ["2019 Q6","Two-op-amp difference amp"],["2019 Q7","Comparator"],["2019 Q8","RC, resistor switched out and in"],["2019 Q9","Diode transfer curve"],["2019 Q10","Diode small-signal"],
    ["2020 A4","Capacitor minimum energy"],["2020 B1","RL switching snapshots"],["2020 B2","Non-inverting summer"],["2020 B3","Parallel RLC"]]},
- {id:"sp3", title:"Tier 1 · Supplementary Part 3 — diodes (Quiz 2)", icon:"🔦", c:["#0ea5e9","#06b6d4"], note:"Dr Lee's own diode set. All six use the ideal or constant-voltage model, so they're inside the Quiz 2 scope.", items:[
+ {id:"sp3", title:"Tier 1 · Supplementary Part 3 — diodes (Quiz 3)", icon:"🔦", c:["#0ea5e9","#06b6d4"], note:"Dr Lee's own diode set. All six use the ideal or constant-voltage model, so they're inside the Quiz 3 scope.", items:[
    ["Q1","Ideal diode: $v_L$ for $v_s<0$ and $v_s>0$"],["Q2","Constant-voltage model: $R$ for 5 mA, smallest $E$"],["Q3","Forward or reverse? Five single-diode cases"],
    ["Q4","Diode OR/AND networks: which conduct, $v_{out}$"],["Q5","Clipper with a 4 V battery (ideal model)"],["Q6","Same clipper, constant-voltage model"]]},
- {id:"c5", title:"Tier 1 · Sadiku Ch 5 — op amps (Quiz 2)", icon:"🔺", c:["#0f766e","#14b8a6"], note:"From Supplementary Exercise Part 2. Odd numbers, so every answer is checked against the textbook key.", items:[
+ {id:"c5", title:"Tier 1 · Sadiku Ch 5 — op amps (Quiz 3)", icon:"🔺", c:["#0f766e","#14b8a6"], note:"From Supplementary Exercise Part 2. Odd numbers, so every answer is checked against the textbook key.", items:[
    ["5.13","Non-inverting: $v_o$ and $i_o$"],["5.17","Inverting gain, three switch positions"],["5.19","Inverting with a source network: $i_o$"],["5.21","Inputs on both pins"],
    ["5.25","Follower then divider"],["5.27","Divider, follower, divider"],["5.31","Follower inside a network: $i_x$"],["5.33","Non-inverting: $i_x$ and power"],
    ["5.37","Inverting summer (watch polarities)"],["5.39","Summer: find the input"],["5.47","Unbalanced difference amp"],["5.55","Three-stage gain from dB"],
    ["5.61","Inverter into a summer"],["5.65","Three cascaded stages"]]},
- {id:"c6", title:"Tier 1 · Sadiku Ch 6 — capacitors & inductors (Quiz 2)", icon:"🧱", c:["#10b981","#34d399"], note:"In Quiz 2 scope. Odd numbers, checked against the textbook key.", items:[
+ {id:"c6", title:"Tier 1 · Sadiku Ch 6 — capacitors & inductors (Quiz 3)", icon:"🧱", c:["#10b981","#34d399"], note:"In Quiz 3 scope. Odd numbers, checked against the textbook key.", items:[
    ["6.7","$v(t)$ from $i=5t$ mA"],["6.9","$v$ and $p$ from $i(t)$"],["6.15","Energy: parallel vs series"],["6.17","Three $C_{eq}$ networks"],["6.19","Bigger $C_{eq}$ network"],
    ["6.21","Ladder $C_{eq}$"],["6.37","Inductor $v$ and energy"],["6.39","Inductor $i$ from $v$"],["6.41","Inductor $i$ and energy"],["6.49","$L_{eq}$ with a jumper"],
    ["6.51","$L_{eq}$ bridge"],["6.53","$L_{eq}$ triangle"],["6.61","Parallel inductors: divider, $v_o$, energy"],["6.67","Integrator with a sine input"],
@@ -54,7 +55,7 @@ const PLAN = [
    ["6.1","$i$ and $p$ from $v=2te^{-3t}$"],["6.5","Current from a triangle voltage"],["6.11","Sketch $v$ from a current graph"],["6.27","Min and max of four capacitors"],
    ["6.29","Two $C_{eq}$ networks"],["6.35","$L$ from $\\Delta i$ and $v$"],["6.43","Inductor energy"],["6.45","Inductor $i$ from a sawtooth $v$"],
    ["6.47","Equal C and L energy at DC"],["6.55","Two $L_{eq}$ networks"]]},
- {id:"c7", title:"Sadiku Ch 7 — first-order circuits", icon:"⏱️", c:["#8b5cf6","#d946ef"], note:"Source-free RC/RL (7.1–7.23, 19 problems) are in Quiz 2 scope. 7.37 onward (step response) is for the final. Even-numbered ones have no textbook key; their answers were checked by hand and in Python.", items:[
+ {id:"c7", title:"Sadiku Ch 7 — first-order circuits", icon:"⏱️", c:["#8b5cf6","#d946ef"], note:"Source-free RC/RL (7.1–7.23, 19 problems) are in Quiz 3 scope. 7.37 onward (step response) is for the final. Even-numbered ones have no textbook key; their answers were checked by hand and in Python.", items:[
    ["7.1","R, C, τ from $v$ and $i$"],["7.3","τ of an RC network"],["7.9","RC discharge after a switch"],["7.11","RL discharge after a switch"],["7.13","RL: R, L, τ, energy"],
    ["7.17","RL natural response, $v_o$"],["7.19","RL with a dependent source"],["7.37","First-order ODE"],["7.39(a)","RC step after a switch"],["7.43","RC with a dependent source"],
    ["7.45","RC step via Thevenin"],["7.53","RL before and after a switch (two circuits)"],["7.59","RL step response"],["7.61","RL with a stepped current source"],

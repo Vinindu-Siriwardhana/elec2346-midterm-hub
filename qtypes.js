@@ -85,7 +85,7 @@ const QTYPES = [
  sources:["2016 Q11 – $\\Delta V_{out}$ for a 1 V change in $V_{in}$","2019 Q10 – $v_o/v_s$ with a current-source-biased diode","Lecture 6 Example 3 ($r_d\\approx8.6\\,\\Omega$)"],
  steps:["DC: find $I_D$ (constant-voltage model, AC sources off, caps open).","$r_d=V_T/I_D$.","AC: DC sources off, caps short, diode → $r_d$. Solve the divider."],
  find:"small-signal"},
-{id:"q-rect", icon:"🔋", scope:"late", freq:1, title:"Rectifiers and peak detectors",
+{q2:true, id:"q-rect", icon:"🔋", scope:"late", freq:1, title:"Rectifiers and peak detectors",
  sources:["Lecture 6 slides 29–32","Lab CCT01"],
  steps:["Half-wave: $v_{out}=v_{in}-V_{D,on}$ while conducting.","With C: holds $V_p-V_{D,on}$; reverse stress ~$2V_p$; ripple falls as $C$ grows.","Bridge: $|v_{in}|-2V_{D,on}$."],
  find:"rectifier"},
