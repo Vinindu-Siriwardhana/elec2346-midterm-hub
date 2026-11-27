@@ -19,10 +19,11 @@ const FIGS = {
  "sp3:0":["sp3_1"], "sp3:1":["sp3_2"], "sp3:2":["sp3_3","sp3_3b"], "sp3:3":["sp3_4","sp3_4b"], "sp3:4":["sp3_5"], "sp3:5":["sp3_5"], "c5:0":["c5_13"], "c5:1":["c5_17"], "c5:2":["c5_19"], "c5:3":["c5_21"], "c5:4":["c5_25"], "c5:5":["c5_27"], "c5:6":["c5_31"], "c5:7":["c5_33"], "c5:8":["c5_37"], "c5:9":["c5_39"], "c5:10":["c5_47"], "c5:12":["c5_61"], "c5:13":["c5_65"], "c6:3":["c6_17","c6_17b","c6_17c"], "c6:4":["c6_19"], "c6:5":["c6_21"], "c6:9":["c6_49"], "c6:10":["c6_51"], "c6:11":["c6_53"], "c6:12":["c6_61"], "c7:1":["c7_3"], "c7:2":["c7_9"], "c7:3":["c7_11"], "c7:5":["c7_17"], "c7:6":["c7_19"], "c7:8":["c7_39"], "c7:9":["c7_43"], "c7:10":["c7_45"], "c7:11":["c7_53","c7_53b"], "c7:12":["c7_59"], "c7:13":["c7_61"], "c7:14":["c7_63"], "c7:15":["c7_71"], "c8:0":["c8_1"], "c8:1":["c8_5"], "c8:4":["c8_13"], "c8:6":["c8_23"], "c8:8":["c8_31"], "c8:9":["c8_43"], "c8:10":["c8_45"], "c8:11":["c8_47"], "c8:12":["c8_49"],
  "c6:17":["c6_5"], "c6:18":["c6_11"], "c6:20":["c6_29","c6_29b"], "c6:23":["c6_45"], "c6:24":["c6_47"], "c6:25":["c6_55","c6_55b"], "c7:16":["c7_2"], "c7:17":["c7_4"], "c7:18":["c7_6"], "c7:20":["c7_10"], "c7:21":["c7_14"], "c7:22":["c7_15"], "c7:23":["c7_18"], "c7:25":["c7_21"], "c7:26":["c7_22"], "c7:27":["c7_23"],
 };
-// Quiz 3 (26 Nov): Lectures 1–7 in full (incl. all of Diodes), First-order up to page 10 (source-free RC/RL)
+// Quiz 3 (26 Nov, done) covered Lectures 1–7 and First-order up to page 10. Items NOT in that list are
+// "new since Quiz 3" (step response, RLC) and drive the "New since Quiz 3" filter and tag.
 const Q2PRAC = ["fpp:0","fpp:1","fpp:2","fpp:3","fpp:4","fpp:5","fpp:6","fpp:7","fpp:9","fpp:10","fpp:11","fpp:14","fpp:15","fpp:17","fpp:18","fpp:19","fpp:20","fpp:21"];
 const Q2C7 = ["c7:0","c7:1","c7:2","c7:3","c7:4","c7:5","c7:6","c7:16","c7:17","c7:18","c7:19","c7:20","c7:21","c7:22","c7:23","c7:24","c7:25","c7:26","c7:27"];
-// In Quiz 3 scope? Past-paper and Ch 7 items are listed above; Ch 8 is finals-only.
+// Tested by Quiz 3? Past-paper and Ch 7 items are listed above; Ch 8 is finals-only.
 const inQ2 = pid => pid.startsWith("fpp:") ? Q2PRAC.includes(pid) : pid.startsWith("c7:") ? Q2C7.includes(pid) : !pid.startsWith("c8:");
 const PRACTICE = [
 // ───────── Tutorials ─────────
@@ -510,7 +511,7 @@ const PRACTICE = [
  (c) $v=L\dfrac{di}{dt}$. KCL: $\dfrac vR+i+C\dfrac{dv}{dt}=0$ ⇒ $\mathbf{\dfrac{d^2i}{dt^2}+\dfrac1{RC}\dfrac{di}{dt}+\dfrac{i}{LC}=0}$.<br>
  (d) $s^2+5s+12.5=0$ ⇒ $s=-2.5\pm j2.5$. $i=e^{-2.5t}(A\cos2.5t+B\sin2.5t)$; $i(0)=2$ ⇒ $A=2$; $di/dt(0)=v(0)/L=0$ ⇒ $-2.5A+2.5B=0$ ⇒ $B=2$.<br>
  $i(t)=\mathbf{2e^{-2.5t}(\cos2.5t+\sin2.5t)\ A}$.`},
-// ───────── Supplementary Exercise Part 3: diodes (pid sp3:N) — Quiz 3 scope ─────────
+// ───────── Supplementary Exercise Part 3: diodes (pid sp3:N) ─────────
 {pid:"sp3:0", src:"Supp. Part 3 Q1", q:R`Find $v_L$ in Fig. 1 ($D$ ideal) for $v_s<0$ and $v_s>0$.`,
  a:R`• $v_s<0$: the diode's anode is pulled below its cathode, so it is reverse-biased (open) and $\mathbf{v_L=0}$.<br>
  • $v_s>0$: the diode is a short, so $R_L$ sits in parallel with $R_1$ and the source sees a divider:<br>
@@ -540,7 +541,7 @@ const PRACTICE = [
  a:R`Now the diode turns on when $v_o$ drops to $4-0.7=3.3$ V.<br>
  $\mathbf{v_o=3.3\,V}$ for $v_s<6.6$ V, and $\mathbf{v_o=v_s/2}$ for $v_s\ge6.6$ V (peak still 5 V).<br>
  <img src="img/sp3_6a.png" alt="Q6 output waveform" style="max-width:280px;background:#fff;border-radius:8px;padding:4px;margin-top:6px">`},
-// ───────── Sadiku Ch 5: op amps (pid c5:N) — Quiz 3 scope ─────────
+// ───────── Sadiku Ch 5: op amps (pid c5:N) ─────────
 {pid:"c5:0", src:"Sadiku 5.13", q:R`Find $v_o$ and $i_o$ in the circuit of Fig. 5.52.`,
  a:R`+ input from the 10 k/90 k divider: $v_+=1\cdot\dfrac{90}{100}=0.9$ V.<br>
  Non-inverting with $R_f=100$ k, $R_1=50$ k: $v_o=0.9(1+100/50)=\mathbf{2.7\,V}$.<br>

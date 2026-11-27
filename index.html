@@ -158,7 +158,7 @@ td:first-child{white-space:nowrap;font-weight:700;color:var(--a1);width:1%}
 .pq.open .rev{background:var(--ok);border-color:var(--ok);color:#fff}
 .pq .katex-display{margin:.4em 0}
 .fpaper .tagq{font-size:10.5px;font-weight:800;letter-spacing:.04em;color:#fff;border-radius:999px;padding:1px 8px;margin-left:6px}
-.tagq.q2{background:var(--ok)}.tagq.fin{background:#64748b}.tagq.out{background:#ef4444}
+.tagq.q2{background:var(--ok)}.tagq.fin{background:#8b5cf6}.tagq.out{background:#ef4444}
 .fjump{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 4px}
 .fjump a{font-size:13px;font-weight:700;color:var(--a1);text-decoration:none;background:color-mix(in srgb,var(--a1) 10%,transparent);border-radius:6px;padding:3px 10px}
 .figs{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 4px}
@@ -182,7 +182,7 @@ td:first-child{white-space:nowrap;font-weight:700;color:var(--a1);width:1%}
   </div>
   <div class="prog"><i id="bar"></i></div>
   <div class="eq">v<sub>o</sub> = −(R<sub>f</sub>/R<sub>i</sub>)v<sub>i</sub> &nbsp;&nbsp; r<sub>d</sub> = V<sub>T</sub>/I<sub>D</sub> &nbsp;&nbsp; i = C dv/dt &nbsp;&nbsp; x(t) = x(∞) + [x(0)−x(∞)]e<sup>−t/τ</sup></div>
-  <p style="margin:10px 0 0;font-size:14px">📅 <b>Quiz 3: Thu 26 Nov, 12:05 pm (arrive by 12:00) · 40 min, open book, multiple choice (Moodle).</b> Venue by last name: <b>A–Q → CYPP4</b>, <b>R–Z → MW-T3</b> (Meng Wah). Bring a charged laptop/tablet and a scientific calculator; attendance and sign-off are required or you get no score. Scope: Basic Circuit Principles, Basic Circuit Laws, Methods of Analysis, Circuit Theorems, Op Amps, Diodes (all), Capacitors &amp; Inductors, First-order Circuits to page 10, weighted toward the newer topics; use the “Quiz 3 scope” filter · <b>Homework due Fri 27 Nov</b> · <b>Final exam (40%): date TBA</b>, covers Lectures 1–8. In Question types, use “Since midterm only” to focus on the new material.</p>
+  <p style="margin:10px 0 0;font-size:14px">🎓 <b>Final exam (40% of the grade): date TBA.</b> Covers the whole course: circuit principles, laws, nodal/mesh, theorems, op amps, diodes, capacitors &amp; inductors, first-order circuits (source-free, step response, op-amp circuits) and second-order RLC (source-free and step). Past finals were 3-hour written papers, so practise full papers under time. Use “New since Quiz 3” for the material no quiz has tested yet; phasor/AC questions in the old papers are not in the 2026 outline.</p>
 </div></div>
 
 <div class="toolbar"><div class="wrap"><div class="box">
@@ -198,9 +198,9 @@ td:first-child{white-space:nowrap;font-weight:700;color:var(--a1);width:1%}
     <input id="q" type="search" placeholder="Search equations, topics, years (e.g. integrator, diode, 2019, damping)…">
     <button class="chip" id="f-exam" data-eqonly>Past-paper hits</button>
     <button class="chip" id="f-todo" data-eqonly>Not mastered</button>
-    <button class="chip" id="f-q2" data-q2chip>Quiz 3 scope</button>
+    <button class="chip" id="f-q2" data-q2chip>New since Quiz 3</button>
     <button class="chip" id="f-mid" data-qtonly>Since midterm only</button>
-    <button class="chip" id="quiz" data-eqonly>Quiz mode</button>
+    <button class="chip" id="quiz" data-eqonly>Flashcard mode</button>
     <button class="chip" id="f-undone" data-pronly>Not done yet</button>
     <button class="chip" id="revall" data-pronly>Show all answers</button>
     <button class="ibtn" id="theme" title="Toggle dark mode">🌓</button>
@@ -217,8 +217,8 @@ td:first-child{white-space:nowrap;font-weight:700;color:var(--a1);width:1%}
   </div>
   <div class="view" id="v-qt"><div id="qts"></div></div>
   <div class="view" id="v-papers"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#06b6d4;--c2:#3b82f6">📄</span>What each paper asked</h2><p class="blurb">Click a row's topic words in the search bar of the other tabs to find the matching equations.</p><div class="grid" id="papers"></div></div>
-  <div class="view" id="v-plan"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#16a34a;--c2:#10b981">✅</span>Finals study plan <span class="cnt" id="plan-cnt" style="margin-left:auto;font-size:14px;color:var(--muted)"></span></h2><p class="blurb">Follow the schedule at the top. Tier 1 is the new material (lecture examples and past-paper questions), Tier 2 is full timed papers, and the Midterm review groups keep your earlier ticks for revision.</p><div class="grid" id="plan"></div></div>
-  <div class="view" id="v-full"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#8b5cf6;--c2:#d946ef">📚</span>Full past papers with answers</h2><p class="blurb">All five finals, every question in the original order, each with a complete worked answer. Sit a paper under exam conditions (3 hours), then mark it here. Tags: <span class="tagq q2" style="font-size:10.5px;font-weight:800;color:#fff;border-radius:999px;padding:1px 8px;background:var(--ok)">QUIZ 3</span> in the Quiz 3 scope, <span style="font-size:10.5px;font-weight:800;color:#fff;border-radius:999px;padding:1px 8px;background:#64748b">FINAL</span> final only, <span style="font-size:10.5px;font-weight:800;color:#fff;border-radius:999px;padding:1px 8px;background:#ef4444">NOT IN 2026 SYLLABUS</span> phasor/AC questions (answered anyway).</p><nav class="fjump" id="fjump"></nav><div id="full"></div></div>
+  <div class="view" id="v-plan"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#16a34a;--c2:#10b981">✅</span>Finals study plan <span class="cnt" id="plan-cnt" style="margin-left:auto;font-size:14px;color:var(--muted)"></span></h2><p class="blurb">Follow the schedule at the top. Tier 1 is the material no quiz has tested (step response, first-order op-amp circuits, RLC) plus timed full papers. Tier 2 is a second pass over op amps, diodes and C &amp; L. The Midterm review groups cover Lectures 1–4. Earlier ticks are kept.</p><div class="grid" id="plan"></div></div>
+  <div class="view" id="v-full"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#8b5cf6;--c2:#d946ef">📚</span>Full past papers with answers</h2><p class="blurb">All five finals, every question in the original order, each with a complete worked answer. Sit a paper under exam conditions (3 hours), then mark it here. Tags: <span style="font-size:10.5px;font-weight:800;color:#fff;border-radius:999px;padding:1px 8px;background:#8b5cf6">NEW SINCE QUIZ 3</span> material no quiz has tested (step response, RLC), <span style="font-size:10.5px;font-weight:800;color:#fff;border-radius:999px;padding:1px 8px;background:#ef4444">NOT IN 2026 SYLLABUS</span> phasor/AC questions (answered anyway).</p><nav class="fjump" id="fjump"></nav><div id="full"></div></div>
   <div class="view" id="v-practice"><h2 class="sec" style="margin-top:8px"><span class="num" style="--c1:#f97316;--c2:#f59e0b">🧠</span>Practice questions</h2><p class="blurb">Every past-paper and textbook question from the study plan, with a worked solution. The new finals questions are at the top. Try it on paper first, then press “Reveal answer”. Ticking “done” here also ticks it in the Study plan. Sadiku numbers match your supplementary-exercise PDF.</p><div id="practice"></div></div>
   <div class="empty hidden" id="empty">No matches — try a different search.</div>
   <p class="blurb" style="margin-left:0;margin-top:30px">Compiled from Lectures 1–7 (Lecture 8 equations from the course outline and past papers), Tutorials 1–2, Supplementary Exercises Parts 1–3, the supplementary exercises and the 2016–2021 past papers. Every numerical answer was checked by solving the circuit equations; odd Sadiku answers also match the answer key. Ticks are saved in this browser.</p>
@@ -256,7 +256,7 @@ function build(){
   $('#qts').innerHTML = ['late','mid'].map(sc=>{
     const list=QTYPES.filter(q=>q.scope===sc);
     return `<div class="qgroup" data-scope="${sc}"><h2 class="sec"><span class="num" style="--c1:${sc==='mid'?'#0f766e':'#64748b'};--c2:${sc==='mid'?'#06b6d4':'#94a3b8'}">${sc==='mid'?'🎯':'📚'}</span>${sc==='mid'?'Lectures 1–4 + op amp basics (midterm material, still ~35% of the final)':'Since the midterm: op amps, diodes, C &amp; L, transients'}</h2>
-    <p class="blurb">${sc==='mid'?'Already covered for the midterm. Every final still opens with 2–5 of these.':'New material for the quiz and the final. Dots = how often it appears across the 2016–2020 finals.'}</p><div class="grid">
+    <p class="blurb">${sc==='mid'?'Already covered for the midterm. Every final still opens with 2–5 of these.':'Everything taught after the midterm; all of it is on the final. Dots = how often it appears across the 2016–2020 finals.'}</p><div class="grid">
     ${list.map(q=>`<div class="card qt ${q.scope}" data-quiz="${q.scope==='mid'||!!q.q2}" data-search="${(q.title+' '+q.sources.join(' ')+' '+q.steps.join(' ')+' '+q.find).toLowerCase().replace(/"/g,'')}">
       <div class="top"><div class="name"><span class="ic">${q.icon}</span><h3>${q.title}</h3></div>
       <span class="freq" title="Frequency across papers">${[1,2,3,4,5].map(n=>`<i class="${n<=q.freq?'f':''}"></i>`).join('')}</span></div>
@@ -285,7 +285,7 @@ function build(){
      <h2 class="sec"><span class="num" style="--c1:#8b5cf6;--c2:#d946ef">'${P.name.match(/20(\d\d)/)[1]}</span>${P.name}</h2>
      <p class="blurb">${P.info} &nbsp;<button class="chip fall">Show all answers</button></p><div class="grid">
      ${P.qs.map(([lab,pid])=>{const p=ANS[pid],figs=FIGS[pid]||p.figs||[];
-       const tag=pid.startsWith('ph:')?'<span class="tagq out">NOT IN 2026 SYLLABUS</span>':inQ2(pid)?'<span class="tagq q2">QUIZ 3</span>':'<span class="tagq fin">FINAL</span>';
+       const tag=pid.startsWith('ph:')?'<span class="tagq out">NOT IN 2026 SYLLABUS</span>':inQ2(pid)?'':'<span class="tagq fin">NEW SINCE QUIZ 3</span>';
        return `<div class="card pq fq" style="--c1:#8b5cf6;--c2:#d946ef"><div class="top"><div class="name">${p.src.replace(/ [=≈].*/,'')}${tag}</div></div>
        <div class="qbody">${M(p.q)}</div>${figs.length?`<div class="figs">${figs.map(f=>`<img src="img/${f}.png" alt="Figure for ${lab}" loading="lazy">`).join('')}</div>`:''}
        <button class="chip rev">Reveal answer</button><div class="ans">${M(p.a)}</div></div>`}).join('')}</div></section>`).join('');}
@@ -304,13 +304,13 @@ function apply(){
     let ok=!query||c.dataset.search.includes(query);
     if(fExam&&c.dataset.exam!=='true')ok=false;
     if(fTodo&&done[c.dataset.id])ok=false;
-    if(fQ2&&c.dataset.quiz!=='true')ok=false;
+    if(fQ2&&c.dataset.quiz==='true')ok=false;
     c.classList.toggle('hidden',!ok); c.classList.toggle('done',!!done[c.dataset.id]);
     if(ok&&view==='eqs')n++;
   });
   $$('#eqs section').forEach(s=>s.classList.toggle('hidden',!s.querySelector('.card:not(.hidden)')));
   $$('.card.qt').forEach(c=>{
-    const ok=(!query||c.dataset.search.includes(query))&&!(fMid&&c.classList.contains('mid'))&&!(fQ2&&c.dataset.quiz!=='true');
+    const ok=(!query||c.dataset.search.includes(query))&&!(fMid&&c.classList.contains('mid'))&&!(fQ2&&c.dataset.quiz==='true');
     c.classList.toggle('hidden',!ok); if(ok&&view==='qt')n++;});
   $$('.qgroup').forEach(g=>g.classList.toggle('hidden',!g.querySelector('.card:not(.hidden)')));
   $$('#papers .pap').forEach(p=>{const ok=!query||p.dataset.search.includes(query);p.classList.toggle('hidden',!ok);if(ok&&view==='papers')n++;});
@@ -318,7 +318,7 @@ function apply(){
     const bs=p.querySelectorAll('input'),d=[...bs].filter(b=>b.checked).length;
     bs.forEach(b=>b.closest('.pi').classList.toggle('ok',b.checked));
     p.querySelector('.cnt').textContent=d+'/'+bs.length; p.querySelector('.mini i').style.width=(100*d/bs.length)+'%';});
-  $$('#practice .card.pq').forEach(c=>{const d=!!planDone[c.dataset.pid];const ok=(!query||c.dataset.search.includes(query))&&!(fUndone&&d)&&!(fQ2&&c.dataset.quiz!=='true');
+  $$('#practice .card.pq').forEach(c=>{const d=!!planDone[c.dataset.pid];const ok=(!query||c.dataset.search.includes(query))&&!(fUndone&&d)&&!(fQ2&&c.dataset.quiz==='true');
     c.classList.toggle('hidden',!ok);c.classList.toggle('done',d);if(ok&&view==='practice')n++;});
   $$('.pgroup').forEach(g=>g.classList.toggle('hidden',!g.querySelector('.card:not(.hidden)')));
   {const all=$$('#plan input'),d=all.filter(b=>b.checked).length;$('#plan-cnt').textContent=d+' / '+all.length+' done';}

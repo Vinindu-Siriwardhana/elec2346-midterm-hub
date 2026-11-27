@@ -113,7 +113,7 @@ const QTYPES = [
  sources:["2017 Q7 – parallel RLC roots for two R values, critical R","2018 Q7 – underdamped $v(t)$ from $V_0$, $I_0$","2020 B3 – L from roots, derive the ODE, $i(t)$"],
  steps:["Series or parallel? Pick the right α.","Roots → over/critical/under-damped.","$x(0^+)$ and $x'(0^+)$ from KCL/KVL at $0^+$.","Fit the two constants. Step response: add $x(\\infty)$."],
  find:"damping"},
-{id:"q-ac", icon:"🌀", scope:"late", freq:3, title:"Phasors / AC Thevenin / filters (probably not this year)",
+{q2:true, id:"q-ac", icon:"🌀", scope:"late", freq:3, title:"Phasors / AC Thevenin / filters (probably not this year)",
  sources:["2016 Q7–Q9, 2017 Q8, 2018 Q5, Q8"],
  steps:["Not in the 2026 course outline, which ends at first/second-order circuits. Skip unless Dr Lee says otherwise."],
  find:"rlc"},

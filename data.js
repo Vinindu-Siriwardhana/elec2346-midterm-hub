@@ -71,7 +71,7 @@ const SECTIONS = [
  ]
 },
 {
- id: "L6", title: "Lecture 6 · Diodes", blurb: "All of this lecture is in the Quiz 3 scope. Exponential law, the three diode models, assume-and-check, small-signal resistance, clippers, rectifiers and diode logic. Past papers ask one transfer-characteristic sketch and one small-signal question.",
+ id: "L6", title: "Lecture 6 · Diodes", blurb: "Exponential law, the three diode models, assume-and-check, small-signal resistance, clippers, rectifiers and diode logic. Past papers ask one transfer-characteristic sketch and one small-signal question.",
  eqs: [
   {name:"Diode equation (Shockley)", tex:R`I_D=I_S\left(e^{V_D/V_T}-1\right)\approx I_S\,e^{V_D/V_T}\qquad V_T=\frac{kT}{q}\approx 25\text{–}26\text{ mV}`, vars:R`$I_S$ = reverse saturation current (∝ junction area). Reverse bias: $I_D\approx -I_S$. Large reverse voltage → breakdown (Zener, avalanche).`, where:R`Slides 2–7, and the start of every small-signal question.`, tags:["diode"]},
   {name:"Ideal diode model", tex:R`\text{ON: } v_D=0,\; i_D\ge0\qquad \text{OFF: } i_D=0,\; v_D<0`, vars:R`ON = short circuit, OFF = open circuit.`, where:R`Slides 9–13 (rectifier, battery clipper, OR/AND logic), Examples 1–2, 2016 Q10, 2019 Q9.`, tags:["diode","exam"]},
@@ -90,7 +90,7 @@ const SECTIONS = [
  ]
 },
 {
- id: "L7", title: "Lecture 7 · Capacitors and Inductors", blurb: "All of this lecture is in the Quiz 3 scope. Storage elements: v–i laws, energy, DC behaviour, series/parallel, and op amps with capacitors (integrator, differentiator, analog computer). Every final has 2–3 questions here.",
+ id: "L7", title: "Lecture 7 · Capacitors and Inductors", blurb: "Storage elements: v–i laws, energy, DC behaviour, series/parallel, and op amps with capacitors (integrator, differentiator, analog computer). Every final has 2–3 questions here.",
  eqs: [
   {name:"Capacitance", tex:R`q=Cv`, vars:R`In farads (F = C/V). Real values are pF to µF.`, where:R`Example 1: 3 pF at 20 V stores 60 pC.`, tags:["lc"]},
   {name:"Capacitor v–i law", tex:R`i=C\frac{dv}{dt}\qquad v(t)=\frac1C\int_{t_0}^{t}i\,d\tau+v(t_0)`, vars:R`Passive sign convention: $i$ enters the + terminal. A piecewise-linear $v(t)$ gives a piecewise-constant $i(t)$.`, where:R`Examples 2–4. 2020 A4 ($i=2t-2$, $v(0)=4$ → $v=2t^2-4t+4$).`, tags:["lc","exam"]},
@@ -108,17 +108,17 @@ const SECTIONS = [
  ]
 },
 {
- id: "L8", title: "Lecture 8 · First-order Circuits (+ second-order preview)", blurb: "Quiz 3 covers slides 1–10: the source-free RC and RL circuits (natural response). Step response, first-order op-amp circuits and RLC come later; they are on the final only.",
+ id: "L8", title: "Lecture 8 · First-order Circuits (+ second-order preview)", blurb: "Slides 1–13: source-free RC and RL (natural response, tested in Quiz 3). Slides 14–35: step response of RC and RL, first-order op-amp circuits, delay circuits and the flashgun. RLC (second-order) is in the course outline for weeks 12–13. Every final has one first-order switching question and usually one RLC question.",
  eqs: [
-  {name:"Source-free RC: the ODE", tex:R`C\frac{dv}{dt}+\frac{v}{R}=0\;\;\Longleftrightarrow\;\;\frac{dv}{dt}+\frac{v}{RC}=0`, vars:R`KCL at the top node, $i_C+i_R=0$. A first-order ODE because the circuit has one storage element.`, where:R`Slide 4. A conceptual MCQ might ask which equation describes the circuit.`, tags:["trans"]},
+  {name:"Source-free RC: the ODE", tex:R`C\frac{dv}{dt}+\frac{v}{R}=0\;\;\Longleftrightarrow\;\;\frac{dv}{dt}+\frac{v}{RC}=0`, vars:R`KCL at the top node, $i_C+i_R=0$. A first-order ODE because the circuit has one storage element.`, where:R`Slide 4. A short Section-A question might ask which equation describes the circuit.`, tags:["trans"]},
   {name:"RC natural response", tex:R`v(t)=V_0\,e^{-t/\tau},\qquad \tau=RC`, vars:R`$V_0=v(0)$. Any resistor network the capacitor discharges into → use $R_{eq}$ seen from the capacitor terminals.`, where:R`Slides 5–8. Example 1: $R_{eq}=(8+12)\parallel5=4\,\Omega$, $\tau=0.4$ s, $v_C=15e^{-2.5t}$ V. Example 2: $\tau=(9+1)(20\text{ mF})=0.2$ s, $v_C=15e^{-5t}$ V.`, tags:["trans","exam"]},
   {name:"What τ means", tex:R`\frac{v(\tau)}{V_0}=e^{-1}=0.368\qquad \frac{v(5\tau)}{V_0}=0.0067<1\%`, vars:R`After one τ the response has fallen to 36.8% (dropped 63.2%). Treat it as fully discharged after 5τ. τ is also where the tangent at $t=0$ hits the time axis. Smaller τ = faster.`, where:R`Slide 6. Half-life: $t_{1/2}=\tau\ln2=0.693\tau$ (Sadiku 7.1).`, tags:["trans"]},
   {name:"RC: resistor power and energy", tex:R`p_R=\frac{V_0^2}{R}e^{-2t/\tau}\qquad w_R(t)=\tfrac12CV_0^2\left(1-e^{-2t/\tau}\right)`, vars:R`Power decays twice as fast as voltage ($e^{-2t/\tau}$). As $t\to\infty$ the resistor absorbs all of $\tfrac12CV_0^2$.`, where:R`Slide 6. Example 2 asks for the initial stored energy: $\tfrac12(20\text{ mF})(15^2)=2.25$ J.`, tags:["trans"]},
-  {name:"Source-free RL: natural response", tex:R`i(t)=I_0\,e^{-t/\tau},\qquad \tau=\frac{L}{R}`, vars:R`KVL $L\,di/dt+Ri=0$. Pick the inductor <i>current</i> as the unknown, because it cannot jump. Use $R_{eq}$ seen from the inductor; with a dependent source use a 1 V test source (slide 11).`, where:R`Slides 9–10 (slides 11–13 have worked examples beyond the quiz page limit, still good practice). Sadiku 7.11, 7.13, 7.17, 7.19.`, tags:["trans","exam"]},
+  {name:"Source-free RL: natural response", tex:R`i(t)=I_0\,e^{-t/\tau},\qquad \tau=\frac{L}{R}`, vars:R`KVL $L\,di/dt+Ri=0$. Pick the inductor <i>current</i> as the unknown, because it cannot jump. Use $R_{eq}$ seen from the inductor; with a dependent source use a 1 V test source (slide 11).`, where:R`Slides 9–10 (Examples 3–5 on slides 11–13 are more RL practice). Sadiku 7.11, 7.13, 7.17, 7.19.`, tags:["trans","exam"]},
   {name:"RL: resistor power and energy", tex:R`p_R=I_0^2R\,e^{-2t/\tau}\qquad w_R(t)=\tfrac12LI_0^2\left(1-e^{-2t/\tau}\right)`, vars:R`Mirror image of the RC case: all of $\tfrac12LI_0^2$ ends up in the resistor.`, where:R`Slide 10. Sadiku 7.13(b) (energy dissipated in 0.5 ms).`, tags:["trans"]},
   {name:"Time constant (general)", tex:R`\tau=R_{Th}C\qquad \tau=\frac{L}{R_{Th}}`, vars:R`$R_{Th}$ is the resistance the C or L sees with the independent sources switched off. It can change when a switch moves.`, where:R`Every first-order question. 2018 Q6 (τ = 1/9 s then 0.2 s), 2019 Q8 (70 ms then 47.5 ms).`, tags:["trans","exam"]},
   {name:"Initial conditions", tex:R`v_C(0^+)=v_C(0^-)\qquad i_L(0^+)=i_L(0^-)`, vars:R`Find $v_C$ and $i_L$ at $0^-$ with the DC rules (C open, L short), then they carry over to $0^+$. Resistor currents can jump.`, where:R`Lecture 8 Example 2 ($v_C(0)=15$ V from the DC circuit). 2020 B1 ($i(0^-)=6$ A, $v(0^+)=-15$ V).`, tags:["trans","exam"]},
-  {q2:false, name:"First-order step response", tex:R`x(t)=x(\infty)+\big[x(t_0^+)-x(\infty)\big]e^{-(t-t_0)/\tau}`, vars:R`Works for any voltage or current in an RC or RL circuit. Three numbers: initial value, final value, τ. Restart the clock at each switching instant.`, where:R`Slides 14 onward (after the quiz). 2018 Q6, 2019 Q8, 2016 Q6.`, tags:["trans","exam"]},
+  {q2:false, name:"First-order step response", tex:R`x(t)=x(\infty)+\big[x(t_0^+)-x(\infty)\big]e^{-(t-t_0)/\tau}`, vars:R`Works for any voltage or current in an RC or RL circuit. Three numbers: initial value, final value, τ. Restart the clock at each switching instant.`, where:R`Slides 14–28 (RC and RL step response, Examples 6–7). 2018 Q6, 2019 Q8, 2016 Q6.`, tags:["trans","exam"]},
   {q2:false, name:"Initial derivatives", tex:R`\frac{dv_C}{dt}\Big|_{0^+}=\frac{i_C(0^+)}{C}\qquad \frac{di_L}{dt}\Big|_{0^+}=\frac{v_L(0^+)}{L}`, vars:R`The second initial condition for any second-order response.`, where:R`2018 Q7(b) ($dv/dt=98\,000$ V/s), 2020 B1(c) ($-9$ A/s), 2020 B3(d).`, tags:["trans","exam"]},
   {q2:false, name:"Series RLC", tex:R`\alpha=\frac{R}{2L}\qquad \omega_0=\frac1{\sqrt{LC}}`, vars:R`Characteristic equation $s^2+2\alpha s+\omega_0^2=0$.`, where:R`Course outline weeks 12–13.`, tags:["trans"]},
   {q2:false, name:"Parallel RLC", tex:R`\alpha=\frac{1}{2RC}\qquad \omega_0=\frac1{\sqrt{LC}}`, vars:R`Note the different α. In 2020 B3 the ODE for the inductor current is $i''+\frac1{RC}i'+\frac1{LC}i=0$.`, where:R`2017 Q7, 2018 Q7, 2020 B3.`, tags:["trans","exam"]},
@@ -137,7 +137,7 @@ const SOLVING_TIPS = [
  {t:"Then check the rails", b:R`After finding $v_o$, ask whether $|v_o|\le V_{CC}$. "Linear range" and "when does it saturate" questions are just this inequality.`},
  {t:"Diodes: assume, solve, check", b:R`Guess ON/OFF, solve the linear circuit, check ON diodes carry forward current and OFF diodes are reverse-biased. For a transfer curve, find each break point and the slope in every region.`},
  {t:"Switching: three snapshots", b:R`$t=0^-$ (DC: C open, L short) → $t=0^+$ ($v_C$, $i_L$ unchanged) → $t=\infty$ (DC again). Then τ, or α and $\omega_0$ for RLC.`},
- {t:"Open-book MCQ: plug the options back in", b:R`When the choices are numbers, a quick check (KCL at one node, the divider, $|v_o|\le V_{CC}$, $v(0)$ and $v(\infty)$ of an exponential) is often faster than a full solve. Rule out options with the wrong sign or units first.`},
+ {t:"Written paper: method marks first", b:R`State the method (nodal, Thevenin, three snapshots) and write every equation before solving. A wrong number with clear working still earns most of the marks; a bare answer earns little.`},
  {t:"Keep the signs", b:R`A negative current or voltage just means the true direction is opposite to the one you assumed. Don't flip it unless the question asks for magnitude.`},
  {t:"Check with something you didn't use", b:R`KCL at a node you skipped, or $\sum p=0$. It takes one minute and catches most sign slips.`},
 ];
